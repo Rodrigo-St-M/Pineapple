@@ -1,8 +1,8 @@
-Node
-AnimationPlayer
 MeshInstance3D
 CollisionShape3D
 CharacterBody3D
+Node
+AnimationPlayer
 RigidBody3D
 WorldEnvironment
 Camera3D
