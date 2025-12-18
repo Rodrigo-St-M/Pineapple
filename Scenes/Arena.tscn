@@ -9,10 +9,13 @@
 size = Vector2(10, 10)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gd4f"]
-sky_top_color = Color(0.901961, 0.85098, 0.54902, 1)
-sky_horizon_color = Color(0.845887, 0.549841, 0.695473, 1)
-ground_bottom_color = Color(0.0590545, 0.0450471, 0.029574, 1)
-ground_horizon_color = Color(0.676369, 0.400627, 0.639909, 1)
+sky_top_color = Color(0.3439946, 0.94816834, 0.92355764, 1)
+sky_horizon_color = Color(0.1619167, 0.7131076, 0.9218637, 1)
+sky_curve = 0.16076604
+ground_bottom_color = Color(0.34752336, 0.7074741, 0.4444675, 1)
+ground_horizon_color = Color(0, 0.7164369, 0.6296761, 1)
+ground_curve = 0.03482212
+sun_angle_max = 24.63
 
 [sub_resource type="Sky" id="Sky_0g2wx"]
 sky_material = SubResource("ProceduralSkyMaterial_2gd4f")
@@ -20,9 +23,15 @@ sky_material = SubResource("ProceduralSkyMaterial_2gd4f")
 [sub_resource type="Environment" id="Environment_pyk7t"]
 background_mode = 2
 sky = SubResource("Sky_0g2wx")
-ambient_light_color = Color(0.552956, 0.552956, 0.552956, 1)
+ambient_light_source = 2
 
 [node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(1.92523e-07, 0.43819308, 0.4482985, 1)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -33,7 +42,7 @@ shape = SubResource("WorldBoundaryShape3D_rxeo1")
 mesh = SubResource("PlaneMesh_2gd4f")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.831256, 0.555889, 0, -0.555889, 0.831256, 0.00195312, 4.14877, 6.56937)
+transform = Transform3D(1, 0, 0, 0, 0.6349734, 0.77253395, 0, -0.77253395, 0.6349734, 0.00195312, 5.810202, 5.631326)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pyk7t")
