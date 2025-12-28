@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bgwq4wa36ujqg"]
 
-[ext_resource type="PackedScene" uid="uid://dvslvg4bcb2id" path="res://Scenes/curvy.tscn" id="3_pyk7t"]
+[ext_resource type="PackedScene" uid="uid://g4h3dgkdttgi" path="res://Scenes/Player.tscn" id="1_2gd4f"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rxeo1"]
 
@@ -46,5 +46,5 @@ transform = Transform3D(1, 0, 0, 0, 0.6349734, 0.77253395, 0, -0.77253395, 0.634
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pyk7t")
 
-[node name="Curvy" parent="." instance=ExtResource("3_pyk7t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08544, 1, -1.64797)
+[node name="Player" parent="." instance=ExtResource("1_2gd4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7234974, 0.99999976, 2.6155143)

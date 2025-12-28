@@ -1,1 +1,7 @@
 res://Scenes/Arena.tscn
+res://Scenes/Player.tscn
+res://Scripts/idle.gd
+res://Scripts/move.gd
+res://Scripts/state_machine.gd
+res://Scenes/attack.gd
+res://Scripts/state.gd

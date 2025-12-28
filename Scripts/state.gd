@@ -3,9 +3,9 @@ extends Node
 
 # @export var animation_name: String
 
+# input for speed curve. Must be preserved between states
+var speed_curve_in : float = 0.0
 var parent: CharacterBody3D
-
-var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func enter() -> void:
 	#TODO
