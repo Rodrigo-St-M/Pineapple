@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgwq4wa36ujqg"]
+[gd_scene load_steps=8 format=3 uid="uid://bgwq4wa36ujqg"]
 
+[ext_resource type="PackedScene" uid="uid://t74ig8t6mxgw" path="res://Scenes/arena_floor.tscn" id="1_0g2wx"]
 [ext_resource type="PackedScene" uid="uid://g4h3dgkdttgi" path="res://Scenes/Player.tscn" id="1_2gd4f"]
+[ext_resource type="PackedScene" uid="uid://lhus61t1y3rb" path="res://Scenes/enemy_1.tscn" id="3_pyk7t"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rxeo1"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_2gd4f"]
-size = Vector2(10, 10)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gd4f"]
 sky_top_color = Color(0.3439946, 0.94816834, 0.92355764, 1)
@@ -22,13 +21,16 @@ sky_material = SubResource("ProceduralSkyMaterial_2gd4f")
 [sub_resource type="Environment" id="Environment_pyk7t"]
 background_mode = 2
 sky = SubResource("Sky_0g2wx")
-ambient_light_source = 2
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.3
 
 [node name="Node3D" type="Node3D"]
 
+[node name="arena_floor" parent="." instance=ExtResource("1_0g2wx")]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(1.92523e-07, 0.43819308, 0.4482985, 1)
+light_energy = 0.746
 shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
@@ -36,9 +38,6 @@ directional_shadow_max_distance = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_rxeo1")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_2gd4f")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.6349734, 0.77253395, 0, -0.77253395, 0.6349734, 0.00195312, 5.810202, 5.631326)
@@ -48,3 +47,6 @@ environment = SubResource("Environment_pyk7t")
 
 [node name="Player" parent="." instance=ExtResource("1_2gd4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7234974, 0.99999976, 2.6155143)
+
+[node name="Enemy1" parent="." instance=ExtResource("3_pyk7t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6350224, -4.1728477)

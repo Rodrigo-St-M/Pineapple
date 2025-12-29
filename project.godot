@@ -43,6 +43,14 @@ attack={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="player_hitbox"
+3d_physics/layer_2="player_hurtbox"
+3d_physics/layer_3="enemy_hitbox"
+3d_physics/layer_4="enemy_hurbox"
+3d_physics/layer_5="enviroment"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

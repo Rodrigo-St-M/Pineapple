@@ -33,7 +33,6 @@ func process_physics(delta : float) -> State :
 		speed_curve_in -= delta
 		
 	parent.move_and_slide()
-	print(speed_curve_in)
 	if speed_curve_in < 0.001:
 		speed_curve_in = 0.001
 		state = idleState

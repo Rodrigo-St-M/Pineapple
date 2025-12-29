@@ -1,11 +1,12 @@
+State
+Node
+MeshInstance3D
 CollisionShape3D
+StaticBody3D
 Area3D
 AnimationPlayer
 Timer
-Node
-MeshInstance3D
 CharacterBody3D
 RigidBody3D
 WorldEnvironment
 Camera3D
-StaticBody3D

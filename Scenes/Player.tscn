@@ -1,30 +1,15 @@
 [gd_scene load_steps=13 format=3 uid="uid://g4h3dgkdttgi"]
 
-[ext_resource type="Script" uid="uid://b6iwdm4m5v114" path="res://Scripts/Player.gd" id="1_bcffs"]
+[ext_resource type="Script" uid="uid://b6iwdm4m5v114" path="res://Scripts/PlayerScripts/Player.gd" id="1_bcffs"]
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="1_fn5od"]
-[ext_resource type="Script" uid="uid://7ov8nuf2mduw" path="res://Scripts/idle.gd" id="1_hr86y"]
-[ext_resource type="Script" uid="uid://oklsav2b2r0y" path="res://Scripts/move.gd" id="3_gfjpw"]
+[ext_resource type="Script" uid="uid://7ov8nuf2mduw" path="res://Scripts/PlayerScripts/idle.gd" id="1_hr86y"]
+[ext_resource type="Script" uid="uid://oklsav2b2r0y" path="res://Scripts/PlayerScripts/move.gd" id="3_gfjpw"]
 [ext_resource type="Curve" uid="uid://b3wu0djn28s0i" path="res://Assets/speedCurve.tres" id="4_fa3hm"]
-[ext_resource type="Script" uid="uid://p8wvf6gobov6" path="res://Scenes/attack.gd" id="6_nn08x"]
+[ext_resource type="Script" uid="uid://p8wvf6gobov6" path="res://Scripts/PlayerScripts/attack.gd" id="6_nn08x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vrkc0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hr86y"]
-
-[sub_resource type="Animation" id="Animation_nn08x"]
-resource_name = "attack_spin"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Area3D:monitoring")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.53333336, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [false, true, false, false]
-}
 
 [sub_resource type="Animation" id="Animation_52ee3"]
 length = 0.001
@@ -39,6 +24,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nn08x"]
+resource_name = "attack_spin"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.53333336, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bhhdu"]

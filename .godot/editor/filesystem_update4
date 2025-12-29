@@ -1,7 +1,8 @@
+res://Scenes/enemy_1.tscn
 res://Scenes/Arena.tscn
+res://Scenes/arena_floor.tscn
 res://Scenes/Player.tscn
-res://Scripts/idle.gd
-res://Scripts/move.gd
-res://Scripts/state_machine.gd
-res://Scenes/attack.gd
-res://Scripts/state.gd
+res://Scripts/EnemyScripts/chase.gd
+res://Scripts/PlayerScripts/attack.gd
+res://Scripts/PlayerScripts/move.gd
+res://Scenes/enemy_1.gd

@@ -1,13 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://lhus61t1y3rb"]
+[gd_scene load_steps=7 format=3 uid="uid://lhus61t1y3rb"]
+
+[ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="1_lssre"]
+[ext_resource type="Script" uid="uid://dcqssvxkvdjcl" path="res://Scenes/enemy_1.gd" id="1_wlnc2"]
+[ext_resource type="Script" uid="uid://lmkyn5a04k1m" path="res://Scripts/EnemyScripts/chase.gd" id="2_wlnc2"]
+[ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/EnemyScripts/defeat.gd" id="3_hmo6u"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_op0mk"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_op0mk"]
 
 [node name="Enemy1" type="CharacterBody3D"]
+collision_layer = 4
+script = ExtResource("1_wlnc2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_op0mk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_op0mk")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("1_lssre")
+starting_state = NodePath("chase")
+
+[node name="chase" type="Node" parent="StateMachine"]
+script = ExtResource("2_wlnc2")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="defeat" type="Node" parent="StateMachine"]
+script = ExtResource("3_hmo6u")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
