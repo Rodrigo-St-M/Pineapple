@@ -11,6 +11,7 @@
 
 [node name="Enemy1" type="CharacterBody3D"]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_wlnc2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

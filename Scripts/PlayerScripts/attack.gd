@@ -7,6 +7,7 @@ func enter() -> void :
 
 	animation_player.play("attack_spin")
 	
+	
 func process_input(event: InputEvent) -> State:
 		return null
 
@@ -19,3 +20,11 @@ func process_physics(delta: float) -> State:
 			return moveState
 	parent.move_and_slide()
 	return null
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	print(body)
+	if body is Enemy:
+		var enemy : Enemy = body
+		enemy
+	body.queue_free()

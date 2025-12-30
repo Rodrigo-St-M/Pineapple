@@ -1,9 +1,12 @@
-extends CharacterBody3D
-
+extends Enemy
 @onready var stateMachine: Node = $StateMachine
+@onready var defeat: Node = $StateMachine/defeat
 
 func _ready() -> void:
-	stateMachine.init(self)	
+	MAX_HP = 1
+	hitPoints = 1
+	stateMachine.init(self)
+	add_to_group("enemies")
 
 func _physics_process(delta: float) -> void:
 	stateMachine.process_physics(delta)
@@ -13,3 +16,9 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	stateMachine.process_input(event)
+
+func damaged(dmg: int) -> void:
+	hitPoints -= dmg
+	if hitPoints <= 0:
+		stateMachine.change_state(defeat)
+	

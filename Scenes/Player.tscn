@@ -60,6 +60,9 @@ shape = SubResource("CapsuleShape3D_vrkc0")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_hr86y")
 
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+remote_path = NodePath("../StateMachine/Attack/Area3D")
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("1_fn5od")
 starting_state = NodePath("Idle")
@@ -86,8 +89,8 @@ libraries = {
 }
 
 [node name="Area3D" type="Area3D" parent="StateMachine/Attack"]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 2
+collision_mask = 4
 monitoring = false
 monitorable = false
 
@@ -95,3 +98,5 @@ monitorable = false
 shape = SubResource("CylinderShape3D_megsn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="body_entered" from="StateMachine/Attack/Area3D" to="StateMachine/Attack" method="_on_area_3d_body_entered"]

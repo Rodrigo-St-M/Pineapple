@@ -46,7 +46,17 @@ transform = Transform3D(1, 0, 0, 0, 0.6349734, 0.77253395, 0, -0.77253395, 0.634
 environment = SubResource("Environment_pyk7t")
 
 [node name="Player" parent="." instance=ExtResource("1_2gd4f")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7234974, 0.99999976, 2.6155143)
 
 [node name="Enemy1" parent="." instance=ExtResource("3_pyk7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6350224, -4.1728477)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_pyk7t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6350224, -7.546629)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_pyk7t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8192797, 0.6350224, -4.1728477)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_pyk7t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2573786, 0.6350224, -4.1728477)

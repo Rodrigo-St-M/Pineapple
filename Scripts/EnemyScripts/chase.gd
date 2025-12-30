@@ -1,19 +1,19 @@
 extends State
 var player : CharacterBody3D
-var SPEED : int = 5
-#how many physics frames to recalculate direction
-var DIRECTION_PERIOD : int = 10
+var SPEED : int = 4
+#how many physics iterations to recalculate direction
+var DIRECTION_PERIOD : int = 60
 var count : int
+var direction : Vector3
 func enter() -> void :
-	player = get_tree().get_first_node_in_group("Player")
+	player = get_node("../../../Player")
 	print(player)
 	count = DIRECTION_PERIOD
 	
 func process_physics(delta: float) -> State:
-	var direction : Vector3
 	
 	if count == 0 :
-		direction = (parent.position - player.position).normalized()
+		direction = (player.position + player.velocity - parent.position).normalized()
 		count = DIRECTION_PERIOD
 		
 	parent.velocity = SPEED * direction
