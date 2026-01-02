@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var stateMachine = $StateMachine
 
+
 func _ready() -> void:
 	stateMachine.init(self)	
 

@@ -1,9 +1,1 @@
-res://Scenes/Arena.tscn
-res://Scripts/EnemyScripts/chase.gd
-res://Scenes/enemy_1.gd
-res://Scenes/enemy_1.tscn
-res://Scripts/PlayerScripts/Player.gd
-res://Scripts/PlayerScripts/attack.gd
-res://Scenes/Player.tscn
-res://new_script.gd
-res://Scripts/state_machine.gd
+res://Scripts/EnemyScripts/defeat.gd
