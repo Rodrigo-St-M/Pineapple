@@ -17,6 +17,9 @@ func process_physics(delta: float) -> State:
 		count = DIRECTION_PERIOD
 		
 	parent.velocity = SPEED * direction
-	parent.move_and_slide()
-	count -= 1
+	
+	# we use move and collide instead of move and slide so enemies dont slide
+	# above each other and stick to the ground
+	parent.move_and_collide(parent.velocity * delta)
+	count -= 1 
 	return null

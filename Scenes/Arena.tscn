@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgwq4wa36ujqg"]
+[gd_scene load_steps=9 format=3 uid="uid://bgwq4wa36ujqg"]
 
 [ext_resource type="PackedScene" uid="uid://t74ig8t6mxgw" path="res://Scenes/arena_floor.tscn" id="1_0g2wx"]
 [ext_resource type="PackedScene" uid="uid://g4h3dgkdttgi" path="res://Scenes/Player.tscn" id="1_2gd4f"]
 [ext_resource type="PackedScene" uid="uid://lhus61t1y3rb" path="res://Scenes/enemy_1.tscn" id="3_pyk7t"]
+[ext_resource type="Script" uid="uid://bbc52mlmudp44" path="res://Scripts/spawner_manager.gd" id="4_x00a1"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rxeo1"]
 
@@ -49,14 +50,24 @@ environment = SubResource("Environment_pyk7t")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7234974, 0.99999976, 2.6155143)
 
-[node name="Enemy1" parent="." instance=ExtResource("3_pyk7t")]
+[node name="Spawner manager" type="Node3D" parent="."]
+script = ExtResource("4_x00a1")
+chaserScene = ExtResource("3_pyk7t")
+
+[node name="Timer" type="Timer" parent="Spawner manager"]
+one_shot = true
+autostart = true
+
+[node name="Enemy1" parent="Spawner manager" instance=ExtResource("3_pyk7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6350224, -4.1728477)
 
-[node name="Enemy2" parent="." instance=ExtResource("3_pyk7t")]
+[node name="Enemy2" parent="Spawner manager" instance=ExtResource("3_pyk7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6350224, -7.546629)
 
-[node name="Enemy3" parent="." instance=ExtResource("3_pyk7t")]
+[node name="Enemy3" parent="Spawner manager" instance=ExtResource("3_pyk7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8192797, 0.6350224, -4.1728477)
 
-[node name="Enemy4" parent="." instance=ExtResource("3_pyk7t")]
+[node name="Enemy4" parent="Spawner manager" instance=ExtResource("3_pyk7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2573786, 0.6350224, -4.1728477)
+
+[connection signal="timeout" from="Spawner manager/Timer" to="Spawner manager" method="_on_timer_timeout"]
