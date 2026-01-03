@@ -1,5 +1,2 @@
 res://Scripts/EnemyScripts/chase.gd
 res://Scenes/Arena.tscn
-res://Scenes/spawner_manager.gd
-res://Scripts/spawner_manager.gd
-res://Scripts/EnemyScripts/chaser.gd

@@ -1,14 +1,14 @@
 extends State
 var SPEED : int = 4
 #how many physics iterations to recalculate direction
-var DIRECTION_PERIOD : int = 60
+const DIRECTION_PERIOD : int = 60
 var count : int
 var direction : Vector3
 
 var player : CharacterBody3D
 func enter() -> void :
 	player = parent.player
-	count = DIRECTION_PERIOD
+	count = randi_range(1,DIRECTION_PERIOD)
 	
 func process_physics(delta: float) -> State:
 	

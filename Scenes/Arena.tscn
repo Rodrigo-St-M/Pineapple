@@ -4,8 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://g4h3dgkdttgi" path="res://Scenes/Player.tscn" id="1_2gd4f"]
 [ext_resource type="PackedScene" uid="uid://lhus61t1y3rb" path="res://Scenes/enemy_1.tscn" id="3_pyk7t"]
 [ext_resource type="Script" uid="uid://bbc52mlmudp44" path="res://Scripts/spawner_manager.gd" id="4_x00a1"]
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rxeo1"]
+[ext_resource type="PackedScene" uid="uid://dvl6p2reu3a33" path="res://Scenes/ArenaWalls.tscn" id="5_4f205"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gd4f"]
 sky_top_color = Color(0.3439946, 0.94816834, 0.92355764, 1)
@@ -28,6 +27,7 @@ ambient_light_sky_contribution = 0.3
 [node name="Node3D" type="Node3D"]
 
 [node name="arena_floor" parent="." instance=ExtResource("1_0g2wx")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -35,20 +35,16 @@ light_energy = 0.746
 shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("WorldBoundaryShape3D_rxeo1")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.6349734, 0.77253395, 0, -0.77253395, 0.6349734, 0.00195312, 5.810202, 5.631326)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pyk7t")
 
 [node name="Player" parent="." instance=ExtResource("1_2gd4f")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7234974, 0.99999976, 2.6155143)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06681776, 0.99999976, 7.942085)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.6349734, 0.77253395, 0, -0.77253395, 0.6349734, -0.06486464, 8.147289, 3.3576274)
+size = 10.848
 
 [node name="Spawner manager" type="Node3D" parent="."]
 script = ExtResource("4_x00a1")
@@ -69,5 +65,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8192797, 0.6350224, -4.172
 
 [node name="Enemy4" parent="Spawner manager" instance=ExtResource("3_pyk7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2573786, 0.6350224, -4.1728477)
+
+[node name="ArenaWalls" parent="." instance=ExtResource("5_4f205")]
+transform = Transform3D(40, 0, 0, 0, 20, 0, 0, 0, 40, 0, 0, 0)
 
 [connection signal="timeout" from="Spawner manager/Timer" to="Spawner manager" method="_on_timer_timeout"]
