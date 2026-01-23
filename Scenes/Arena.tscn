@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgwq4wa36ujqg"]
+[gd_scene load_steps=12 format=3 uid="uid://bgwq4wa36ujqg"]
 
 [ext_resource type="PackedScene" uid="uid://t74ig8t6mxgw" path="res://Scenes/arena_floor.tscn" id="1_0g2wx"]
 [ext_resource type="PackedScene" uid="uid://g4h3dgkdttgi" path="res://Scenes/Player.tscn" id="1_2gd4f"]
 [ext_resource type="Script" uid="uid://cht1kgf3pd3b8" path="res://Scenes/camera_3d.gd" id="3_dpcf1"]
 [ext_resource type="PackedScene" uid="uid://lhus61t1y3rb" path="res://Scenes/enemy_1.tscn" id="3_pyk7t"]
+[ext_resource type="PackedScene" uid="uid://cwy7nu5xlty05" path="res://Scenes/Debug_GUI.tscn" id="4_jhdhk"]
 [ext_resource type="Script" uid="uid://bbc52mlmudp44" path="res://Scripts/spawner_manager.gd" id="4_x00a1"]
 [ext_resource type="PackedScene" uid="uid://dvl6p2reu3a33" path="res://Scenes/ArenaWalls.tscn" id="5_4f205"]
+[ext_resource type="Script" uid="uid://bw32ew63bc4wj" path="res://Scenes/debug_gui.gd" id="5_bugre"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gd4f"]
 sky_top_color = Color(0.3439946, 0.94816834, 0.92355764, 1)
@@ -49,6 +51,9 @@ projection = 1
 size = 8.0
 script = ExtResource("3_dpcf1")
 
+[node name="Control" parent="Camera3D" instance=ExtResource("4_jhdhk")]
+script = ExtResource("5_bugre")
+
 [node name="Spawner manager" type="Node3D" parent="."]
 script = ExtResource("4_x00a1")
 chaserScene = ExtResource("3_pyk7t")
@@ -58,16 +63,16 @@ one_shot = true
 autostart = true
 
 [node name="Enemy1" parent="Spawner manager" instance=ExtResource("3_pyk7t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6350224, -4.1728477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4.173)
 
 [node name="Enemy2" parent="Spawner manager" instance=ExtResource("3_pyk7t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6350224, -7.546629)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -7.547)
 
 [node name="Enemy3" parent="Spawner manager" instance=ExtResource("3_pyk7t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8192797, 0.6350224, -4.1728477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.819, 0.5, -4.173)
 
 [node name="Enemy4" parent="Spawner manager" instance=ExtResource("3_pyk7t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0.635, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0.5, 5)
 
 [node name="ArenaWalls" parent="." instance=ExtResource("5_4f205")]
 

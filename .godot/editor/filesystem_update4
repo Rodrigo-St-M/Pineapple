@@ -1,1 +1,3 @@
-res://Scripts/PlayerScripts/move.gd
+res://Scenes/bump.gd
+res://Scenes/Arena.tscn
+res://Scenes/Player.tscn

@@ -6,7 +6,6 @@ extends State
 
 const SPEED_MULT := 15
 @export var SPEED_CURVE : Curve
-@export var REVERSE_CURVE : Curve
 var test : bool = false
 
 func enter() -> void :
@@ -41,7 +40,7 @@ func process_physics(delta : float) -> State :
 		state = idleState
 		
 	var collision : KinematicCollision3D = parent.move_and_collide(parent.get_real_velocity() * delta, true)
-	if collision != null && parent.get_real_velocity().normalized().dot(collision.get_normal()) < -0.67:
+	if collision != null && parent.get_real_velocity().normalized().dot(collision.get_normal()) < -0.67 && parent.get_real_velocity().length() > 5:
 		parent.move_and_collide(parent.velocity * delta)
 		state = bumpState
 		speed_curve_in = 0.001
@@ -49,12 +48,6 @@ func process_physics(delta : float) -> State :
 		parent.move_and_slide()
 		
 	return state
-
-func add_length_to_vector(vector : Vector3, lenght : float) -> void:
-	var v_length = vector.length()
-	vector = vector.normalized() * (v_length + lenght)
-	return
-
 
 func process_input(event : InputEvent) -> State :
 	if Input.is_action_just_pressed("attack"):

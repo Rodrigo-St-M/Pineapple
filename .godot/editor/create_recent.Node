@@ -1,3 +1,5 @@
+Label
+CanvasLayer
 RayCast3D
 State
 CSGCylinder3D
@@ -11,5 +13,3 @@ Node
 MeshInstance3D
 Area3D
 AnimationPlayer
-CharacterBody3D
-RigidBody3D

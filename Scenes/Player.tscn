@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://g4h3dgkdttgi"]
+[gd_scene load_steps=14 format=3 uid="uid://g4h3dgkdttgi"]
 
 [ext_resource type="Script" uid="uid://b6iwdm4m5v114" path="res://Scripts/PlayerScripts/Player.gd" id="1_bcffs"]
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="1_fn5od"]
 [ext_resource type="Script" uid="uid://7ov8nuf2mduw" path="res://Scripts/PlayerScripts/idle.gd" id="1_hr86y"]
 [ext_resource type="Script" uid="uid://oklsav2b2r0y" path="res://Scripts/PlayerScripts/move.gd" id="3_gfjpw"]
-[ext_resource type="Curve" uid="uid://b3wu0djn28s0i" path="res://Assets/speedCurve.tres" id="4_fa3hm"]
-[ext_resource type="Curve" uid="uid://dtcuk113jbnia" path="res://Assets/reverse_speedCurve.tres" id="6_bhhdu"]
+[ext_resource type="Curve" uid="uid://b3wu0djn28s0i" path="res://Assets/speedCurve.tres" id="6_bhhdu"]
 [ext_resource type="Script" uid="uid://p8wvf6gobov6" path="res://Scripts/PlayerScripts/attack.gd" id="6_nn08x"]
 [ext_resource type="Script" uid="uid://l2j4vt6d6lsj" path="res://Scenes/bump.gd" id="7_52ee3"]
 
@@ -79,8 +78,7 @@ script = ExtResource("3_gfjpw")
 idleState = NodePath("../Idle")
 attackState = NodePath("../Attack")
 bumpState = NodePath("../Bump")
-SPEED_CURVE = ExtResource("4_fa3hm")
-REVERSE_CURVE = ExtResource("6_bhhdu")
+SPEED_CURVE = ExtResource("6_bhhdu")
 
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState", "moveState")]
 script = ExtResource("6_nn08x")
@@ -101,9 +99,9 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StateMachine/Attack/Area3D"]
 shape = SubResource("CylinderShape3D_megsn")
 
-[node name="Bump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState")]
+[node name="Bump" type="Node" parent="StateMachine" node_paths=PackedStringArray("moveState")]
 script = ExtResource("7_52ee3")
-idleState = NodePath("../Idle")
+moveState = NodePath("../Move")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
