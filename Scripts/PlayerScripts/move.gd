@@ -2,9 +2,12 @@ extends State
 
 @export var idleState : State
 @export var attackState : State
+@export var bumpState : State
 
 const SPEED_MULT := 15
 @export var SPEED_CURVE : Curve
+@export var REVERSE_CURVE : Curve
+var test : bool = false
 
 func enter() -> void :
 	pass
@@ -19,29 +22,41 @@ func process_physics(delta : float) -> State :
 		# player is inputting direction
 		if speed_curve_in > 2:
 			speed_curve_in = 2.0
-		if (direction + parent.velocity.normalized()).length() < 0.25 :
+		if (direction + parent.get_last_motion().normalized()).length() < 0.25 :
 			# if player is braking
-			parent.velocity = parent.velocity.normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
+			parent.velocity = parent.get_real_velocity().normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
 			speed_curve_in = ( speed_curve_in / (1 + delta * 10) ) - delta * 0.01
 		else :
 			# if player is inputing a direction
-			parent.velocity = parent.velocity.normalized().lerp(direction, 0.15) * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
+			parent.velocity = parent.get_last_motion().normalized().lerp(direction, 0.15) * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
+			parent.velocity.y = 0
 			speed_curve_in += delta / 5.0
 	else:
 		# if there's no input but player is still moving
-		parent.velocity = parent.velocity.normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
+		parent.velocity = parent.get_last_motion().normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
 		speed_curve_in -= delta
 		
-	parent.move_and_slide()
 	if speed_curve_in < 0.001:
 		speed_curve_in = 0.001
 		state = idleState
+		
+	var collision : KinematicCollision3D = parent.move_and_collide(parent.get_real_velocity() * delta, true)
+	if collision != null && parent.get_real_velocity().normalized().dot(collision.get_normal()) < -0.67:
+		parent.move_and_collide(parent.velocity * delta)
+		state = bumpState
+		speed_curve_in = 0.001
+	else:
+		parent.move_and_slide()
+		
 	return state
+
+func add_length_to_vector(vector : Vector3, lenght : float) -> void:
+	var v_length = vector.length()
+	vector = vector.normalized() * (v_length + lenght)
+	return
+
 
 func process_input(event : InputEvent) -> State :
 	if Input.is_action_just_pressed("attack"):
 		return attackState
-	return null
-
-func process_frame(delta : float) -> State :
 	return null

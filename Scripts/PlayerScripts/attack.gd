@@ -12,7 +12,6 @@ func process_input(event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	if !animation_player.is_playing() :
-
 		if parent.velocity.length() < 0.001 :
 			return idleState
 		else :

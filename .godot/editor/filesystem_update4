@@ -1,2 +1,1 @@
-res://Scripts/EnemyScripts/chase.gd
-res://Scenes/Arena.tscn
+res://Scripts/PlayerScripts/move.gd

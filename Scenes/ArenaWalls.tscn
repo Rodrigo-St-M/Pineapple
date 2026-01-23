@@ -6,4 +6,5 @@ data = PackedVector3Array(-0.40450847, -1, -0.29389268, -0.38428304, -1, -0.2791
 [node name="ArenaWalls" type="StaticBody3D"]
 
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(40, 0, 0, 0, 20, 0, 0, 0, 40, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_8r6g6")
