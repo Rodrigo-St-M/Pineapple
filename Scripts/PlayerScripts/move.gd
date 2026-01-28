@@ -7,15 +7,16 @@ extends State
 const SPEED_MULT := 15
 @export var SPEED_CURVE : Curve
 var test : bool = false
-
+var direction : Vector3
 func enter() -> void :
-	pass
+	parent.move_and_slide()
+	
 func exit() -> void :
 	pass
 	
 func process_physics(delta : float) -> State :
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := ( Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = ( Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var state = null
 	if direction:
 		# player is inputting direction
@@ -25,6 +26,8 @@ func process_physics(delta : float) -> State :
 			# if player is braking
 			parent.velocity = parent.get_real_velocity().normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
 			speed_curve_in = ( speed_curve_in / (1 + delta * 10) ) - delta * 0.01
+			if speed_curve_in < 0.003:
+				parent.velocity = -parent.velocity
 		else :
 			# if player is inputing a direction
 			parent.velocity = parent.get_last_motion().normalized().lerp(direction, 0.15) * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
@@ -40,7 +43,7 @@ func process_physics(delta : float) -> State :
 		state = idleState
 		
 	var collision : KinematicCollision3D = parent.move_and_collide(parent.get_real_velocity() * delta, true)
-	if collision != null && parent.get_real_velocity().normalized().dot(collision.get_normal()) < -0.67 && parent.get_real_velocity().length() > 5:
+	if collision != null && parent.get_real_velocity().normalized().dot(collision.get_normal()) < -0.67 && parent.get_real_velocity().length() > 4:
 		parent.move_and_collide(parent.velocity * delta)
 		state = bumpState
 		speed_curve_in = 0.001
@@ -49,7 +52,7 @@ func process_physics(delta : float) -> State :
 		
 	return state
 
-func process_input(event : InputEvent) -> State :
+func process_input(_event : InputEvent) -> State :
 	if Input.is_action_just_pressed("attack"):
 		return attackState
 	return null

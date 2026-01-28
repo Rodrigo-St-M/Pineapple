@@ -16,7 +16,13 @@ func process_physics(delta: float) -> State:
 			return idleState
 		else :
 			return moveState
-	parent.move_and_slide()
+			
+	var collision : KinematicCollision3D = parent.move_and_collide(parent.velocity * delta, true)
+	if collision != null:
+		parent.move_and_collide(parent.velocity * delta)
+		parent.velocity = parent.velocity.bounce(collision.get_normal())
+	else :
+		parent.move_and_slide()
 	return null
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
