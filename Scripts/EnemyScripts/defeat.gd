@@ -6,9 +6,9 @@ const FALL_SPEED : int = 9
 var direction : Vector3
 
 func enter() -> void :
-	super()
 	time = 0
 	direction = - (parent.player.position - parent.position).normalized() * 5
+	parent.collision_layer = 0
 
 func process_physics(delta: float) -> State:
 	time += delta * FALL_SPEED

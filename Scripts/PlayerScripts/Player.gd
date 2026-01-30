@@ -16,3 +16,10 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	stateMachine.process_input(event)
+	
+## returns a string that represents the current state of this player, 
+## requires stateMachine must have been initialized properly
+## ensures \return != null
+## returns a string indicating the current state
+func get_state_name() -> String:
+	return str(stateMachine.current_state)

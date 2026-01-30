@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs6lrytwukl0s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r607b"]
+albedo_color = Color(0.5618994, 0.5499391, 7.70092e-07, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_v45hn"]
+material = SubResource("StandardMaterial3D_r607b")
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkrvk"]
+albedo_color = Color(0.32899353, 0.58698654, 0.17452988, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c1j66"]
+material = SubResource("StandardMaterial3D_lkrvk")
+
+[node name="Pineaple" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="FruitMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_v45hn")
+
+[node name="LeafMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.6405208, 0)
+mesh = SubResource("PlaneMesh_c1j66")
+skeleton = NodePath("../FruitMesh")

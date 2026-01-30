@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cwy7nu5xlty05"]
 
-[node name="Control" type="Control"]
+[node name="Debug_UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

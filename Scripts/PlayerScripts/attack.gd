@@ -7,7 +7,7 @@ const DMG : int = 3
 func enter() -> void :
 	animation_player.play("attack_spin")
 
-func process_input(event: InputEvent) -> State:
+func process_input(_event: InputEvent) -> State:
 		return null
 
 func process_physics(delta: float) -> State:

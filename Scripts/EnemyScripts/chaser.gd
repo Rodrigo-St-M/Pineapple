@@ -7,7 +7,6 @@ var player : CharacterBody3D
 
 func _ready() -> void:
 	player = get_node("../../Player")
-	MAX_HP = 1
 	hitPoints = 1
 	stateMachine.init(self)
 	add_to_group("enemies")
