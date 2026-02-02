@@ -4,9 +4,8 @@ extends CharacterBody3D
 
 
 func _ready() -> void:
-	max_slides = 4
-	wall_min_slide_angle = 0.10
-	stateMachine.init(self)	
+	safe_margin = 0.015
+	stateMachine.init(self)
 
 func _physics_process(delta: float) -> void:
 	stateMachine.process_physics(delta)

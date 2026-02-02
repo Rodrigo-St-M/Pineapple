@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 
 var time : float
 const START_IMPACT_SPEED : int = 5

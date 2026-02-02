@@ -8,5 +8,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	label.text = "Velocity: " + str("%0.2f" % player.get_real_velocity().length()," m/s\n") 
+	label.text = "Velocity: " + str("%0.2f" % player.velocity.length()," m/s") + str(player.velocity) + "\n"
 	label.text += "State: " + player.get_state_name()

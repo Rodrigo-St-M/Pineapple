@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var idleState : State
 @export var moveState : State

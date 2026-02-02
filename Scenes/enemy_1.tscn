@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://lhus61t1y3rb"]
 
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="1_lssre"]
-[ext_resource type="Script" uid="uid://dcqssvxkvdjcl" path="res://Scripts/EnemyScripts/chaser.gd" id="1_wlnc2"]
-[ext_resource type="Script" uid="uid://lmkyn5a04k1m" path="res://Scripts/EnemyScripts/chase.gd" id="2_wlnc2"]
-[ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/EnemyScripts/defeat.gd" id="3_hmo6u"]
-[ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/EnemyScripts/stunned.gd" id="5_hmo6u"]
+[ext_resource type="Script" uid="uid://dcqssvxkvdjcl" path="res://Scripts/enemy_scripts/chaser.gd" id="1_wlnc2"]
+[ext_resource type="Script" uid="uid://lmkyn5a04k1m" path="res://Scripts/enemy_scripts/chase.gd" id="2_wlnc2"]
+[ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="3_hmo6u"]
+[ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_hmo6u"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_op0mk"]
 

@@ -1,8 +1,6 @@
 class_name State
 extends Node
 
-# input for speed curve. Must be preserved between states
-static var speed_curve_in : float = 0.0
 var parent: CharacterBody3D
 
 func enter() -> void:
