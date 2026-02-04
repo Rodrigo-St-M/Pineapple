@@ -1,3 +1,5 @@
+State
+Enemy
 CollisionShape3D
 BoneAttachment3D
 MeshInstance3D
@@ -6,9 +8,7 @@ StaticBody3D
 Label
 CanvasLayer
 RayCast3D
-State
 CSGCylinder3D
 CSGCombiner3D
 Timer
 RemoteTransform3D
-Node

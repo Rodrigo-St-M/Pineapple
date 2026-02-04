@@ -6,8 +6,11 @@ var count : int
 var direction : Vector3
 
 var player : CharacterBody3D
+
 func enter() -> void :
 	player = parent.player
+	if player == null:
+		print("whoops")
 	count = randi_range(1,DIRECTION_PERIOD)
 	
 func process_physics(delta: float) -> State:

@@ -1,28 +1,31 @@
 extends Enemy
-@onready var stateMachine: Node = $StateMachine
+
+@onready var state_machine: Node = $StateMachine
 @onready var defeat: Node = $StateMachine/defeat
-@onready var stunned: State = $StateMachine/stunned
+@onready var stunned: Node = $StateMachine/stunned
 var player : CharacterBody3D
+var pineapple_tree : StaticBody3D
+
 
 func _ready() -> void:
 	hitPoints = 1
 	player = GameMaster.player
+	pineapple_tree = GameMaster.pineapple_tree
 	add_to_group("enemies")
-	stateMachine.init(self)
-
+	state_machine.init(self)
+	
 func _physics_process(delta: float) -> void:
-	stateMachine.process_physics(delta)
+	state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
-	stateMachine.process_frame(delta)
+	state_machine.process_frame(delta)
 
 func _unhandled_input(event: InputEvent) -> void:
-	stateMachine.process_input(event)
+	state_machine.process_input(event)
 
 func damaged(dmg: int) -> void:
 	hitPoints -= dmg
 	if hitPoints <= 0:
-		stateMachine.change_state(defeat)
+		state_machine.change_state(defeat)
 	else :
-		stateMachine.change_state(stunned)
-	
+		state_machine.change_state(stunned)

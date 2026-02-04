@@ -1,2 +1,3 @@
-res://Scenes/arena.tscn
-res://Scripts/player_scripts/move.gd
+res://Scenes/enemies/grabber.tscn
+res://Scripts/enemy_scripts/escape.gd
+res://Scripts/camera_3d.gd

@@ -4,6 +4,7 @@ extends CharacterBody3D
 
 
 func _ready() -> void:
+	GameMaster.player = self
 	safe_margin = 0.015
 	stateMachine.init(self)
 

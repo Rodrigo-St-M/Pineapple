@@ -6,6 +6,7 @@ signal pineapple_recovered
 @export var pineappleScene : PackedScene
 
 func _ready() -> void:
+	GameMaster.pineapple_tree = self
 	for i in range(3):
 		pineapples.push_back(pineappleScene.instantiate())
 		print("pineapple " + str(i) +" instantiated")

@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://b543gdht0q5vx"]
+
+[ext_resource type="Script" uid="uid://ccd3beqaje03y" path="res://grabber.gd" id="1_tv6h1"]
+[ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="2_qu3x1"]
+[ext_resource type="Script" uid="uid://c0bmm3bch3nq8" path="res://Scenes/enemies/aproach.gd" id="3_807g1"]
+[ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="4_c7kew"]
+[ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_jhv5p"]
+[ext_resource type="Script" uid="uid://b2yguak3uwahj" path="res://Scripts/enemy_scripts/escape.gd" id="6_w156i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hwo04"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72jqf"]
+albedo_color = Color(0.98397356, 0.52227944, 0.7219559, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h21g4"]
+material = SubResource("StandardMaterial3D_72jqf")
+
+[node name="Grabber" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 21
+script = ExtResource("1_tv6h1")
+metadata/_custom_type_script = "uid://cf1inwwga5w46"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_hwo04")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_h21g4")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_qu3x1")
+starting_state = NodePath("aproach")
+
+[node name="aproach" type="Node" parent="StateMachine" node_paths=PackedStringArray("escape_state")]
+script = ExtResource("3_807g1")
+escape_state = NodePath("../Escape")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="defeat" type="Node" parent="StateMachine"]
+script = ExtResource("4_c7kew")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="stunned" type="Node" parent="StateMachine"]
+script = ExtResource("5_jhv5p")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Escape" type="Node" parent="StateMachine" node_paths=PackedStringArray("aproach_state")]
+script = ExtResource("6_w156i")
+aproach_state = NodePath("../aproach")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
