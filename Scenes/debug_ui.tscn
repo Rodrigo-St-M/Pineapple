@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cwy7nu5xlty05"]
+[gd_scene load_steps=2 format=3 uid="uid://cwy7nu5xlty05"]
+
+[ext_resource type="Script" uid="uid://bw32ew63bc4wj" path="res://Scripts/debug_gui.gd" id="1_aqnpe"]
 
 [node name="Debug_UI" type="Control"]
 layout_mode = 3
@@ -7,12 +9,63 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_aqnpe")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Velocity_Label" type="Label" parent="CanvasLayer"]
+[node name="VelocityLabel" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Velocity: "
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8381929, 0.72780824, 0.10149483, 1)
+theme_override_colors/font_outline_color = Color(0.34580097, 0.7186135, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 128
+text = "GAME OVER"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverLabel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = 0.5
+offset_right = 52.0
+offset_bottom = 53.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8392157, 0.7254902, 0.101960786, 1)
+theme_override_colors/font_focus_color = Color(0.8392157, 0.7254902, 0.101960786, 1)
+theme_override_colors/font_pressed_color = Color(0.8392157, 0.7254902, 0.101960786, 1)
+theme_override_colors/font_hover_color = Color(0.8392157, 0.7254902, 0.101960786, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.8392157, 0.7254902, 0.101960786, 1)
+theme_override_colors/font_disabled_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
+theme_override_colors/font_outline_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
+theme_override_colors/icon_normal_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
+theme_override_colors/icon_focus_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
+theme_override_colors/icon_pressed_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
+theme_override_colors/icon_hover_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
+theme_override_colors/icon_disabled_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
+theme_override_font_sizes/font_size = 32
+text = "RETRY"
+
+[connection signal="pressed" from="CanvasLayer/GameOverLabel/RestartButton" to="." method="_on_restart_button_pressed"]

@@ -1,3 +1,1 @@
-res://Scenes/arena.tscn
-res://Scripts/player_scripts/attack.gd
-res://player_state.gd
+res://Scenes/enemies/grabber.tscn

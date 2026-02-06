@@ -1,3 +1,5 @@
+Button
+Label
 Timer
 State
 Enemy
@@ -6,7 +8,6 @@ BoneAttachment3D
 MeshInstance3D
 Node3D
 StaticBody3D
-Label
 CanvasLayer
 RayCast3D
 CSGCylinder3D

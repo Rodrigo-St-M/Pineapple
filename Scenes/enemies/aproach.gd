@@ -18,5 +18,9 @@ func process_physics(delta: float) -> State:
 	# above each other and stick to the ground
 	var collision = parent.move_and_collide(parent.velocity * delta)
 	if collision && collision.get_collider_id() == pineapple_tree.get_instance_id():
-		return escape_state
+		parent.holding_pineapple = pineapple_tree.call("steal_pineapple")
+		
+		if parent.holding_pineapple:
+			parent.add_child( parent.holding_pineapple )
+			return escape_state
 	return null

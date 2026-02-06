@@ -15,6 +15,7 @@ func _ready() -> void:
 		pineapples[i].position.x += - 1 + 1 * i
 		pineapples[i].position.z += 1
 		pineapples[i].position.y += 2
+		GameMaster.pineapples.push_back(pineapples[i])
 
 ## Returns and removes pineapple if the tree has any pineapples left
 ## If id does not have any pineapples, returns null and does nothing else
@@ -33,6 +34,6 @@ func recover_pineapple(pineapple : Node3D) -> void:
 	pineapples.push_back(pineapple)
 	emit_signal("pineapple_recovered")
 	add_child(pineapple)
-	pineapple.position.x += - 1 + 1 * pineapples.size()
-	pineapple.position.z += 1
-	pineapple.position.y += 2
+	#pineapple.position.x += - 1 + 1 * pineapples.size()
+	#pineapple.position.z += 1
+	#pineapple.position.y += 2

@@ -5,7 +5,6 @@ const TURN_STRENGHT : int = 22
 @export var moveState : State
 
 const DMG : int = 3
-var just_collided : bool = false
 func enter() -> void :
 	animation_player.play("attack_spin")
 
@@ -18,6 +17,7 @@ func process_physics(delta: float) -> State:
 			return idleState
 		else :
 			return moveState
+			
 	var collision : KinematicCollision3D = parent.move_and_collide(parent.velocity * delta, true)
 	if collision != null:
 		parent.move_and_collide(parent.velocity * delta).get_remainder()

@@ -5,7 +5,7 @@ extends Enemy
 @onready var stunned: Node = $StateMachine/stunned
 var player : CharacterBody3D
 var pineapple_tree : StaticBody3D
-
+var holding_pineapple : Node3D
 
 func _ready() -> void:
 	hitPoints = 1
