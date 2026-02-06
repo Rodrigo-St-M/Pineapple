@@ -64,10 +64,14 @@ script = ExtResource("6_bx68w")
 chaser_scene = ExtResource("7_lgt66")
 grabber_scene = ExtResource("8_stc3i")
 
-[node name="Timer" type="Timer" parent="Spawner manager"]
+[node name="WaveTimer" type="Timer" parent="Spawner manager"]
 wait_time = 60.0
 one_shot = true
 
+[node name="DelayTimer" type="Timer" parent="Spawner manager"]
+autostart = true
+
 [node name="ArenaWalls" parent="." instance=ExtResource("8_lkdvd")]
 
-[connection signal="timeout" from="Spawner manager/Timer" to="Spawner manager" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner manager/WaveTimer" to="Spawner manager" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner manager/DelayTimer" to="Spawner manager" method="_on_delay_timer_timeout"]

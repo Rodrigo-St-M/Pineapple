@@ -1,19 +1,22 @@
 extends Node3D
 const SPAWN_DISTANCE : float = 18.0
 const WAVE_TIME_PERIOD : float = 30.0
-@onready var timer: Timer = $Timer
+const WAVE_ENEMY_DELAY : float = 1
+var spawn_queue : Array[Enemy]
+@onready var wave_timer: Timer = $WaveTimer
+@onready var delay_timer: Timer = $DelayTimer
 @export var chaser_scene : PackedScene
 @export var grabber_scene : PackedScene
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
-var waveNumber : int = 0
+var waveNumber : int = 1
 	
 func _process(_delta: float) -> void:
 	var enemy_number : int = get_tree().get_node_count_in_group("enemies")
-	if enemy_number == 0:
+	if spawn_queue.size() == 0 && enemy_number == 0:
 		spawn_wave()
 		waveNumber += 1
-		timer.start(WAVE_TIME_PERIOD)
+		wave_timer.start(WAVE_TIME_PERIOD)
 
 
 func spawn_wave() -> void:
@@ -31,19 +34,24 @@ func spawn_wave() -> void:
 		enemy.position.z = randf_range(-1, 1)
 		enemy.position = enemy.position.normalized() * SPAWN_DISTANCE 
 		enemy.position.y = 1
-		add_child(enemy)
+		spawn_queue.push_back(enemy)
 		wave_details.pop_at(i)
 
 
-func _on_timer_timeout() -> void:
+func _on_wave_timer_timeout() -> void:
 	spawn_wave()
 	waveNumber += 1
-	timer.start(WAVE_TIME_PERIOD)
+	wave_timer.start(WAVE_TIME_PERIOD)
 
 func generate_wave_details() -> Array[Enemy.enemyTypes]:
 	var wave : Array[Enemy.enemyTypes]
 	for i in range(3 * waveNumber):
 		wave.push_back(Enemy.enemyTypes.CHASE)
-	for i in range(5 * waveNumber):
+	for i in range(2 * waveNumber):
 		wave.push_back(Enemy.enemyTypes.GRAB)
 	return wave
+
+
+func _on_delay_timer_timeout() -> void:
+	if !spawn_queue.is_empty():
+		add_child(spawn_queue.pop_front())

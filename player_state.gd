@@ -22,23 +22,26 @@ func parse_movement_input(input_direction : Vector3, delta : float, turn_strengt
 	#print(input_direction)
 	if input_direction:
 		# if player is braking, i.e, inputing a direction opposite of velocity
-		if !just_turn && (input_direction.dot(parent.get_real_velocity().normalized())) < -0.67 :
-			parent.velocity = parent.get_real_velocity().normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
+		if !just_turn && (input_direction.dot(parent.velocity.normalized())) < -0.67 :
+			parent.velocity = parent.velocity.normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
 			speed_curve_in = ( speed_curve_in / (1 + delta * 10) ) - delta * 0.01
 			if speed_curve_in < MIN_SPEED_CURVE_IN_TO_FLIP:
 				parent.velocity = -parent.velocity
 		# if player is inputing a direction and not braking
 		else :
-			parent.velocity = parent.get_real_velocity().normalized().lerp(input_direction, turn_strength) * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
+			parent.velocity = parent.velocity.normalized().lerp(input_direction, turn_strength) * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
 			parent.velocity.y = 0
 			speed_curve_in += (delta / 5.0)
 	
 	# if there's no input but player is still moving
 	else:
-		parent.velocity = parent.get_real_velocity().normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
+		parent.velocity = parent.velocity.normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
 		speed_curve_in -= delta
 		
 	if speed_curve_in > SPEED_CURVE.max_domain:
 		speed_curve_in = SPEED_CURVE.max_domain
 	if speed_curve_in < 0.0:
 		speed_curve_in = 0.0
+		
+	
+	

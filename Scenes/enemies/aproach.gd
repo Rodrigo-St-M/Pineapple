@@ -1,6 +1,6 @@
 extends State
 
-var SPEED : int = 3
+var SPEED : int = 2
 
 var direction : Vector3
 var pineapple_tree : StaticBody3D
@@ -9,7 +9,6 @@ var pineapple_tree : StaticBody3D
 func enter() -> void :
 	pineapple_tree = parent.pineapple_tree
 	direction = (pineapple_tree.global_position - parent.global_position)
-	print(direction)
 	direction.y = 0.0
 	direction = direction.normalized()
 

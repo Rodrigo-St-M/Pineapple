@@ -1,7 +1,7 @@
 extends State
 
 const MIN_ESCAPE_DISTANCE : int = 18
-var SPEED : int = 4
+var SPEED : int = 2
 #how many physics iterations to recalculate direction
 var direction : Vector3
 var pineapple_tree : StaticBody3D

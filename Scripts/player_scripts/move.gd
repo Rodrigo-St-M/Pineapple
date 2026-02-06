@@ -1,6 +1,6 @@
 extends PlayerState
 
-const TURN_STRENGHT : int = 50
+const TURN_STRENGHT : int = 67
 const BRAKE_STRENGHT : int = 1
 const MIN_VELOCITY : float = 0.0004
 @export var idleState : State

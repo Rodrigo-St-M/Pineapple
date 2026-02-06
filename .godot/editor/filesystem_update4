@@ -1,3 +1,3 @@
-res://Scenes/enemies/grabber.tscn
-res://Scripts/enemy_scripts/escape.gd
-res://Scripts/camera_3d.gd
+res://Scenes/arena.tscn
+res://Scripts/player_scripts/attack.gd
+res://player_state.gd
