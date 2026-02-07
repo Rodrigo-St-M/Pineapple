@@ -1,2 +1,0 @@
-ConcavePolygonShape3D
-Curve
