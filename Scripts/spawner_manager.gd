@@ -5,8 +5,10 @@ const WAVE_ENEMY_DELAY : float = 1
 var spawn_queue : Array[Enemy]
 @onready var wave_timer: Timer = $WaveTimer
 @onready var delay_timer: Timer = $DelayTimer
-@export var chaser_scene : PackedScene
-@export var grabber_scene : PackedScene
+
+const CHASER : PackedScene = preload("uid://lhus61t1y3rb")
+const GRABBER : PackedScene = preload("uid://b543gdht0q5vx")
+
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
 var waveNumber : int = 1
@@ -27,9 +29,9 @@ func spawn_wave() -> void:
 		var enemy : Enemy
 		match wave_details[i]:
 			Enemy.enemyTypes.CHASE:
-				enemy = chaser_scene.instantiate()
+				enemy = CHASER.instantiate()
 			Enemy.enemyTypes.GRAB:
-				enemy = grabber_scene.instantiate()
+				enemy = GRABBER.instantiate()
 		enemy.position.x = randf_range(-1, 1)
 		enemy.position.z = randf_range(-1, 1)
 		enemy.position = enemy.position.normalized() * SPAWN_DISTANCE 

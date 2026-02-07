@@ -9,6 +9,9 @@ static var is_game_over : bool = false
 static var lives_left : int = 3
 signal game_over
 
+func _ready() -> void:
+	is_game_over = false
+	lives_left = 3
 func _process(delta: float) -> void:
 	if is_game_over:
 		return
