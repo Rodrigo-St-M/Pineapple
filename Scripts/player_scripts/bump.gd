@@ -8,6 +8,7 @@ const FALL_SPEED : int = 15
 func enter() -> void :
 	parent.velocity = -parent.get_last_motion().normalized() * START_IMPACT_SPEED
 	parent.velocity.y = START_IMPACT_SPEED
+	speed_curve_in /= 6
 	time = 0
 	
 func process_physics(delta: float) -> State:

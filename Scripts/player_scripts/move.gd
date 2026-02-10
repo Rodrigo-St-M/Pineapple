@@ -29,7 +29,6 @@ func process_physics(delta : float) -> State :
 	if collision != null && parent.velocity.normalized().dot(collision.get_normal()) < -0.87 && parent.get_real_velocity().length() > 7:
 		parent.move_and_collide(parent.velocity * delta)
 		state = bumpState
-		speed_curve_in = 0.0
 	
 	else:
 		parent.move_and_slide()

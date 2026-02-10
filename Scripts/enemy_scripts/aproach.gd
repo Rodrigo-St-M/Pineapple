@@ -1,6 +1,6 @@
 extends State
 
-var SPEED : int = 2
+var SPEED : int = 3
 
 var direction : Vector3
 var pineapple_tree : StaticBody3D

@@ -2,8 +2,12 @@ extends State
 class_name PlayerState
 const SPEED_CURVE : Curve = preload("uid://b3wu0djn28s0i")
 const SPEED_CURVE_REVERSE : Curve = preload("uid://bosq1xrfqh674")
-const SPEED_MULT : float = 15
+const SPEED_MULT : float = 20
 const MIN_SPEED_CURVE_IN_TO_FLIP : float = 0.003
+
+@warning_ignore("integer_division")
+const NORMAL_SPEED_TRESHOLD : int = SPEED_MULT / 2
+const STRONG_SPEED_TRESHOLD : int = 15
 # input for speed curve. Must be preserved between states
 static var speed_curve_in : float = 0.0
 
@@ -14,8 +18,9 @@ static var speed_curve_in : float = 0.0
 ## [delta] the elapsed time since last frame
 ## [turn_strength] how quickly the player turn towards input direction. 
 ## Must be a value between 1 and 0.
-## [is_accelerate] if speed_in should not be changed and just vary 
+## [just_turn] if speed_in should not be changed and just vary 
 ## velocity's direction, defaults as true
+## [brake_strength] how quickly the player turns to a halt TODO
 func parse_movement_input(input_direction : Vector3, delta : float, turn_strength : float,
 		 just_turn : bool = true, brake_strenght : float = 1.0) -> void:
 	# player is inputting direction
@@ -31,10 +36,11 @@ func parse_movement_input(input_direction : Vector3, delta : float, turn_strengt
 		else :
 			parent.velocity = parent.velocity.normalized().lerp(input_direction, turn_strength) * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
 			parent.velocity.y = 0
-			speed_curve_in += (delta / 5.0)
+			if !just_turn:
+				speed_curve_in += (delta / 10.0)
 	
 	# if there's no input but player is still moving
-	else:
+	elif !just_turn:
 		parent.velocity = parent.velocity.normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
 		speed_curve_in -= delta
 		

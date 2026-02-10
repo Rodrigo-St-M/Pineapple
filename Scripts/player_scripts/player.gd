@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var stateMachine = $StateMachine
-
+const SPEED_MULT : int = 20
 
 func _ready() -> void:
 	GameMaster.player = self

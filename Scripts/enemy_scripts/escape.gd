@@ -1,7 +1,7 @@
 extends State
 
 const MIN_ESCAPE_DISTANCE : int = 18
-var SPEED : int = 2
+var SPEED : int = 3
 var direction : Vector3
 var pineapple_tree : StaticBody3D
 @export var aproach_state : State
