@@ -9,7 +9,7 @@ func _ready() -> void:
 	GameMaster.pineapple_tree = self
 	for i in range(3):
 		pineapples.push_back(pineappleScene.instantiate())
-		print("pineapple " + str(i) +" instantiated")
+
 		pineapples[i].name = "apple" + str(i)
 		add_child(pineapples[i])
 		pineapples[i].position.x += - 1 + 1 * i

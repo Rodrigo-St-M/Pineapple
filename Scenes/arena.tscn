@@ -6,9 +6,7 @@
 [ext_resource type="Script" uid="uid://cht1kgf3pd3b8" path="res://Scripts/camera_3d.gd" id="3_iyva0"]
 [ext_resource type="PackedScene" uid="uid://cwy7nu5xlty05" path="res://Scenes/debug_ui.tscn" id="4_2cush"]
 [ext_resource type="Script" uid="uid://bbc52mlmudp44" path="res://Scripts/spawner_manager.gd" id="6_bx68w"]
-[ext_resource type="PackedScene" uid="uid://lhus61t1y3rb" path="res://Scenes/enemies/chaser.tscn" id="7_lgt66"]
 [ext_resource type="PackedScene" uid="uid://dvl6p2reu3a33" path="res://Scenes/arena_walls.tscn" id="8_lkdvd"]
-[ext_resource type="PackedScene" uid="uid://b543gdht0q5vx" path="res://Scenes/enemies/grabber.tscn" id="8_stc3i"]
 [ext_resource type="PackedScene" uid="uid://dnhf1xgc7uic3" path="res://Scenes/pineapple_tree.tscn" id="9_bgjus"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gd4f"]
@@ -26,7 +24,8 @@ sky_material = SubResource("ProceduralSkyMaterial_2gd4f")
 [sub_resource type="Environment" id="Environment_pyk7t"]
 background_mode = 2
 sky = SubResource("Sky_0g2wx")
-ambient_light_source = 3
+ambient_light_source = 2
+ambient_light_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
 ambient_light_sky_contribution = 0.3
 
 [node name="Node3D" type="Node3D" unique_id=1878933727]
@@ -61,8 +60,6 @@ script = ExtResource("3_iyva0")
 
 [node name="Spawner manager" type="Node3D" parent="." unique_id=1870147050]
 script = ExtResource("6_bx68w")
-chaser_scene = ExtResource("7_lgt66")
-grabber_scene = ExtResource("8_stc3i")
 
 [node name="WaveTimer" type="Timer" parent="Spawner manager" unique_id=827258421]
 wait_time = 60.0

@@ -1,21 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://t74ig8t6mxgw"]
+[gd_scene format=3 uid="uid://t74ig8t6mxgw"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_11rgt"]
 
+[sub_resource type="Gradient" id="Gradient_11rgt"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.125, 0.125, 0.125, 1, 0.25, 0.25, 0.25, 1, 0.375, 0.375, 0.375, 1, 0.5, 0.5, 0.5, 1, 0.625, 0.625, 0.625, 1, 0.75, 0.75, 0.75, 1, 0.875, 0.875, 0.875, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_11rgt"]
+frequency = 0.0025
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_11rgt"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_11rgt")
+color_ramp = SubResource("Gradient_11rgt")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o7orw"]
-albedo_color = Color(0.7860576, 0.6685821, 0.30869123, 1)
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.59375, 0.43456626, 0.2644043, 1)
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_11rgt")
+clearcoat = 0.35
+clearcoat_roughness = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_clv8h"]
 material = SubResource("StandardMaterial3D_o7orw")
 size = Vector2(40, 40)
 
-[node name="arena_floor" type="StaticBody3D"]
+[node name="arena_floor" type="StaticBody3D" unique_id=2013783194]
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1174104603]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_11rgt")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=87815022]
 mesh = SubResource("PlaneMesh_clv8h")

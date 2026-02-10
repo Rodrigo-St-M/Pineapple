@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://f42bx6kvbhhv"]
+
+[ext_resource type="Script" uid="uid://beekcnr3mycr5" path="res://Scenes/enemies/laser.gd" id="1_88d68"]
+[ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="2_oj2nt"]
+[ext_resource type="Script" uid="uid://bdumon755julr" path="res://Scripts/enemy_scripts/reload.gd" id="3_88d68"]
+[ext_resource type="Script" uid="uid://bw77b4a8706wg" path="res://Scenes/enemies/aim_and_fire.gd" id="4_bqa51"]
+[ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="5_88d68"]
+[ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="6_ieodd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a04sm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0bgsy"]
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyiwb"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.3435557, 0.6684012, 0.34233037, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yydie"]
+size = Vector3(0.5, 0.5, 40)
+
+[node name="Laser" type="CharacterBody3D" unique_id=1699162670]
+collision_layer = 4
+collision_mask = 21
+script = ExtResource("1_88d68")
+metadata/_custom_type_script = "uid://cf1inwwga5w46"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=3996554]
+shape = SubResource("SphereShape3D_a04sm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1022794065]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_0bgsy")
+surface_material_override/0 = SubResource("StandardMaterial3D_xyiwb")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=1382430234]
+remote_path = NodePath("../StateMachine/AimAndFire/LaserSight")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1730100260 node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_oj2nt")
+starting_state = NodePath("Reload")
+
+[node name="Reload" type="Node" parent="StateMachine" unique_id=397371870]
+script = ExtResource("3_88d68")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="AimAndFire" type="Node" parent="StateMachine" unique_id=1279129388]
+script = ExtResource("4_bqa51")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="LaserSight" type="Area3D" parent="StateMachine/AimAndFire" unique_id=498876682]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StateMachine/AimAndFire/LaserSight" unique_id=840291742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20.319744)
+shape = SubResource("BoxShape3D_yydie")
+disabled = true
+
+[node name="defeat" type="Node" parent="StateMachine" unique_id=831454815]
+script = ExtResource("5_88d68")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="stunned" type="Node" parent="StateMachine" unique_id=1313552631]
+script = ExtResource("6_ieodd")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[connection signal="body_entered" from="StateMachine/AimAndFire/LaserSight" to="StateMachine/AimAndFire" method="_on_laser_sight_body_entered"]

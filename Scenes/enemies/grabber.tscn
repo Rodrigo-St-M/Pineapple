@@ -10,7 +10,11 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_hwo04"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72jqf"]
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(0.98397356, 0.52227944, 0.7219559, 1)
+clearcoat_enabled = true
+clearcoat_roughness = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_h21g4"]
 material = SubResource("StandardMaterial3D_72jqf")

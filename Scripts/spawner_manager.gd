@@ -8,7 +8,7 @@ var spawn_queue : Array[Enemy]
 
 const CHASER : PackedScene = preload("uid://lhus61t1y3rb")
 const GRABBER : PackedScene = preload("uid://b543gdht0q5vx")
-
+const LASER : PackedScene = preload("uid://f42bx6kvbhhv")
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
 var waveNumber : int = 1
@@ -32,6 +32,9 @@ func spawn_wave() -> void:
 				enemy = CHASER.instantiate()
 			Enemy.enemyTypes.GRAB:
 				enemy = GRABBER.instantiate()
+			Enemy.enemyTypes.LASER:
+				enemy = LASER.instantiate()
+				
 		enemy.position.x = randf_range(-1, 1)
 		enemy.position.z = randf_range(-1, 1)
 		enemy.position = enemy.position.normalized() * SPAWN_DISTANCE 
@@ -51,6 +54,10 @@ func generate_wave_details() -> Array[Enemy.enemyTypes]:
 		wave.push_back(Enemy.enemyTypes.CHASE)
 	for i in range(2 * waveNumber):
 		wave.push_back(Enemy.enemyTypes.GRAB)
+	@warning_ignore("integer_division")
+	var num_laser = clamp(waveNumber - 2, 0, 64)
+	for i in range(num_laser):
+		wave.push_back(Enemy.enemyTypes.LASER)
 	return wave
 
 

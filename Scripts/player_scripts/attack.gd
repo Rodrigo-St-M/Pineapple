@@ -63,12 +63,12 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack_spin_start":
-		print("start just finished")
+		#print("start just finished")
 		if input_released:
 			animation_player.play("attack_spin_end")
 		else:
 			animation_player.play("attack_spin_loop")
 		can_start_end = true
 	if anim_name == "attack_spin_end":
-		print("end just finished")
+		#print("end just finished")
 		is_finished = true

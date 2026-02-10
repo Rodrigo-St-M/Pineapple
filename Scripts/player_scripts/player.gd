@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
 @onready var stateMachine = $StateMachine
+@onready var bump: Node = $StateMachine/Bump
+
 const SPEED_MULT : int = 20
 
 func _ready() -> void:
@@ -23,3 +25,6 @@ func _unhandled_input(event: InputEvent) -> void:
 ## returns a string indicating the current state
 func get_state_name() -> String:
 	return str(stateMachine.current_state)
+	
+func hurt() -> void:
+	stateMachine.change_state(bump)

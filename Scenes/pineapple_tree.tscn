@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnhf1xgc7uic3"]
+[gd_scene format=3 uid="uid://dnhf1xgc7uic3"]
 
 [ext_resource type="Script" uid="uid://c6lt24naanl3o" path="res://Scripts/pineapple_tree.gd" id="1_xwgnv"]
 [ext_resource type="PackedScene" uid="uid://bs6lrytwukl0s" path="res://Scenes/pineaple.tscn" id="2_wwtl6"]
@@ -6,30 +6,36 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mw8dx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwgnv"]
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(3.6098064e-07, 0.5514223, 0.26835176, 1)
+clearcoat_enabled = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_wwtl6"]
 material = SubResource("StandardMaterial3D_xwgnv")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grcji"]
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(0.47636527, 0.2332061, 0.11380725, 1)
+clearcoat_enabled = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4chsc"]
 material = SubResource("StandardMaterial3D_grcji")
 
-[node name="PineappleTree" type="StaticBody3D"]
+[node name="PineappleTree" type="StaticBody3D" unique_id=1905442731]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_xwgnv")
 pineappleScene = ExtResource("2_wwtl6")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=262607654]
 shape = SubResource("CapsuleShape3D_mw8dx")
 
-[node name="LeafMesh" type="MeshInstance3D" parent="."]
+[node name="LeafMesh" type="MeshInstance3D" parent="." unique_id=1902678367]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
 mesh = SubResource("SphereMesh_wwtl6")
 
-[node name="TrunkMesh" type="MeshInstance3D" parent="."]
+[node name="TrunkMesh" type="MeshInstance3D" parent="." unique_id=1931842239]
 mesh = SubResource("CapsuleMesh_4chsc")
 skeleton = NodePath("../CollisionShape3D")

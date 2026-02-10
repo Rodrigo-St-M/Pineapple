@@ -10,6 +10,13 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_op0mk"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h844n"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.9551948, 0.49103582, 0.21935904, 1)
+clearcoat_enabled = true
+clearcoat_roughness = 1.0
+
 [node name="Chaser" type="CharacterBody3D" unique_id=1524429688]
 collision_layer = 4
 collision_mask = 21
@@ -20,6 +27,7 @@ shape = SubResource("SphereShape3D_op0mk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1344432847]
 mesh = SubResource("SphereMesh_op0mk")
+surface_material_override/0 = SubResource("StandardMaterial3D_h844n")
 
 [node name="StateMachine" type="Node" parent="." unique_id=153639117 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("1_lssre")

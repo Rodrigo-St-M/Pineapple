@@ -8,7 +8,7 @@ enum enemyTypes {
 	TANK,
 	DIG,
 	ROLL,
-	SNIPE,
+	LASER,
 	BOMB
 	}
 
