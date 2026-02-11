@@ -2,6 +2,8 @@ extends PlayerState
 const TURN_STRENGHT : int = 14
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var collision_shape_3d: CollisionShape3D = $Area3D/CollisionShape3D
+@onready var area_3d: Area3D = $Area3D
+
 @export var idleState : State
 @export var moveState : State
 const WEAK_RADIUS : float = 1.3
@@ -14,6 +16,7 @@ const DMG : int = 3
 var input_released : bool
 var can_start_end : bool
 var is_finished : bool
+
 func enter() -> void :
 	input_released = false
 	is_finished = false
@@ -28,6 +31,11 @@ func enter() -> void :
 		collision_shape_3d.shape.radius = STRONG_RADIUS
 	animation_player.play("attack_spin_start")
 
+func exit() -> void:
+	animation_player.stop()
+	collision_shape_3d.debug_color = Color("0099b36b")
+	area_3d.monitoring = false
+	
 func process_input(_event: InputEvent) -> State:
 	if _event.is_action_released("attack"):
 		input_released = true

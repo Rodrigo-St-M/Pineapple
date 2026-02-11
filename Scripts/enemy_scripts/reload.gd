@@ -1,9 +1,10 @@
 extends State
 
-const RELOAD_DELAY_MIN : int = 180
-const RELOAD_DELAY_MAX : int = 360
+const RELOAD_DELAY_MIN : int = 360
+const RELOAD_DELAY_MAX : int = 420
 
 @onready var aim_and_fire: Node = $"../AimAndFire"
+
 var frame : int 
 var reload_time : int
 

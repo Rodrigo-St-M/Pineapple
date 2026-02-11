@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bw77b4a8706wg" path="res://Scenes/enemies/aim_and_fire.gd" id="4_bqa51"]
 [ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="5_88d68"]
 [ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="6_ieodd"]
+[ext_resource type="Script" uid="uid://bfp8n4fpu8a1c" path="res://Scenes/enemies/hide.gd" id="7_oj2nt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a04sm"]
 
@@ -18,6 +19,7 @@ specular_mode = 1
 albedo_color = Color(0.3435557, 0.6684012, 0.34233037, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yydie"]
+resource_local_to_scene = true
 size = Vector3(0.5, 0.5, 40)
 
 [node name="Laser" type="CharacterBody3D" unique_id=1699162670]
@@ -64,6 +66,10 @@ metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="stunned" type="Node" parent="StateMachine" unique_id=1313552631]
 script = ExtResource("6_ieodd")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="hide" type="Node" parent="StateMachine" unique_id=442529727]
+script = ExtResource("7_oj2nt")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [connection signal="body_entered" from="StateMachine/AimAndFire/LaserSight" to="StateMachine/AimAndFire" method="_on_laser_sight_body_entered"]
