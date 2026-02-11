@@ -1,9 +1,9 @@
 extends Camera3D
 
 @onready var player: CharacterBody3D = %Player
-const CAMERA_OFFSET : Vector3 = Vector3(0, 7, 7)
+const CAMERA_OFFSET : Vector3 = Vector3(0, 16, 16)
 const SIZE_MIN : float = 8
-const SIZE_MAX : float = 16
+const SIZE_MAX : float = 32
 #in meters
 var camera_width : float = size * (9.0 / 16.0)
 
@@ -16,4 +16,4 @@ func _physics_process(delta: float) -> void:
 	camera_width = size * (9.0 / 16.0)
 	position = lerp(position, player.position + player.velocity * 2 + CAMERA_OFFSET, 0.6 * delta)
 	position.x = clamp(position.x, -14 + (camera_width/2), 14 - (camera_width/2))
-	position.z = clamp(position.z, -14 + (size/2), 26 - (size/2))
+	position.z = clamp(position.z, -6 + (size/2), 36 - (size/2))

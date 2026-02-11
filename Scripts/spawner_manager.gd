@@ -38,7 +38,7 @@ func spawn_wave() -> void:
 		enemy.position.x = randf_range(-1, 1)
 		enemy.position.z = randf_range(-1, 1)
 		enemy.position = enemy.position.normalized() * SPAWN_DISTANCE 
-		enemy.position.y = 1
+		enemy.position.y = 10
 		spawn_queue.push_back(enemy)
 		wave_details.pop_at(i)
 

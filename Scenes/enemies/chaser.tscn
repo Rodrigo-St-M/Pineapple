@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://lmkyn5a04k1m" path="res://Scripts/enemy_scripts/chase.gd" id="2_wlnc2"]
 [ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="3_hmo6u"]
 [ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_hmo6u"]
+[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scenes/enemies/spawning.gd" id="6_ou1vq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_op0mk"]
 
@@ -16,6 +17,7 @@ specular_mode = 1
 albedo_color = Color(0.9551948, 0.49103582, 0.21935904, 1)
 clearcoat_enabled = true
 clearcoat_roughness = 1.0
+proximity_fade_enabled = true
 
 [node name="Chaser" type="CharacterBody3D" unique_id=1524429688]
 collision_layer = 4
@@ -31,7 +33,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_h844n")
 
 [node name="StateMachine" type="Node" parent="." unique_id=153639117 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("1_lssre")
-starting_state = NodePath("chase")
+starting_state = NodePath("spawning")
 
 [node name="chase" type="Node" parent="StateMachine" unique_id=992561990]
 script = ExtResource("2_wlnc2")
@@ -43,4 +45,9 @@ metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="stunned" type="Node" parent="StateMachine" unique_id=1537938759]
 script = ExtResource("5_hmo6u")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="spawning" type="Node" parent="StateMachine" unique_id=1218914404 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_ou1vq")
+next_state = NodePath("../chase")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"

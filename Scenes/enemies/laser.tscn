@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://beekcnr3mycr5" path="res://Scenes/enemies/laser.gd" id="1_88d68"]
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="2_oj2nt"]
 [ext_resource type="Script" uid="uid://bdumon755julr" path="res://Scripts/enemy_scripts/reload.gd" id="3_88d68"]
+[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scenes/enemies/spawning.gd" id="3_xcp8v"]
 [ext_resource type="Script" uid="uid://bw77b4a8706wg" path="res://Scenes/enemies/aim_and_fire.gd" id="4_bqa51"]
 [ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="5_88d68"]
 [ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="6_ieodd"]
@@ -41,7 +42,12 @@ remote_path = NodePath("../StateMachine/AimAndFire/LaserSight")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1730100260 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_oj2nt")
-starting_state = NodePath("Reload")
+starting_state = NodePath("spawning")
+
+[node name="spawning" type="Node" parent="StateMachine" unique_id=1243569042 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_xcp8v")
+next_state = NodePath("../Reload")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="Reload" type="Node" parent="StateMachine" unique_id=397371870]
 script = ExtResource("3_88d68")

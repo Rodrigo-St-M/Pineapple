@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cvq6vv5gud7v" path="res://Scripts/enemy_scripts/defeat_pineapple_carrier.gd" id="4_qu3x1"]
 [ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_jhv5p"]
 [ext_resource type="Script" uid="uid://b2yguak3uwahj" path="res://Scripts/enemy_scripts/escape.gd" id="6_w156i"]
+[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scenes/enemies/spawning.gd" id="7_807g1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hwo04"]
 
@@ -15,6 +16,8 @@ specular_mode = 1
 albedo_color = Color(0.98397356, 0.52227944, 0.7219559, 1)
 clearcoat_enabled = true
 clearcoat_roughness = 1.0
+distance_fade_mode = 3
+distance_fade_min_distance = 8.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_h21g4"]
 material = SubResource("StandardMaterial3D_72jqf")
@@ -33,7 +36,7 @@ mesh = SubResource("BoxMesh_h21g4")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1926077003 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_qu3x1")
-starting_state = NodePath("aproach")
+starting_state = NodePath("spawning")
 
 [node name="aproach" type="Node" parent="StateMachine" unique_id=789065313 node_paths=PackedStringArray("escape_state")]
 script = ExtResource("3_807g1")
@@ -51,4 +54,9 @@ metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 [node name="Escape" type="Node" parent="StateMachine" unique_id=942819990 node_paths=PackedStringArray("aproach_state")]
 script = ExtResource("6_w156i")
 aproach_state = NodePath("../aproach")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="spawning" type="Node" parent="StateMachine" unique_id=2090842928 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_807g1")
+next_state = NodePath("../aproach")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"

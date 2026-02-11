@@ -9,7 +9,7 @@ var pineapple_tree : StaticBody3D
 func enter() -> void :
 	pineapple_tree = parent.pineapple_tree
 
-func process_physics(delta: float) -> State:
+func process_physics(_delta: float) -> State:
 	parent.velocity = SPEED * direction
 	direction = (pineapple_tree.global_position - parent.global_position)
 	direction.y = 0.0

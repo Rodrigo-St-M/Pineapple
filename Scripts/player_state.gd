@@ -5,7 +5,7 @@ const SPEED_CURVE_REVERSE : Curve = preload("uid://bosq1xrfqh674")
 const SPEED_MULT : float = 18
 const MIN_SPEED_CURVE_IN_TO_FLIP : float = 0.003
 
-@warning_ignore("integer_division")
+@warning_ignore("integer_division", "narrowing_conversion")
 const NORMAL_SPEED_TRESHOLD : int = SPEED_MULT / 2
 const STRONG_SPEED_TRESHOLD : int = 15
 # input for speed curve. Must be preserved between states

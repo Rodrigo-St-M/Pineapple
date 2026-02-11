@@ -13,8 +13,8 @@ func enter() -> void :
 	
 func process_physics(delta: float) -> State:
 	parent.velocity.y -= delta * FALL_SPEED
-	time += delta
 	parent.move_and_slide()
+	time += delta
 	
 	if parent.is_on_floor():
 		time = 0
