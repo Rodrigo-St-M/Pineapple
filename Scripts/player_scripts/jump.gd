@@ -1,7 +1,7 @@
 extends PlayerState
 
 var time : float
-const START_JUMP_SPEED : int = 7
+const START_JUMP_SPEED : int = 10
 const TURN_STRENGTH : int = 32
 
 var y_velocity : float
@@ -20,11 +20,11 @@ func process_physics(delta: float) -> State:
 	input_dir = Vector3(input_dir.x, 0.0, input_dir.y)
 	parent.velocity = parse_movement_input(input_dir, delta, 
 			clamp(TURN_STRENGTH * delta *(1/parent.velocity.length()), 0, 1), true)
-	
+	speed_curve_in = speed_curve_in - (speed_curve_in * delta)
 	if Input.is_action_pressed("jump") :
-		y_velocity = y_velocity - (delta * parent.get_gravity().length())
-	else :
 		y_velocity = y_velocity - (delta * parent.get_gravity().length() * 2)
+	else :
+		y_velocity = y_velocity - (delta * parent.get_gravity().length() * 3)
 	parent.velocity.y = y_velocity
 	
 	parent.move_and_slide()

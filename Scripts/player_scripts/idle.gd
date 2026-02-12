@@ -22,7 +22,7 @@ func process_input(_event: InputEvent) -> State:
 	if Input.is_action_pressed("attack"):
 		return attack
 	
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_just_pressed("jump"):
 		return jump
 	return null
 
