@@ -11,8 +11,8 @@ const STRONG_SPEED_TRESHOLD : int = 15
 # input for speed curve. Must be preserved between states
 static var speed_curve_in : float = 0.0
 
-## Processes player's current velocity and speed_in given player input 
-## and previous frame's velocity.
+## Returns the players horizontal velocity given movement input and updates
+## speed_curve_in accordingly 
 ## Does not process collisions nor move the player itself
 ## [input] the given player input as a normalized vector3
 ## [delta] the elapsed time since last frame
@@ -22,26 +22,27 @@ static var speed_curve_in : float = 0.0
 ## velocity's direction, defaults as true
 ## [brake_strength] how quickly the player turns to a halt TODO
 func parse_movement_input(input_direction : Vector3, delta : float, turn_strength : float,
-		 just_turn : bool = true, brake_strenght : float = 1.0) -> void:
+		 just_turn : bool = true, brake_strenght : float = 1.0) -> Vector3:
+	var horiz_velocity = Vector3(parent.velocity.x, 0, parent.velocity.z)
 	# player is inputting direction
 	#print(input_direction)
 	if input_direction:
 		# if player is braking, i.e, inputing a direction opposite of velocity
-		if !just_turn && (input_direction.dot(parent.velocity.normalized())) < -0.67 :
-			parent.velocity = parent.velocity.normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
+		if !just_turn && (input_direction.dot(horiz_velocity.normalized())) < -0.67 :
+			horiz_velocity = horiz_velocity.normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
 			speed_curve_in = ( speed_curve_in / (1 + delta * 10) ) - delta * 0.01
 			if speed_curve_in < MIN_SPEED_CURVE_IN_TO_FLIP:
-				parent.velocity = -parent.velocity
+				horiz_velocity = -horiz_velocity
 		# if player is inputing a direction and not braking
 		else :
-			parent.velocity = parent.velocity.normalized().lerp(input_direction, turn_strength) * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
-			parent.velocity.y = 0
+			horiz_velocity = horiz_velocity.normalized().lerp(input_direction, turn_strength) * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
+			
 			if !just_turn:
 				speed_curve_in += (delta / 10.0)
 	
 	# if there's no input but player is still moving
 	elif !just_turn:
-		parent.velocity = parent.velocity.normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
+		horiz_velocity = horiz_velocity.normalized() * SPEED_CURVE.sample(speed_curve_in) * SPEED_MULT
 		speed_curve_in -= delta
 		
 	if speed_curve_in > SPEED_CURVE.max_domain:
@@ -50,4 +51,4 @@ func parse_movement_input(input_direction : Vector3, delta : float, turn_strengt
 		speed_curve_in = 0.0
 		
 	
-	
+	return horiz_velocity

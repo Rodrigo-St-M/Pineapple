@@ -4,6 +4,8 @@ const TURN_STRENGHT : int = 14
 @onready var collision_shape_3d: CollisionShape3D = $Area3D/CollisionShape3D
 @onready var area_3d: Area3D = $Area3D
 
+
+@onready var jump: Node = $"../Jump"
 @export var idleState : State
 @export var moveState : State
 const WEAK_RADIUS : float = 1.3
@@ -39,14 +41,17 @@ func exit() -> void:
 func process_input(_event: InputEvent) -> State:
 	if _event.is_action_released("attack"):
 		input_released = true
+	if Input.is_action_pressed("jump"):
+		return jump
 	return null
 
 func process_physics(delta: float) -> State:
+	var state : PlayerState = null
 	if is_finished:
 		if parent.velocity.length() < 0.001 :
-			return idleState
+			state = idleState
 		else :
-			return moveState
+			state = moveState
 	if can_start_end && input_released:
 		animation_player.play("attack_spin_end")
 		can_start_end = false
@@ -59,10 +64,10 @@ func process_physics(delta: float) -> State:
 	else :
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 		input_dir = Vector3(input_dir.x, 0.0, input_dir.y)
-		parse_movement_input(input_dir, delta,
+		parent.velocity = parse_movement_input(input_dir, delta,
 				clamp(TURN_STRENGHT * delta *(1/parent.velocity.length()), 0, 1), true)
 		parent.move_and_slide()
-	return null
+	return state
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Enemy:

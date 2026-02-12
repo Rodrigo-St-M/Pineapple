@@ -5,7 +5,9 @@
 [ext_resource type="Script" uid="uid://7ov8nuf2mduw" path="res://Scripts/player_scripts/idle.gd" id="1_hr86y"]
 [ext_resource type="Script" uid="uid://oklsav2b2r0y" path="res://Scripts/player_scripts/move.gd" id="3_gfjpw"]
 [ext_resource type="Script" uid="uid://p8wvf6gobov6" path="res://Scripts/player_scripts/attack.gd" id="6_nn08x"]
+[ext_resource type="Script" uid="uid://dkk4nk34bq0vt" path="res://Scripts/player_scripts/jump.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://l2j4vt6d6lsj" path="res://Scripts/player_scripts/bump.gd" id="7_52ee3"]
+[ext_resource type="Script" uid="uid://erh62podniaq" path="res://Scenes/fall.gd" id="8_8erm5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x3wgy"]
 
@@ -162,16 +164,11 @@ remote_path = NodePath("../StateMachine/Attack/Area3D")
 script = ExtResource("1_fn5od")
 starting_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=687274775 node_paths=PackedStringArray("moveState", "attackState")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=687274775]
 script = ExtResource("1_hr86y")
-moveState = NodePath("../Move")
-attackState = NodePath("../Attack")
 
-[node name="Move" type="Node" parent="StateMachine" unique_id=1099296564 node_paths=PackedStringArray("idleState", "attackState", "bumpState")]
+[node name="Move" type="Node" parent="StateMachine" unique_id=1099296564]
 script = ExtResource("3_gfjpw")
-idleState = NodePath("../Idle")
-attackState = NodePath("../Attack")
-bumpState = NodePath("../Bump")
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=1285790690 node_paths=PackedStringArray("idleState", "moveState")]
 script = ExtResource("6_nn08x")
@@ -194,6 +191,14 @@ shape = SubResource("CylinderShape3D_megsn")
 script = ExtResource("7_52ee3")
 moveState = NodePath("../Move")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Jump" type="Node" parent="StateMachine" unique_id=2091186511]
+script = ExtResource("7_3smsa")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Fall" type="Node" parent="StateMachine" unique_id=953032795]
+script = ExtResource("8_8erm5")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1307696148]
 
