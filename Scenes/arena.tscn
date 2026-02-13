@@ -51,9 +51,9 @@ environment = SubResource("Environment_pyk7t")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1615182864]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 15)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 128, 128)
 projection = 1
-size = 8.0
+size = 9.0
 script = ExtResource("3_iyva0")
 
 [node name="Debug_UI" parent="Camera3D" unique_id=661015873 instance=ExtResource("4_2cush")]
@@ -71,5 +71,5 @@ autostart = true
 [node name="ArenaWalls" parent="." unique_id=645090519 instance=ExtResource("8_lkdvd")]
 
 [connection signal="game_over" from="." to="Camera3D/Debug_UI" method="_on_node_3d_game_over"]
-[connection signal="timeout" from="Spawner manager/WaveTimer" to="Spawner manager" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner manager/WaveTimer" to="Spawner manager" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="Spawner manager/DelayTimer" to="Spawner manager" method="_on_delay_timer_timeout"]

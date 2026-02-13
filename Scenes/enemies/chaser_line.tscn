@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://70q68fc3subq"]
 
-[ext_resource type="Script" uid="uid://cefexmommqfmg" path="res://chaser_line.gd" id="1_t4nav"]
+[ext_resource type="Script" uid="uid://cefexmommqfmg" path="res://Scripts/enemy_scripts/chaser_line.gd" id="1_t4nav"]
 
 [node name="ChaserLine" type="Node3D" unique_id=1735993421]
 script = ExtResource("1_t4nav")

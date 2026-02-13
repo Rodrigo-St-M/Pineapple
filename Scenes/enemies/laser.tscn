@@ -22,6 +22,8 @@ albedo_color = Color(0, 0, 0, 1)
 grow = true
 grow_amount = 0.01
 distance_fade_mode = 3
+distance_fade_min_distance = 172.0
+distance_fade_max_distance = 174.0
 stencil_mode = 3
 stencil_flags = 1
 stencil_compare = 5
@@ -37,6 +39,8 @@ roughness = 0.03
 rim_enabled = true
 rim = 0.1
 distance_fade_mode = 3
+distance_fade_min_distance = 172.0
+distance_fade_max_distance = 174.0
 stencil_mode = 1
 stencil_flags = 2
 

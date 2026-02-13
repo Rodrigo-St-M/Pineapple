@@ -8,6 +8,7 @@ const SPEED_MULT : int = 20
 func _ready() -> void:
 	GameMaster.player = self
 	safe_margin = 0.015
+	floor_max_angle = PI / 6
 	stateMachine.init(self)
 
 func _physics_process(delta: float) -> void:

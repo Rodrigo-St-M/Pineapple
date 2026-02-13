@@ -1,7 +1,7 @@
 extends PlayerState
 
 var time : float
-const TURN_STRENGTH : int = 32
+const TURN_STRENGTH : int = 26
 
 var y_velocity : float
 
@@ -12,6 +12,7 @@ var y_velocity : float
 func enter() -> void :
 	y_velocity = 0
 	time = 0
+	parent.set_collision_mask_value(3, false)
 
 func process_physics(delta: float) -> State:
 	var state : PlayerState = null
@@ -19,9 +20,15 @@ func process_physics(delta: float) -> State:
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	time += delta
 	input_dir = Vector3(input_dir.x, 0.0, input_dir.y)
-	parent.velocity = parse_movement_input(input_dir, delta, 
-			clamp(TURN_STRENGTH * delta *(1/parent.velocity.length()), 0, 1), true)
-	#speed_curve_in -= 2 * delta
+	
+	if speed_curve_in < 0.08 :
+		parent.velocity = parse_movement_input(input_dir, delta, 
+				clamp(TURN_STRENGTH * delta * (1/parent.velocity.length()), 0, 1), false)
+	else:
+		parent.velocity = parse_movement_input(input_dir, delta, 
+				clamp(TURN_STRENGTH * delta * (1/parent.velocity.length()), 0, 1), true)
+		speed_curve_in = speed_curve_in - (speed_curve_in * delta)
+	
 	if Input.is_action_pressed("jump") :
 		y_velocity = y_velocity - (delta * parent.get_gravity().length() * 2)
 	else :
@@ -31,14 +38,17 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	if parent.is_on_floor():
-		#print(parent.get_last_slide_collision().get_collider().get_class())
-		var collider : Object = parent.get_last_slide_collision().get_collider()
-		if collider.is_class("CharacterBody3D"):
-			print("ENEMY!")
-			collider.call("damaged", 2)
-			state = jump
-		elif Vector3(parent.velocity.x, 0.0, parent.velocity.y).length() < 0.001:
-			state = idle
-		else:
-			state = move
+		
+		for i in parent.get_slide_collision_count():
+			var collider : Object = parent.get_slide_collision(i).get_collider()
+			if collider.is_class("CharacterBody3D"):
+				print("ENEMY!")
+				collider.call("damaged", 2)
+			elif Vector3(parent.velocity.x, 0.0, parent.velocity.y).length() < 0.001:
+				state = idle
+			else:
+				state = move
 	return state
+
+func exit() -> void:
+		parent.set_collision_mask_value(3, true)

@@ -10,6 +10,7 @@ func enter() -> void :
 	direction = - (parent.player.position - parent.position).normalized()
 	direction *= (START_IMPACT_SPEED 
 			+ direction.dot(parent.player.velocity.normalized()) * parent.player.velocity.length())
+	parent.collision_mask = 16
 	parent.collision_layer = 0
 
 func process_physics(delta: float) -> State:
