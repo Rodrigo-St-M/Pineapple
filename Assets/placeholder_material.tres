@@ -1,0 +1,26 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bq2pum64yy76p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahvo8"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+distance_fade_mode = 3
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[resource]
+next_pass = SubResource("StandardMaterial3D_ahvo8")
+diffuse_mode = 3
+specular_mode = 1
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+distance_fade_mode = 3
+stencil_mode = 1
+stencil_flags = 2

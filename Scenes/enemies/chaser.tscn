@@ -3,23 +3,42 @@
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="1_lssre"]
 [ext_resource type="Script" uid="uid://dcqssvxkvdjcl" path="res://Scripts/enemy_scripts/chaser.gd" id="1_wlnc2"]
 [ext_resource type="Script" uid="uid://lmkyn5a04k1m" path="res://Scripts/enemy_scripts/chase.gd" id="2_wlnc2"]
-[ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="3_hmo6u"]
+[ext_resource type="Script" uid="uid://cfgjl6repgdje" path="res://Scripts/enemy_scripts/defeat_chaser.gd" id="4_ou1vq"]
 [ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_hmo6u"]
-[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scenes/enemies/spawning.gd" id="6_ou1vq"]
+[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scripts/enemy_scripts/spawning.gd" id="6_ou1vq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_op0mk"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_op0mk"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h844n"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ou1vq"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+distance_fade_mode = 3
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ka0l"]
+next_pass = SubResource("StandardMaterial3D_ou1vq")
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.9551948, 0.49103582, 0.21935904, 1)
-clearcoat_enabled = true
-clearcoat_roughness = 1.0
-proximity_fade_enabled = true
+albedo_color = Color(0.84375, 0.58625793, 0.18457031, 1)
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+distance_fade_mode = 3
+stencil_mode = 1
+stencil_flags = 2
 
 [node name="Chaser" type="CharacterBody3D" unique_id=1524429688]
+top_level = true
 collision_layer = 4
 collision_mask = 21
 script = ExtResource("1_wlnc2")
@@ -29,7 +48,7 @@ shape = SubResource("SphereShape3D_op0mk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1344432847]
 mesh = SubResource("SphereMesh_op0mk")
-surface_material_override/0 = SubResource("StandardMaterial3D_h844n")
+surface_material_override/0 = SubResource("StandardMaterial3D_4ka0l")
 
 [node name="StateMachine" type="Node" parent="." unique_id=153639117 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("1_lssre")
@@ -40,7 +59,7 @@ script = ExtResource("2_wlnc2")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="defeat" type="Node" parent="StateMachine" unique_id=1279913231]
-script = ExtResource("3_hmo6u")
+script = ExtResource("4_ou1vq")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="stunned" type="Node" parent="StateMachine" unique_id=1537938759]

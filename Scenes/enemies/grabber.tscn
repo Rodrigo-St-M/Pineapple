@@ -6,21 +6,37 @@
 [ext_resource type="Script" uid="uid://cvq6vv5gud7v" path="res://Scripts/enemy_scripts/defeat_pineapple_carrier.gd" id="4_qu3x1"]
 [ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_jhv5p"]
 [ext_resource type="Script" uid="uid://b2yguak3uwahj" path="res://Scripts/enemy_scripts/escape.gd" id="6_w156i"]
-[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scenes/enemies/spawning.gd" id="7_807g1"]
+[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scripts/enemy_scripts/spawning.gd" id="7_807g1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hwo04"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72jqf"]
+[sub_resource type="BoxMesh" id="BoxMesh_h21g4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_807g1"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+distance_fade_mode = 3
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7kew"]
+next_pass = SubResource("StandardMaterial3D_807g1")
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.98397356, 0.52227944, 0.7219559, 1)
-clearcoat_enabled = true
-clearcoat_roughness = 1.0
+albedo_color = Color(0.7331307, 0.30360413, 0.76953125, 1)
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
 distance_fade_mode = 3
-distance_fade_min_distance = 8.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_h21g4"]
-material = SubResource("StandardMaterial3D_72jqf")
+stencil_mode = 1
+stencil_flags = 2
 
 [node name="Grabber" type="CharacterBody3D" unique_id=1250667006]
 collision_layer = 4
@@ -33,6 +49,7 @@ shape = SubResource("SphereShape3D_hwo04")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1301363841]
 mesh = SubResource("BoxMesh_h21g4")
+surface_material_override/0 = SubResource("StandardMaterial3D_c7kew")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1926077003 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_qu3x1")

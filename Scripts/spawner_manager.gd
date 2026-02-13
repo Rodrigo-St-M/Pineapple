@@ -2,13 +2,16 @@ extends Node3D
 const SPAWN_DISTANCE : float = 18.0
 const WAVE_TIME_PERIOD : float = 30.0
 const WAVE_ENEMY_DELAY : float = 1
-var spawn_queue : Array[Enemy]
+var spawn_queue : Array[Node3D]
 @onready var wave_timer: Timer = $WaveTimer
 @onready var delay_timer: Timer = $DelayTimer
 
 const CHASER : PackedScene = preload("uid://lhus61t1y3rb")
 const GRABBER : PackedScene = preload("uid://b543gdht0q5vx")
 const LASER : PackedScene = preload("uid://f42bx6kvbhhv")
+const CHASER_LINE : PackedScene = preload("uid://70q68fc3subq")
+
+
 var random : RandomNumberGenerator = RandomNumberGenerator.new()
 
 var waveNumber : int = 1
@@ -26,10 +29,10 @@ func spawn_wave() -> void:
 	var wave_details = generate_wave_details()
 	while !wave_details.is_empty():
 		var i = random.randi_range(0, wave_details.size() -1)
-		var enemy : Enemy
+		var enemy : Node3D
 		match wave_details[i]:
 			Enemy.enemyTypes.CHASE:
-				enemy = CHASER.instantiate()
+				enemy = CHASER_LINE.instantiate()
 			Enemy.enemyTypes.GRAB:
 				enemy = GRABBER.instantiate()
 			Enemy.enemyTypes.LASER:
@@ -50,9 +53,9 @@ func _on_wave_timer_timeout() -> void:
 
 func generate_wave_details() -> Array[Enemy.enemyTypes]:
 	var wave : Array[Enemy.enemyTypes]
-	for i in range(3 * waveNumber):
+	for i in range(1 + (1 * waveNumber / 2) ) :
 		wave.push_back(Enemy.enemyTypes.CHASE)
-	for i in range(2 * waveNumber):
+	for i in range(2 * waveNumber - 1):
 		wave.push_back(Enemy.enemyTypes.GRAB)
 	@warning_ignore("integer_division")
 	var num_laser = clamp(waveNumber - 2, 0, 64)

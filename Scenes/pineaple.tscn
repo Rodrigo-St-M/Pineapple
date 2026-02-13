@@ -1,29 +1,67 @@
 [gd_scene format=3 uid="uid://bs6lrytwukl0s"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r607b"]
-albedo_color = Color(0.5618994, 0.5499391, 7.70092e-07, 1)
-clearcoat_enabled = true
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v45hn"]
-material = SubResource("StandardMaterial3D_r607b")
 height = 1.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkrvk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eooki"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3te2s"]
+next_pass = SubResource("StandardMaterial3D_eooki")
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.32899353, 0.58698654, 0.17452988, 1)
-clearcoat_enabled = true
+albedo_color = Color(0.796875, 0.7870016, 0.16497803, 1)
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+stencil_mode = 1
+stencil_flags = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_c1j66"]
-material = SubResource("StandardMaterial3D_lkrvk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_247bc"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_00l54"]
+next_pass = SubResource("StandardMaterial3D_247bc")
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.2422142, 0.3984375, 0.12451172, 1)
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+stencil_mode = 1
+stencil_flags = 2
 
 [node name="Pineaple" type="Node3D" unique_id=1159737035]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="FruitMesh" type="MeshInstance3D" parent="." unique_id=3586655]
 mesh = SubResource("CapsuleMesh_v45hn")
+surface_material_override/0 = SubResource("StandardMaterial3D_3te2s")
 
 [node name="LeafMesh" type="MeshInstance3D" parent="." unique_id=1630464648]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.6405208, 0)
 mesh = SubResource("PlaneMesh_c1j66")
 skeleton = NodePath("../FruitMesh")
+surface_material_override/0 = SubResource("StandardMaterial3D_00l54")

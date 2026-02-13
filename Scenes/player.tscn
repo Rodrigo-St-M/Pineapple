@@ -3,22 +3,28 @@
 [ext_resource type="Script" uid="uid://b6iwdm4m5v114" path="res://Scripts/player_scripts/player.gd" id="1_bcffs"]
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="1_fn5od"]
 [ext_resource type="Script" uid="uid://7ov8nuf2mduw" path="res://Scripts/player_scripts/idle.gd" id="1_hr86y"]
+[ext_resource type="Material" uid="uid://bq2pum64yy76p" path="res://Assets/placeholder_material.tres" id="2_f1ek2"]
 [ext_resource type="Script" uid="uid://oklsav2b2r0y" path="res://Scripts/player_scripts/move.gd" id="3_gfjpw"]
 [ext_resource type="Script" uid="uid://p8wvf6gobov6" path="res://Scripts/player_scripts/attack.gd" id="6_nn08x"]
 [ext_resource type="Script" uid="uid://dkk4nk34bq0vt" path="res://Scripts/player_scripts/jump.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://l2j4vt6d6lsj" path="res://Scripts/player_scripts/bump.gd" id="7_52ee3"]
-[ext_resource type="Script" uid="uid://erh62podniaq" path="res://Scenes/fall.gd" id="8_8erm5"]
+[ext_resource type="Script" uid="uid://erh62podniaq" path="res://Scripts/player_scripts/fall.gd" id="8_8erm5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x3wgy"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hr86y"]
+material = ExtResource("2_f1ek2")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3wgy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gymyn"]
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.38461685, 0.7245999, 0.22547811, 1)
-clearcoat_enabled = true
-clearcoat_roughness = 1.0
+albedo_color = Color(0.35760498, 0.84765625, 0.39971876, 1)
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+stencil_mode = 1
+stencil_flags = 2
 
 [sub_resource type="Animation" id="Animation_52ee3"]
 length = 0.001
@@ -155,7 +161,7 @@ shape = SubResource("CapsuleShape3D_x3wgy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1782217622]
 mesh = SubResource("CapsuleMesh_hr86y")
-surface_material_override/0 = SubResource("StandardMaterial3D_x3wgy")
+surface_material_override/0 = SubResource("StandardMaterial3D_gymyn")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=254672363]
 remote_path = NodePath("../StateMachine/Attack/Area3D")

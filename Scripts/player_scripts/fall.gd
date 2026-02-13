@@ -31,7 +31,7 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	if parent.is_on_floor():
-		print(parent.get_last_slide_collision().get_collider().get_class())
+		#print(parent.get_last_slide_collision().get_collider().get_class())
 		var collider : Object = parent.get_last_slide_collision().get_collider()
 		if collider.is_class("CharacterBody3D"):
 			print("ENEMY!")

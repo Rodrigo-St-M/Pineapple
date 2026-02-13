@@ -1,29 +1,41 @@
 extends State
-var SPEED : int = 4
+var SPEED : int = 3
 #how many physics iterations to recalculate direction
-const DIRECTION_PERIOD : int = 30
+const DIRECTION_PERIOD : int = 20
+const TURN_STRENGTH : float = 0.3
 var count : int
 var direction : Vector3
-
-var player : CharacterBody3D
+#var chaser_line : Array[Enemy]
+var target : CharacterBody3D
+var test : bool
 
 func enter() -> void :
-	player = parent.player
-	if player == null:
-		print("whoops")
-	count = randi_range(1,DIRECTION_PERIOD)
+	if parent.next_chaser :
+		target = parent.next_chaser
+	else:
+		target = parent.player
+	#chaser_line = parent.chaser_line
 	
-func process_physics(delta: float) -> State:
+	if target == null:
+		print("whoops")
+	count = DIRECTION_PERIOD
+
+
+func process_physics(_delta: float) -> State:
+	if parent.next_chaser :
+		target = parent.next_chaser
+	else:
+		target = parent.player
 	
 	if count == 0 :
-		direction = (player.position + player.velocity - parent.position)
+		direction = (target.position - parent.position)
 		direction.y = 0
 		direction = direction.normalized()
 		count = DIRECTION_PERIOD
 		
-	parent.velocity = SPEED * direction
+	parent.velocity = lerp(parent.velocity.normalized(), direction, TURN_STRENGTH) * SPEED
 	# we use move and collide instead of move and slide so enemies dont slide
 	# above each other and stick to the ground
-	parent.move_and_collide(parent.velocity * delta)
+	parent.move_and_slide()
 	count -= 1 
 	return null

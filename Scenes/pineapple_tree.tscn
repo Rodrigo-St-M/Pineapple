@@ -5,23 +5,57 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mw8dx"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwgnv"]
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(3.6098064e-07, 0.5514223, 0.26835176, 1)
-clearcoat_enabled = true
-
 [sub_resource type="SphereMesh" id="SphereMesh_wwtl6"]
-material = SubResource("StandardMaterial3D_xwgnv")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grcji"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v1b8"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6yc4"]
+next_pass = SubResource("StandardMaterial3D_8v1b8")
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.47636527, 0.2332061, 0.11380725, 1)
-clearcoat_enabled = true
+albedo_color = Color(0.17416096, 0.671875, 0.07086182, 1)
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+stencil_mode = 1
+stencil_flags = 2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4chsc"]
-material = SubResource("StandardMaterial3D_grcji")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv3mw"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0v6w"]
+next_pass = SubResource("StandardMaterial3D_mv3mw")
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.4140625, 0.28969717, 0.19894409, 1)
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+stencil_mode = 1
+stencil_flags = 2
 
 [node name="PineappleTree" type="StaticBody3D" unique_id=1905442731]
 collision_layer = 16
@@ -33,9 +67,12 @@ pineappleScene = ExtResource("2_wwtl6")
 shape = SubResource("CapsuleShape3D_mw8dx")
 
 [node name="LeafMesh" type="MeshInstance3D" parent="." unique_id=1902678367]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.3764358, 0)
 mesh = SubResource("SphereMesh_wwtl6")
+surface_material_override/0 = SubResource("StandardMaterial3D_f6yc4")
 
 [node name="TrunkMesh" type="MeshInstance3D" parent="." unique_id=1931842239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.047078133, 0)
 mesh = SubResource("CapsuleMesh_4chsc")
 skeleton = NodePath("../CollisionShape3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_e0v6w")

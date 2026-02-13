@@ -20,5 +20,8 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	if parent.is_on_floor() :
-		parent.queue_free()
+		exit()
 	return null
+
+func exit() -> void:
+	parent.queue_free()

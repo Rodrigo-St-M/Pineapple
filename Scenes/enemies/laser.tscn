@@ -1,23 +1,44 @@
 [gd_scene format=3 uid="uid://f42bx6kvbhhv"]
 
-[ext_resource type="Script" uid="uid://beekcnr3mycr5" path="res://Scenes/enemies/laser.gd" id="1_88d68"]
+[ext_resource type="Script" uid="uid://beekcnr3mycr5" path="res://Scripts/enemy_scripts/laser.gd" id="1_88d68"]
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="2_oj2nt"]
 [ext_resource type="Script" uid="uid://bdumon755julr" path="res://Scripts/enemy_scripts/reload.gd" id="3_88d68"]
-[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scenes/enemies/spawning.gd" id="3_xcp8v"]
-[ext_resource type="Script" uid="uid://bw77b4a8706wg" path="res://Scenes/enemies/aim_and_fire.gd" id="4_bqa51"]
+[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scripts/enemy_scripts/spawning.gd" id="3_xcp8v"]
+[ext_resource type="Script" uid="uid://bw77b4a8706wg" path="res://Scripts/enemy_scripts/aim_and_fire.gd" id="4_bqa51"]
 [ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="5_88d68"]
 [ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="6_ieodd"]
-[ext_resource type="Script" uid="uid://bfp8n4fpu8a1c" path="res://Scenes/enemies/hide.gd" id="7_oj2nt"]
+[ext_resource type="Script" uid="uid://bfp8n4fpu8a1c" path="res://Scripts/enemy_scripts/hide.gd" id="7_oj2nt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a04sm"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0bgsy"]
 height = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyiwb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcp8v"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+distance_fade_mode = 3
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqa51"]
+next_pass = SubResource("StandardMaterial3D_xcp8v")
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.3435557, 0.6684012, 0.34233037, 1)
+albedo_color = Color(0.22857666, 0.6935873, 0.8359375, 1)
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+distance_fade_mode = 3
+stencil_mode = 1
+stencil_flags = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yydie"]
 resource_local_to_scene = true
@@ -35,7 +56,7 @@ shape = SubResource("SphereShape3D_a04sm")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1022794065]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("CylinderMesh_0bgsy")
-surface_material_override/0 = SubResource("StandardMaterial3D_xyiwb")
+surface_material_override/0 = SubResource("StandardMaterial3D_bqa51")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=1382430234]
 remote_path = NodePath("../StateMachine/AimAndFire/LaserSight")
