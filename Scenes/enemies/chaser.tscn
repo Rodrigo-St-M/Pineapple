@@ -62,7 +62,7 @@ starting_state = NodePath("spawning")
 script = ExtResource("2_wlnc2")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
-[node name="defeat" type="Node" parent="StateMachine" unique_id=1279913231]
+[node name="DefeatChaser" type="Node" parent="StateMachine" unique_id=1279913231]
 script = ExtResource("4_ou1vq")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 

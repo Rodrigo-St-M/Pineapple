@@ -1,15 +1,16 @@
 extends Node3D
-const CHASER = preload("uid://lhus61t1y3rb")
 
-var chaser_array : Array[Enemy]
-# Called when the node enters the scene tree for the first time.
+const CHASER: PackedScene = preload("uid://lhus61t1y3rb")
+
+var chaser_array: Array
+
 func _ready() -> void:
 	var size = randi_range(3, 5)
 	for i in range(size):
 		chaser_array.push_back(CHASER.instantiate())
 		add_child(chaser_array[i])
-	
-		chaser_array[i].line_array = chaser_array
+		
+		chaser_array[i].line_array = self.chaser_array
 		chaser_array[i].line_array_index = i
 		chaser_array[i].position = position
 		chaser_array[i].position.y += 4 * i

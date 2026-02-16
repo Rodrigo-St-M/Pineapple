@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://7kni3adtvvl0"]
+
+[ext_resource type="Script" uid="uid://cdcidkpob0j2h" path="res://Scripts/enemy_scripts/stacker.gd" id="1_nj0n2"]
+[ext_resource type="Material" uid="uid://bq2pum64yy76p" path="res://Assets/placeholder_material.tres" id="2_oo5p1"]
+[ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="3_03r1b"]
+[ext_resource type="Script" uid="uid://dpiehsfno3osy" path="res://Scripts/enemy_scripts/follow_bellow.gd" id="4_03r1b"]
+[ext_resource type="Script" uid="uid://c73obn161l1gr" path="res://Scripts/enemy_scripts/defeat_stacker.gd" id="5_03r1b"]
+[ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_khkil"]
+[ext_resource type="Script" uid="uid://dbaps6fdv3a63" path="res://Scripts/enemy_scripts/aproach_stacker.gd" id="6_yc46f"]
+[ext_resource type="Script" uid="uid://dtv5bqdhlrib4" path="res://Scripts/state.gd" id="7_u4d0b"]
+[ext_resource type="Script" uid="uid://b2yguak3uwahj" path="res://Scripts/enemy_scripts/escape.gd" id="8_iqdgr"]
+[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scripts/enemy_scripts/spawning.gd" id="9_oo5p1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tnqfg"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hasjs"]
+material = ExtResource("2_oo5p1")
+top_radius = 0.0
+height = 1.0
+cap_top = false
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ppryf"]
+radius = 0.7
+height = 4.0
+
+[node name="Stacker" type="CharacterBody3D" unique_id=583354430]
+top_level = true
+collision_layer = 4
+collision_mask = 21
+script = ExtResource("1_nj0n2")
+metadata/_custom_type_script = "uid://cf1inwwga5w46"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1653703634]
+shape = SubResource("SphereShape3D_tnqfg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=457341289]
+mesh = SubResource("CylinderMesh_hasjs")
+
+[node name="GrabArea" type="Area3D" parent="." unique_id=131279362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7825936, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea" unique_id=1702314546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3072778, 0)
+shape = SubResource("CapsuleShape3D_ppryf")
+
+[node name="StateMachine" type="Node" parent="." unique_id=810352714 node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_03r1b")
+starting_state = NodePath("Wait")
+
+[node name="FollowBellow" type="Node" parent="StateMachine" unique_id=1741954444]
+script = ExtResource("4_03r1b")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Defeat" type="Node" parent="StateMachine" unique_id=1235527409]
+script = ExtResource("5_03r1b")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Stunned" type="Node" parent="StateMachine" unique_id=1788847987]
+script = ExtResource("5_khkil")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="AproachStacker" type="Node" parent="StateMachine" unique_id=243220175]
+script = ExtResource("6_yc46f")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Wait" type="Node" parent="StateMachine" unique_id=1886856444]
+script = ExtResource("7_u4d0b")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="EscapeStacker" type="Node" parent="StateMachine" unique_id=1128608374]
+script = ExtResource("8_iqdgr")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Spawning" type="Node" parent="StateMachine" unique_id=1168736252]
+script = ExtResource("9_oo5p1")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[connection signal="body_entered" from="GrabArea" to="StateMachine/AproachStacker" method="_on_grab_area_body_entered"]

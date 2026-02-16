@@ -1,6 +1,6 @@
 class_name Enemy
 extends CharacterBody3D
-enum enemyTypes {
+enum Types {
 	CHASE,
 	GRAB,
 	STACK,
@@ -10,6 +10,17 @@ enum enemyTypes {
 	ROLL,
 	LASER,
 	BOMB
+	}
+	
+enum States {
+	APROACH,
+	DEFEAT,
+	ESCAPE,
+	SPAWN,
+	FOLLOW,
+	REORDER,
+	STUNNED,
+	WAIT,
 	}
 
 var enemyType

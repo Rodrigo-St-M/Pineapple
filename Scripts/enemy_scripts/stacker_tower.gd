@@ -1,0 +1,40 @@
+extends Node3D
+
+const STACKER = preload("uid://7kni3adtvvl0")
+const STACKER_BALL = preload("uid://ipx8d0sk44my")
+var previous_state: State
+
+var tower: Array
+var size: int
+
+func _ready() -> void:
+	tower.push_front(STACKER.instantiate())
+	tower[0].tower = self.tower
+	tower[0].tower_index = 0
+	tower[0].position = position
+	add_child(tower[0])
+	
+	var num_balls = randi_range(3, 5)
+	size = num_balls +1
+	for i in range(num_balls):
+		tower.push_back(STACKER_BALL.instantiate())
+		add_child(tower[i+1])
+		tower[i].piece_below = tower[i+1]
+		tower[i+1].piece_above = tower[i]
+		tower[i+1].tower = self.tower
+		tower[i+1].tower_index = i + 1
+		tower[i+1].position = position
+		tower[i+1].position.y -= i + 1
+	
+	for i in tower.size() -1:
+		tower[i].enter_state(Enemy.States.FOLLOW)
+	tower[tower.size()-1].enter_state(Enemy.States.SPAWN)
+
+func attempt_destroy() -> void:
+	if !tower[0] || !tower[0].piece_below:
+		destroy()
+
+func destroy() -> void:
+	for piece in tower:
+		if piece:
+			piece.enter_state(Enemy.States.DEFEAT)

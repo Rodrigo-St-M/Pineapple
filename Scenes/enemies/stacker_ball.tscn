@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://ipx8d0sk44my"]
+
+[ext_resource type="Script" uid="uid://bio1nfsajq5a2" path="res://Scripts/enemy_scripts/stacker_ball.gd" id="1_0kpka"]
+[ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="2_wveg4"]
+[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scripts/enemy_scripts/spawning.gd" id="3_bo4t0"]
+[ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="4_0kpka"]
+[ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_hb5cs"]
+[ext_resource type="Script" uid="uid://dbaps6fdv3a63" path="res://Scripts/enemy_scripts/aproach_stacker.gd" id="6_u5w1f"]
+[ext_resource type="Script" uid="uid://q8uxc6ip7eun" path="res://Scripts/enemy_scripts/wait.gd" id="7_0kpka"]
+[ext_resource type="Script" uid="uid://con377ar3pwra" path="res://Scripts/enemy_scripts/escape_stacker.gd" id="8_wyjki"]
+[ext_resource type="Script" uid="uid://suhh82qd35u7" path="res://Scripts/enemy_scripts/reorder.gd" id="9_jdjja"]
+[ext_resource type="Script" uid="uid://dpiehsfno3osy" path="res://Scripts/enemy_scripts/follow_bellow.gd" id="10_mk0jk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iwbvf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_diel1"]
+
+[sub_resource type="Gradient" id="Gradient_3hlrj"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.125, 0.375, 0.625, 0.875)
+colors = PackedColorArray(0.19140625, 0.12037659, 0.12037659, 1, 0.29296875, 0.2208553, 0.17758723, 1, 0.4375, 0.29048055, 0.20226884, 1, 0.58984375, 0.4016038, 0.159581, 1, 0.68359375, 0.44802317, 0.14514664, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lshmb"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dhce7"]
+noise = SubResource("FastNoiseLite_lshmb")
+color_ramp = SubResource("Gradient_3hlrj")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahvo8"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+distance_fade_mode = 3
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3es7c"]
+next_pass = SubResource("StandardMaterial3D_ahvo8")
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = SubResource("NoiseTexture2D_dhce7")
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+distance_fade_mode = 3
+distance_fade_max_distance = 0.05
+stencil_mode = 1
+stencil_flags = 2
+
+[node name="StackerBall" type="CharacterBody3D" unique_id=2065105913]
+top_level = true
+collision_layer = 4
+collision_mask = 21
+script = ExtResource("1_0kpka")
+metadata/_custom_type_script = "uid://cf1inwwga5w46"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=818664260]
+shape = SubResource("SphereShape3D_iwbvf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1179689702]
+mesh = SubResource("SphereMesh_diel1")
+surface_material_override/0 = SubResource("StandardMaterial3D_3es7c")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1762155225 node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_wveg4")
+starting_state = NodePath("Wait")
+
+[node name="Spawning" type="Node" parent="StateMachine" unique_id=489312869 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_bo4t0")
+next_state = NodePath("../AproachStacker")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Defeat" type="Node" parent="StateMachine" unique_id=2102316020]
+script = ExtResource("4_0kpka")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Stunned" type="Node" parent="StateMachine" unique_id=1963727524]
+script = ExtResource("5_hb5cs")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="AproachStacker" type="Node" parent="StateMachine" unique_id=539193471 node_paths=PackedStringArray("escape_state")]
+script = ExtResource("6_u5w1f")
+escape_state = NodePath("../EscapeStacker")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Wait" type="Node" parent="StateMachine" unique_id=58187179]
+script = ExtResource("7_0kpka")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="EscapeStacker" type="Node" parent="StateMachine" unique_id=328250897 node_paths=PackedStringArray("aproach_state")]
+script = ExtResource("8_wyjki")
+aproach_state = NodePath("../AproachStacker")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Reorder" type="Node" parent="StateMachine" unique_id=472480815]
+script = ExtResource("9_jdjja")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="FollowBellow" type="Node" parent="StateMachine" unique_id=608670928]
+script = ExtResource("10_mk0jk")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"

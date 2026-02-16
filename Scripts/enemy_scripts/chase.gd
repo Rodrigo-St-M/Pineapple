@@ -5,7 +5,7 @@ const DIRECTION_PERIOD : int = 20
 const TURN_STRENGTH : float = 0.3
 var count : int
 var direction : Vector3
-#var chaser_line : Array[Enemy]
+
 var target : CharacterBody3D
 var test : bool
 

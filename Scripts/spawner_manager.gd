@@ -6,13 +6,10 @@ var spawn_queue : Array[Node3D]
 @onready var wave_timer: Timer = $WaveTimer
 @onready var delay_timer: Timer = $DelayTimer
 
-const CHASER : PackedScene = preload("uid://lhus61t1y3rb")
-const GRABBER : PackedScene = preload("uid://b543gdht0q5vx")
-const LASER : PackedScene = preload("uid://f42bx6kvbhhv")
-const CHASER_LINE : PackedScene = preload("uid://70q68fc3subq")
-
-
-var random : RandomNumberGenerator = RandomNumberGenerator.new()
+const GRABBER: PackedScene = preload("uid://b543gdht0q5vx")
+const LASER: PackedScene = preload("uid://f42bx6kvbhhv")
+const CHASER_LINE: PackedScene = preload("uid://70q68fc3subq")
+const STACKER_TOWER: PackedScene = preload("uid://dh88cg3dt4fyx")
 
 var waveNumber : int = 1
 	
@@ -28,15 +25,17 @@ func spawn_wave() -> void:
 	print("wave " + str(waveNumber) + " spawned")
 	var wave_details = generate_wave_details()
 	while !wave_details.is_empty():
-		var i = random.randi_range(0, wave_details.size() -1)
+		var i = randi_range(0, wave_details.size() -1)
 		var enemy : Node3D
 		match wave_details[i]:
-			Enemy.enemyTypes.CHASE:
+			Enemy.Types.CHASE:
 				enemy = CHASER_LINE.instantiate()
-			Enemy.enemyTypes.GRAB:
+			Enemy.Types.GRAB:
 				enemy = GRABBER.instantiate()
-			Enemy.enemyTypes.LASER:
+			Enemy.Types.LASER:
 				enemy = LASER.instantiate()
+			Enemy.Types.STACK:
+				enemy = STACKER_TOWER.instantiate()
 				
 		enemy.position.x = randf_range(-1, 1)
 		enemy.position.z = randf_range(-1, 1)
@@ -51,18 +50,25 @@ func _on_wave_timer_timeout() -> void:
 	waveNumber += 1
 	wave_timer.start(WAVE_TIME_PERIOD)
 
-func generate_wave_details() -> Array[Enemy.enemyTypes]:
-	var wave : Array[Enemy.enemyTypes]
-	@warning_ignore("integer_division")
-	for i in range(1 + (waveNumber) ) :
-		wave.push_back(Enemy.enemyTypes.CHASE)
-	@warning_ignore("integer_division")
-	for i in range(2 + (waveNumber / 3) ):
-		wave.push_back(Enemy.enemyTypes.GRAB)
-	@warning_ignore("integer_division")
-	var num_laser = clamp( (waveNumber/2) - 1, 0, 64)
-	for i in range(num_laser):
-		wave.push_back(Enemy.enemyTypes.LASER)
+func generate_wave_details() -> Array[Enemy.Types]:
+	var wave : Array[Enemy.Types]
+	
+	#@warning_ignore("integer_division")
+	#for i in range(1 + (waveNumber) ) :
+		#wave.push_back(Enemy.Types.CHASE)
+		#
+	#@warning_ignore("integer_division")
+	#for i in range(2 + (waveNumber / 3) ):
+		#wave.push_back(Enemy.Types.GRAB)
+		#
+	#@warning_ignore("integer_division")
+	#var num_laser = clamp( (waveNumber/2) - 1, 0, 64)
+	#for i in range(num_laser):
+		#wave.push_back(Enemy.Types.LASER)
+		
+	var num_stacker = clamp( waveNumber, 0, 64)
+	for i in range(num_stacker):
+		wave.push_back(Enemy.Types.STACK)
 	return wave
 
 

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dh88cg3dt4fyx"]
+
+[ext_resource type="Script" uid="uid://ln3u34jiaacn" path="res://Scripts/enemy_scripts/stacker_tower.gd" id="1_35awc"]
+
+[node name="StackerTower" type="Node3D" unique_id=40057938]
+script = ExtResource("1_35awc")

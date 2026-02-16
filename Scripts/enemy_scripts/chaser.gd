@@ -1,12 +1,13 @@
 extends Enemy
-const CHASER : PackedScene = preload("uid://lhus61t1y3rb")
+#const CHASER : PackedScene = preload("uid://lhus61t1y3rb")
 
 @onready var stateMachine: Node = $StateMachine
-@onready var defeat: Node = $StateMachine/defeat
+@onready var defeat_chaser: Node = $StateMachine/DefeatChaser
 @onready var stunned: State = $StateMachine/stunned
 
 var line_array : Array
 var line_array_index : int
+
 var player : CharacterBody3D
 var next_chaser : Enemy
 #static var num_in_seq : int = 0
@@ -18,14 +19,7 @@ var next_chaser : Enemy
 
 func _ready() -> void:
 	safe_margin = 0.01
-	#if num_in_seq == 0:
-		## first chaser in line
-		#var length = randi_range(4,7)
-		##chaser_line = Array()
-		#chaser_line.push_back(self)
-		#this_index = num_in_seq
-		#pootis(self, length)
-	#print(position)
+
 	hitPoints = 1
 	player = GameMaster.player
 	add_to_group("enemies")
@@ -62,7 +56,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func damaged(dmg: int) -> void:
 	hitPoints -= dmg
 	if hitPoints <= 0:
-		stateMachine.change_state(defeat)
+		stateMachine.change_state(defeat_chaser)
 	else :
 		stateMachine.change_state(stunned)
 	

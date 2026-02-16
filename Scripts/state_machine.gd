@@ -14,7 +14,7 @@ var current_state : State
 func init(parent : CharacterBody3D) -> void :
 	for child in get_children() :
 		child.parent = parent
-
+	
 	change_state(starting_state)
 
 ## Changes the current state that is being used to process physics and input

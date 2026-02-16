@@ -22,7 +22,7 @@ static var speed_curve_in : float = 0.0
 ## velocity's direction, defaults as true
 ## [brake_strength] how quickly the player turns to a halt TODO
 func parse_movement_input(input_direction : Vector3, delta : float, turn_strength : float,
-		 just_turn : bool = true, brake_strenght : float = 1.0) -> Vector3:
+		 just_turn : bool = true, _brake_strenght : float = 1.0) -> Vector3:
 	var horiz_velocity = Vector3(parent.velocity.x, 0, parent.velocity.z)
 	# player is inputting direction
 	#print(input_direction)

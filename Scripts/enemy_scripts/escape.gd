@@ -16,13 +16,14 @@ func enter() -> void :
 	parent.velocity = SPEED * direction
 
 
-func process_physics(delta: float) -> State:
-	# we use move and collide instead of move and slide so enemies dont slide
-	# above each other and stick to the ground
-	var collision = parent.move_and_collide(parent.velocity * delta)
-	if collision && (pineapple_tree.position - parent.position).length() > 18:
-		emit_signal("pineapple_lost")
-		GameMaster.lives_left -= 1
-		parent.holding_pineapple.queue_free()
-		return aproach_state
+func process_physics(_delta: float) -> State:
+	parent.velocity = SPEED * direction
+	parent.move_and_slide()
+	for i in parent.get_slide_collision_count():
+		var collider : Object = parent.get_slide_collision(i).get_collider()
+		if collider && (pineapple_tree.position - parent.position).length() > MIN_ESCAPE_DISTANCE:
+			emit_signal("pineapple_lost")
+			GameMaster.lives_left -= 1
+			parent.holding_pineapple.queue_free()
+			return aproach_state
 	return null

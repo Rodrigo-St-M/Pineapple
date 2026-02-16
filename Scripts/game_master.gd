@@ -14,7 +14,7 @@ func _ready() -> void:
 	is_game_over = false
 	lives_left = 3
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_game_over:
 		return
 	if lives_left == 0:
