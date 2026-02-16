@@ -3,7 +3,7 @@ extends Enemy
 @onready var state_machine: Node = $StateMachine
 @onready var defeat: State = $StateMachine/Defeat
 @onready var stunned: State = $StateMachine/Stunned
-@onready var follow_bellow: Node = $StateMachine/FollowBellow
+@onready var follow_below: Node = $StateMachine/FollowBelow
 
 var tower: Array
 var tower_index: int
@@ -37,7 +37,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func enter_state(state: Enemy.States) -> void:
 	match state:
 		Enemy.States.FOLLOW:
-			state_machine.change_state(follow_bellow)
+			state_machine.change_state(follow_below)
 		Enemy.States.DEFEAT:
 			state_machine.change_state(defeat)
 

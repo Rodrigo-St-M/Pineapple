@@ -53,20 +53,20 @@ func _on_wave_timer_timeout() -> void:
 func generate_wave_details() -> Array[Enemy.Types]:
 	var wave : Array[Enemy.Types]
 	
-	#@warning_ignore("integer_division")
-	#for i in range(1 + (waveNumber) ) :
-		#wave.push_back(Enemy.Types.CHASE)
-		#
-	#@warning_ignore("integer_division")
-	#for i in range(2 + (waveNumber / 3) ):
-		#wave.push_back(Enemy.Types.GRAB)
-		#
-	#@warning_ignore("integer_division")
-	#var num_laser = clamp( (waveNumber/2) - 1, 0, 64)
-	#for i in range(num_laser):
-		#wave.push_back(Enemy.Types.LASER)
+	@warning_ignore("integer_division")
+	for i in range(1 + (waveNumber/2) ) :
+		wave.push_back(Enemy.Types.CHASE)
 		
-	var num_stacker = clamp( waveNumber, 0, 64)
+	@warning_ignore("integer_division")
+	for i in range(2 + (waveNumber / 3) ):
+		wave.push_back(Enemy.Types.GRAB)
+		
+	@warning_ignore("integer_division")
+	var num_laser = clamp( (waveNumber/2) - 1, 0, 64)
+	for i in range(num_laser):
+		wave.push_back(Enemy.Types.LASER)
+	@warning_ignore("integer_division")
+	var num_stacker = clamp( (waveNumber/2) - 1, 0, 64)
 	for i in range(num_stacker):
 		wave.push_back(Enemy.Types.STACK)
 	return wave

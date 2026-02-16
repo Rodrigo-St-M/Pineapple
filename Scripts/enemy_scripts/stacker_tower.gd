@@ -8,6 +8,7 @@ var tower: Array
 var size: int
 
 func _ready() -> void:
+	position.y += 5
 	tower.push_front(STACKER.instantiate())
 	tower[0].tower = self.tower
 	tower[0].tower_index = 0

@@ -1,9 +1,20 @@
-extends "res://Scripts/enemy_scripts/escape.gd"
-
+extends State
+const SPEED : int = 2
+const MIN_ESCAPE_DISTANCE : int = 18
+var direction : Vector3
+var pineapple_tree : StaticBody3D
 var tower: Array
+@onready var aproach_state: State = $"../Aproach"
 
-func enter() -> void:
-	super()
+signal pineapple_lost
+
+func enter() -> void :
+	print("escaping")
+	pineapple_tree = parent.pineapple_tree
+	direction = (-pineapple_tree.position + parent.position)
+	direction.y = 0
+	direction = direction.normalized()
+	parent.velocity = SPEED * direction
 	tower = parent.tower
 
 func process_physics(_delta: float) -> State:

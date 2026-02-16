@@ -5,13 +5,12 @@ extends Enemy
 @onready var defeat: Node = $StateMachine/Defeat
 @onready var stunned: Node = $StateMachine/Stunned
 @onready var spawning: Node = $StateMachine/Spawning
-@onready var follow_bellow: Node = $StateMachine/FollowBellow
-@onready var escape_stacker: Node = $StateMachine/EscapeStacker
-@onready var aproach_stacker: Node = $StateMachine/AproachStacker
+@onready var follow_below: Node = $StateMachine/FollowBelow
+@onready var escape_stacker: Node = $StateMachine/Escape
+@onready var aproach_stacker: Node = $StateMachine/Aproach
 
 var player : CharacterBody3D
 var pineapple_tree : StaticBody3D
-#var previous_state: State
 
 var tower: Array
 var tower_index: int
@@ -43,7 +42,7 @@ func enter_state(state: Enemy.States) -> void:
 		Enemy.States.REORDER:
 			state_machine.change_state(reorder)
 		Enemy.States.FOLLOW:
-			state_machine.change_state(follow_bellow)
+			state_machine.change_state(follow_below)
 		Enemy.States.SPAWN:
 			state_machine.change_state(spawning)
 		Enemy.States.DEFEAT:
@@ -56,7 +55,7 @@ func enter_state(state: Enemy.States) -> void:
 
 func damaged(dmg: int) -> void:
 	hitPoints -= dmg
-	print(str("index ", tower_index," is damaged!"))
+	
 	if hitPoints <= 0:
 		tower[tower_index] = null
 		piece_above.enter_state(Enemy.States.REORDER)

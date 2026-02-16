@@ -29,7 +29,7 @@ noise = SubResource("FastNoiseLite_lshmb")
 color_ramp = SubResource("Gradient_3hlrj")
 seamless = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahvo8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0kpka"]
 render_priority = 1
 transparency = 1
 shading_mode = 0
@@ -37,13 +37,15 @@ albedo_color = Color(0, 0, 0, 1)
 grow = true
 grow_amount = 0.01
 distance_fade_mode = 3
+distance_fade_min_distance = 172.0
+distance_fade_max_distance = 174.0
 stencil_mode = 3
 stencil_flags = 1
 stencil_compare = 5
 metadata/_stencil_owned = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3es7c"]
-next_pass = SubResource("StandardMaterial3D_ahvo8")
+next_pass = SubResource("StandardMaterial3D_0kpka")
 diffuse_mode = 3
 specular_mode = 1
 albedo_texture = SubResource("NoiseTexture2D_dhce7")
@@ -52,7 +54,8 @@ roughness = 0.03
 rim_enabled = true
 rim = 0.1
 distance_fade_mode = 3
-distance_fade_max_distance = 0.05
+distance_fade_min_distance = 172.0
+distance_fade_max_distance = 174.0
 stencil_mode = 1
 stencil_flags = 2
 
@@ -76,7 +79,7 @@ starting_state = NodePath("Wait")
 
 [node name="Spawning" type="Node" parent="StateMachine" unique_id=489312869 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_bo4t0")
-next_state = NodePath("../AproachStacker")
+next_state = NodePath("../Aproach")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="Defeat" type="Node" parent="StateMachine" unique_id=2102316020]
@@ -87,24 +90,22 @@ metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 script = ExtResource("5_hb5cs")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
-[node name="AproachStacker" type="Node" parent="StateMachine" unique_id=539193471 node_paths=PackedStringArray("escape_state")]
+[node name="Aproach" type="Node" parent="StateMachine" unique_id=539193471]
 script = ExtResource("6_u5w1f")
-escape_state = NodePath("../EscapeStacker")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="Wait" type="Node" parent="StateMachine" unique_id=58187179]
 script = ExtResource("7_0kpka")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
-[node name="EscapeStacker" type="Node" parent="StateMachine" unique_id=328250897 node_paths=PackedStringArray("aproach_state")]
+[node name="Escape" type="Node" parent="StateMachine" unique_id=328250897]
 script = ExtResource("8_wyjki")
-aproach_state = NodePath("../AproachStacker")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="Reorder" type="Node" parent="StateMachine" unique_id=472480815]
 script = ExtResource("9_jdjja")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
-[node name="FollowBellow" type="Node" parent="StateMachine" unique_id=608670928]
+[node name="FollowBelow" type="Node" parent="StateMachine" unique_id=608670928]
 script = ExtResource("10_mk0jk")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"

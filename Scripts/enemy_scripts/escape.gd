@@ -1,10 +1,10 @@
 extends State
 
 const MIN_ESCAPE_DISTANCE : int = 18
-var SPEED : int = 3
+const SPEED : int = 3
 var direction : Vector3
 var pineapple_tree : StaticBody3D
-@export var aproach_state : State
+@onready var aproach_state: Node = $"../Aproach"
 signal pineapple_lost
 
 func enter() -> void :

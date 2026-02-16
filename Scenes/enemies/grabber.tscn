@@ -57,27 +57,26 @@ surface_material_override/0 = SubResource("StandardMaterial3D_c7kew")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1926077003 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_qu3x1")
-starting_state = NodePath("spawning")
+starting_state = NodePath("Spawning")
 
-[node name="aproach" type="Node" parent="StateMachine" unique_id=789065313 node_paths=PackedStringArray("escape_state")]
+[node name="Aproach" type="Node" parent="StateMachine" unique_id=789065313 node_paths=PackedStringArray("escape_state")]
 script = ExtResource("3_807g1")
 escape_state = NodePath("../Escape")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
-[node name="defeat" type="Node" parent="StateMachine" unique_id=1222457100]
+[node name="Defeat" type="Node" parent="StateMachine" unique_id=1222457100]
 script = ExtResource("4_qu3x1")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
-[node name="stunned" type="Node" parent="StateMachine" unique_id=1332282524]
+[node name="Stunned" type="Node" parent="StateMachine" unique_id=1332282524]
 script = ExtResource("5_jhv5p")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
-[node name="Escape" type="Node" parent="StateMachine" unique_id=942819990 node_paths=PackedStringArray("aproach_state")]
+[node name="Escape" type="Node" parent="StateMachine" unique_id=942819990]
 script = ExtResource("6_w156i")
-aproach_state = NodePath("../aproach")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
-[node name="spawning" type="Node" parent="StateMachine" unique_id=2090842928 node_paths=PackedStringArray("next_state")]
+[node name="Spawning" type="Node" parent="StateMachine" unique_id=2090842928 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_807g1")
-next_state = NodePath("../aproach")
+next_state = NodePath("../Aproach")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"

@@ -1,14 +1,14 @@
-extends "res://Scripts/enemy_scripts/aproach.gd"
+extends State
 
-
-var state : State = null
 var tower: Array
+var SPEED : int = 2
+var direction : Vector3
+var pineapple_tree : StaticBody3D
 
-@onready var escape_stacker: State = $"../EscapeStacker"
-
+@onready var escape_stacker: State = $"../Escape"
 
 func enter() -> void :
-	super()
+	pineapple_tree = parent.pineapple_tree
 	tower = parent.tower
 
 func process_physics(_delta: float) -> State:

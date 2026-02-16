@@ -1,8 +1,8 @@
 extends Enemy
 
 @onready var state_machine: Node = $StateMachine
-@onready var defeat: Node = $StateMachine/defeat
-@onready var stunned: Node = $StateMachine/stunned
+@onready var defeat: Node = $StateMachine/Defeat
+@onready var stunned: Node = $StateMachine/Stunned
 var player : CharacterBody3D
 var pineapple_tree : StaticBody3D
 var holding_pineapple : Node3D

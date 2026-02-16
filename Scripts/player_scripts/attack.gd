@@ -1,5 +1,5 @@
 extends PlayerState
-const TURN_STRENGHT : int = 14
+const TURN_STRENGTH : int = 14
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var collision_shape_3d: CollisionShape3D = $Area3D/CollisionShape3D
 @onready var area_3d: Area3D = $Area3D
@@ -64,8 +64,13 @@ func process_physics(delta: float) -> State:
 	else :
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 		input_dir = Vector3(input_dir.x, 0.0, input_dir.y)
-		parent.velocity = parse_movement_input(input_dir, delta,
-				clamp(TURN_STRENGHT * delta *(1/parent.velocity.length()), 0, 1), true)
+		
+		if speed_curve_in < 0.04 :
+			parent.velocity = parse_movement_input(input_dir, delta, 
+					clamp(TURN_STRENGTH * delta *(1/parent.velocity.length()), 0, 1), false)
+		else:
+			parent.velocity = parse_movement_input(input_dir, delta, 
+					clamp(TURN_STRENGTH * delta *(1/parent.velocity.length()), 0, 1), true)
 		parent.move_and_slide()
 	return state
 
