@@ -30,7 +30,7 @@ func process_physics(delta: float) -> State:
 	else:
 		parent.velocity = parse_movement_input(input_dir, delta, 
 				clamp(TURN_STRENGTH * delta *(1/parent.velocity.length()), 0, 1), true)
-		speed_curve_in = speed_curve_in - (speed_curve_in * delta)
+		#speed_curve_in = speed_curve_in - (speed_curve_in * delta)
 	if Input.is_action_pressed("jump") :
 		y_velocity = y_velocity - (delta * parent.get_gravity().length() * 2)
 	else :

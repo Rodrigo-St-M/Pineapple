@@ -11,7 +11,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	velocity_label.text = "Velocity: " + str("%0.2f" % player.velocity.length()," m/s") + str(player.velocity) + "\n"
-	velocity_label.text += "State: " + player.get_state_name()
+	velocity_label.text += "Momentum: " + str("%0.2f" % PlayerState.speed_curve_in) + "\n"
+	velocity_label.text += "State: " + player.get_state_name() 
 
 
 func _on_node_3d_game_over() -> void:

@@ -3,8 +3,6 @@ extends CharacterBody3D
 @onready var stateMachine = $StateMachine
 @onready var bump: Node = $StateMachine/Bump
 
-const SPEED_MULT : int = 20
-
 func _ready() -> void:
 	GameMaster.player = self
 	safe_margin = 0.015

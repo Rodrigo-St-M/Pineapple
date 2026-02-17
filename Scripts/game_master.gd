@@ -7,6 +7,7 @@ static var pineapple_tree : StaticBody3D
 static var pineapples : Array[Node3D]
 static var is_game_over : bool = false
 static var lives_left : int = 3
+static var momentum : float
 
 signal game_over
 

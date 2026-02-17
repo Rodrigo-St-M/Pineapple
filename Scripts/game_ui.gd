@@ -1,0 +1,38 @@
+extends Control
+
+@onready var game_over_label: Label = $CanvasLayer/GameOverLabel
+@onready var progress_bar: TextureProgressBar = $CanvasLayer/TextureProgressBar
+const SPEED_CURVE = preload("uid://b3wu0djn28s0i")
+const NORMAL_SPEED_CURVE_IN_TRESHOLD : float = 0.45
+const STRONG_SPEED_CURVE_IN_TRESHOLD : float = 1.2
+const SUPER_FAST_CURVE_IN_TRESHOLD : float = 2.5
+const SINE_AMPLITUDE : float = 0.005
+
+const SLOW_COLOR = Color("00b83c")
+const MEDIUM_COLOR = Color("d5b500")
+const FAST_COLOR = Color("f16a00")
+
+var sine_x: float = 0
+var sine_variation: float = 0
+
+func _process(_delta: float) -> void:
+	sine_variation = sin(sine_x) * SINE_AMPLITUDE
+	sine_x += _delta * 7
+	if PlayerState.speed_curve_in < NORMAL_SPEED_CURVE_IN_TRESHOLD:
+		progress_bar.tint_progress = lerp(progress_bar.tint_progress, SLOW_COLOR, clampf( 5 * _delta, 0, 1))
+	elif PlayerState.speed_curve_in < STRONG_SPEED_CURVE_IN_TRESHOLD:
+		progress_bar.tint_progress = lerp(progress_bar.tint_progress, MEDIUM_COLOR, clampf( 5 * _delta, 0, 1))
+	elif PlayerState.speed_curve_in < SUPER_FAST_CURVE_IN_TRESHOLD:
+		progress_bar.tint_progress = lerp(progress_bar.tint_progress, FAST_COLOR, clampf( 5 * _delta, 0, 1))
+	else:
+		progress_bar.tint_progress.h += _delta / 3.0
+	progress_bar.value = (sine_variation 
+			+ lerpf(progress_bar.value, PlayerState.speed_curve_in, clampf( 5 * _delta, 0, 1)))
+	#progress_bar.value = lerpf(progress_bar.value, SPEED_CURVE.sample(PlayerState.speed_curve_in), 0.3)
+
+func _on_node_3d_game_over() -> void:
+	print("signal sent!")
+	game_over_label.visible = true
+
+func _on_restart_button_pressed() -> void:
+	get_tree().reload_current_scene()

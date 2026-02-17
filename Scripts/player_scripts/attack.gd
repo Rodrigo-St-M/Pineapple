@@ -2,8 +2,6 @@ extends PlayerState
 # enter_args[0] should be a bool that says if the start_animation of the attack should be played (true)
 # or skipped (false), if enter_args[0] does not exist, is not a bool or is not null, it will be treated
 # as true 
-const START_JUM_SPEED_MID_ATTACK: int = 10
-const TURN_STRENGTH : int = 14
 
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var collision_shape_3d: CollisionShape3D = $"../../AttackHitbox/CollisionShape3D"
@@ -18,6 +16,8 @@ const TURN_STRENGTH : int = 14
 const WEAK_RADIUS : float = 1.3
 const MEDIUM_RADIUS : float = 1.6
 const STRONG_RADIUS : float = 1.9
+const START_JUM_SPEED_MID_ATTACK: int = 10
+const TURN_STRENGTH : int = 14
 
 
 const DMG : int = 3
@@ -31,9 +31,9 @@ func enter() -> void :
 	is_finished = false
 	collision_shape_3d.shape = CylinderShape3D.new()
 	collision_shape_3d.shape.height = 1.0
-	if parent.velocity.length() < NORMAL_SPEED_TRESHOLD:
+	if speed_curve_in < NORMAL_SPEED_CURVE_IN_TRESHOLD:
 		collision_shape_3d.shape.radius = WEAK_RADIUS
-	elif parent.velocity.length() < STRONG_SPEED_TRESHOLD:
+	elif speed_curve_in < STRONG_SPEED_CURVE_IN_TRESHOLD:
 		collision_shape_3d.shape.radius = MEDIUM_RADIUS
 	else:
 		collision_shape_3d.shape.radius = STRONG_RADIUS

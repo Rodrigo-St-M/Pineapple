@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dkk4nk34bq0vt" path="res://Scripts/player_scripts/jump.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://l2j4vt6d6lsj" path="res://Scripts/player_scripts/bump.gd" id="7_52ee3"]
 [ext_resource type="Script" uid="uid://erh62podniaq" path="res://Scripts/player_scripts/fall.gd" id="8_8erm5"]
-[ext_resource type="Script" uid="uid://b3oow61osp0dw" path="res://Scripts/enemy_scripts/attack_spin_air.gd" id="9_f1ek2"]
+[ext_resource type="Script" uid="uid://b3oow61osp0dw" path="res://Scripts/player_scripts/attack_spin_air.gd" id="9_f1ek2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x3wgy"]
 
