@@ -9,7 +9,7 @@ func enter() -> void :
 	time = 0
 	direction = - (parent.player.position - parent.position).normalized()
 	direction *= (START_IMPACT_SPEED 
-			+ direction.dot(parent.player.velocity.normalized()) * parent.player.velocity.length())
+			+ ( direction.dot(parent.player.velocity.normalized()) * parent.player.velocity.length() ) )
 	parent.collision_mask = 16
 	parent.collision_layer = 0
 
@@ -21,8 +21,6 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	if parent.is_on_floor() :
-		exit()
+		#print(str(parent," is on floor, queueing free"))
+		parent.queue_free()
 	return null
-
-func exit() -> void:
-	parent.queue_free()

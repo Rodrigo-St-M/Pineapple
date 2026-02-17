@@ -8,11 +8,18 @@ var y_velocity : float
 @onready var idle: Node = $"../Idle"
 @onready var move: Node = $"../Move"
 @onready var jump: Node = $"../Jump"
+@onready var attack_spin_air: Node = $"../AttackSpinAir"
 
 func enter() -> void :
 	y_velocity = 0
 	time = 0
 	parent.set_collision_mask_value(3, false)
+
+func process_input(_event : InputEvent) -> State :
+	if Input.is_action_just_pressed("attack"):
+		return attack_spin_air
+	else:
+		return null
 
 func process_physics(delta: float) -> State:
 	var state : PlayerState = null
@@ -51,4 +58,4 @@ func process_physics(delta: float) -> State:
 	return state
 
 func exit() -> void:
-		parent.set_collision_mask_value(3, true)
+	parent.set_collision_mask_value(3, true)

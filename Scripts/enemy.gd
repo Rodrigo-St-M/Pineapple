@@ -13,6 +13,7 @@ enum Types {
 	}
 	
 enum States {
+	ERROR = -1,
 	APROACH,
 	DEFEAT,
 	ESCAPE,

@@ -1,22 +1,27 @@
 extends PlayerState
 
-var time : float
 const START_JUMP_SPEED : int = 10
 const TURN_STRENGTH : int = 26
 
+var time : float
 var y_velocity : float
 
 @onready var fall: Node = $"../Fall"
+@onready var attack_spin_air: Node = $"../AttackSpinAir"
 
 func enter() -> void :
 	y_velocity = START_JUMP_SPEED
-	time = 0
+
+func process_input(_event : InputEvent) -> State :
+	if Input.is_action_just_pressed("attack"):
+		return attack_spin_air
+	else:
+		return null
 
 func process_physics(delta: float) -> State:
 	var state : PlayerState = null
-
+	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
-	time += delta
 	input_dir = Vector3(input_dir.x, 0.0, input_dir.y)
 	
 	if speed_curve_in < 0.08 :

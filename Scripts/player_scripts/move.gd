@@ -5,7 +5,7 @@ const BRAKE_STRENGHT : int = 1
 const MIN_VELOCITY : float = 0.0004
 
 @onready var idle_state: PlayerState = $"../Idle"
-@onready var attack_state: PlayerState = $"../Attack"
+@onready var attack_state: PlayerState = $"../AttackSpin"
 @onready var bump_state: PlayerState = $"../Bump"
 @onready var jump_state: PlayerState = $"../Jump"
 @onready var fall: Node = $"../Fall"

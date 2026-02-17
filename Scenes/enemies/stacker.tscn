@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cdcidkpob0j2h" path="res://Scripts/enemy_scripts/stacker.gd" id="1_nj0n2"]
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="3_03r1b"]
+[ext_resource type="Script" uid="uid://suhh82qd35u7" path="res://Scripts/enemy_scripts/reorder.gd" id="3_nj0n2"]
+[ext_resource type="Script" uid="uid://dbaps6fdv3a63" path="res://Scripts/enemy_scripts/aproach_stacker.gd" id="3_oo5p1"]
 [ext_resource type="Script" uid="uid://dpiehsfno3osy" path="res://Scripts/enemy_scripts/follow_bellow.gd" id="4_03r1b"]
-[ext_resource type="Script" uid="uid://c73obn161l1gr" path="res://Scripts/enemy_scripts/defeat_stacker.gd" id="5_03r1b"]
 [ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_khkil"]
+[ext_resource type="Script" uid="uid://c73obn161l1gr" path="res://Scripts/enemy_scripts/defeat_stacker.gd" id="6_03r1b"]
 [ext_resource type="Script" uid="uid://dtv5bqdhlrib4" path="res://Scripts/state.gd" id="7_u4d0b"]
 [ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scripts/enemy_scripts/spawning.gd" id="9_oo5p1"]
+[ext_resource type="Script" uid="uid://con377ar3pwra" path="res://Scripts/enemy_scripts/escape_stacker.gd" id="10_03r1b"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tnqfg"]
 
@@ -74,12 +77,20 @@ shape = SubResource("CapsuleShape3D_ppryf")
 script = ExtResource("3_03r1b")
 starting_state = NodePath("Wait")
 
+[node name="Aproach" type="Node" parent="StateMachine" unique_id=1403215864]
+script = ExtResource("3_oo5p1")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Reorder" type="Node" parent="StateMachine" unique_id=2092764174]
+script = ExtResource("3_nj0n2")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
 [node name="FollowBelow" type="Node" parent="StateMachine" unique_id=1741954444]
 script = ExtResource("4_03r1b")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="Defeat" type="Node" parent="StateMachine" unique_id=1235527409]
-script = ExtResource("5_03r1b")
+script = ExtResource("6_03r1b")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="Stunned" type="Node" parent="StateMachine" unique_id=1788847987]
@@ -93,3 +104,9 @@ metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 [node name="Spawning" type="Node" parent="StateMachine" unique_id=1168736252]
 script = ExtResource("9_oo5p1")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Escape" type="Node" parent="StateMachine" unique_id=968211816]
+script = ExtResource("10_03r1b")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

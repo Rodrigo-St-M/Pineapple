@@ -9,9 +9,10 @@ extends Enemy
 @onready var escape_stacker: Node = $StateMachine/Escape
 @onready var aproach_stacker: Node = $StateMachine/Aproach
 
+signal destroy_tower(index: int)
+
 var player : CharacterBody3D
 var pineapple_tree : StaticBody3D
-
 var tower: Array
 var tower_index: int
 var piece_below: Enemy
@@ -56,16 +57,16 @@ func enter_state(state: Enemy.States) -> void:
 func damaged(dmg: int) -> void:
 	hitPoints -= dmg
 	
-	if hitPoints <= 0:
-		tower[tower_index] = null
-		piece_above.enter_state(Enemy.States.REORDER)
+	if hitPoints <= 0 && get_current_state() != Enemy.States.DEFEAT:
+		#tower[tower_index] = null
+		if piece_above.get_current_state() != Enemy.States.DEFEAT:
+			piece_above.enter_state(Enemy.States.REORDER)
+		state_machine.change_state(defeat)
+		if piece_above == tower[0]:
+			emit_signal("destroy_tower")
 		piece_above.piece_below = self.piece_below
 		if piece_below:
 			piece_below.piece_above = self.piece_above
-		get_parent().attempt_destroy()
-		state_machine.change_state(defeat)
-	else :
-		state_machine.change_state(stunned)
 
 func get_current_state() -> Enemy.States:
 	match state_machine.current_state:
@@ -75,8 +76,10 @@ func get_current_state() -> Enemy.States:
 			return Enemy.States.SPAWN
 		defeat:
 			return Enemy.States.DEFEAT
+		follow_below:
+			return Enemy.States.FOLLOW
 		_:
-			if tower[0].holding_pineapple:
+			if tower[0] && tower[0].holding_pineapple:
 				return Enemy.States.ESCAPE
 			else:
 				return Enemy.States.APROACH

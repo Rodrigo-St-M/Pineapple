@@ -4,10 +4,16 @@ extends Enemy
 @onready var defeat: State = $StateMachine/Defeat
 @onready var stunned: State = $StateMachine/Stunned
 @onready var follow_below: Node = $StateMachine/FollowBelow
+@onready var reorder: Node = $StateMachine/Reorder
+@onready var spawning: Node = $StateMachine/Spawning
+
+
+@warning_ignore("unused_signal")
+signal defeat_exit
+signal destroy_tower
 
 var tower: Array
 var tower_index: int
-
 var player : CharacterBody3D
 var pineapple_tree : StaticBody3D
 var holding_pineapple : Node3D
@@ -16,7 +22,7 @@ var piece_below : Enemy
 func _ready() -> void:
 	#print(stacker_array_index)
 	#tower = get_parent().array
-
+	tower_index = 0
 	hitPoints = 1
 	player = GameMaster.player
 	pineapple_tree = GameMaster.pineapple_tree
@@ -40,15 +46,30 @@ func enter_state(state: Enemy.States) -> void:
 			state_machine.change_state(follow_below)
 		Enemy.States.DEFEAT:
 			state_machine.change_state(defeat)
+		Enemy.States.REORDER:
+			state_machine.change_state(reorder)
 
 
 func damaged(dmg: int) -> void:
 	hitPoints -= dmg
-	tower[tower_index] = null
-	#tower[tower_index - 1].enter_state(Enemy.States.REORDER)
-	#tower[tower_index - 1].piece_below = self.piece_below
-	get_parent().attempt_destroy()
-	if hitPoints <= 0:
+
+	if hitPoints <= 0 && get_current_state() != Enemy.States.DEFEAT:
+		#get_parent().destroy()
+		emit_signal("destroy_tower")
 		state_machine.change_state(defeat)
-	else :
-		state_machine.change_state(stunned)
+
+func get_current_state() -> Enemy.States:
+	match state_machine.current_state:
+		follow_below:
+			return Enemy.States.FOLLOW
+		reorder:
+			return Enemy.States.REORDER
+		spawning:
+			return Enemy.States.SPAWN
+		defeat:
+			return Enemy.States.DEFEAT
+		_:
+			return Enemy.States.ERROR
+
+func _on_tree_exiting() -> void:
+	print("tower exiting!")

@@ -25,6 +25,7 @@ func init(parent : CharacterBody3D) -> void :
 func change_state(new_state : State) -> void :
 	if current_state:
 		current_state.exit()
+		current_state.enter_args.clear()
 	current_state = new_state
 	current_state.enter()
 

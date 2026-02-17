@@ -1,7 +1,7 @@
 extends PlayerState
 
 @onready var move: Node = $"../Move"
-@onready var attack: Node = $"../Attack"
+@onready var attack: Node = $"../AttackSpin"
 @onready var jump: Node = $"../Jump"
 @onready var fall: Node = $"../Fall"
 
