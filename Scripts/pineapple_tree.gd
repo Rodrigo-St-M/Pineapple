@@ -10,7 +10,7 @@ func _ready() -> void:
 	for i in range(3):
 		pineapples.push_back(pineappleScene.instantiate())
 
-		pineapples[i].name = "apple" + str(i)
+		#pineapples[i].name = "apple" + str(i)
 		add_child(pineapples[i])
 		pineapples[i].position.x += - 1 + 1 * i
 		pineapples[i].position.z += 1

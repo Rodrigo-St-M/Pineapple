@@ -6,8 +6,6 @@ var pineapple_tree : StaticBody3D
 var tower: Array
 @onready var aproach_state: State = $"../Aproach"
 
-signal pineapple_lost
-
 func enter() -> void :
 	print("escaping")
 	pineapple_tree = parent.pineapple_tree
@@ -28,8 +26,7 @@ func process_physics(_delta: float) -> State:
 	for i in parent.get_slide_collision_count():
 		var collider : Object = parent.get_slide_collision(i).get_collider()
 		if collider && (pineapple_tree.position - parent.position).length() > MIN_ESCAPE_DISTANCE:
-			emit_signal("pineapple_lost")
-			GameMaster.lives_left -= 1
+			GameMaster.get_current_instance().pineapple_lost()
 			tower[0].holding_pineapple.queue_free()
 			return aproach_state
 	return null

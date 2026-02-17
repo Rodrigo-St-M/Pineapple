@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwy7nu5xlty05"]
+[gd_scene format=3 uid="uid://cwy7nu5xlty05"]
 
 [ext_resource type="Script" uid="uid://bw32ew63bc4wj" path="res://Scripts/debug_gui.gd" id="1_aqnpe"]
 
-[node name="Debug_UI" type="Control"]
+[node name="Debug_UI" type="Control" unique_id=1194840636]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,16 +11,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aqnpe")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1516415220]
 
-[node name="VelocityLabel" type="Label" parent="CanvasLayer"]
+[node name="VelocityLabel" type="Label" parent="CanvasLayer" unique_id=285334437]
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Velocity: "
 
-[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+[node name="GameOverLabel" type="Label" parent="CanvasLayer" unique_id=1617801492]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -39,7 +39,7 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 128
 text = "GAME OVER"
 
-[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverLabel"]
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverLabel" unique_id=670228941]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
