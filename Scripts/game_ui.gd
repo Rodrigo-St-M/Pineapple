@@ -18,6 +18,7 @@ const STRONG_SPEED_CURVE_IN_TRESHOLD : float = 1.2
 const SUPER_FAST_CURVE_IN_TRESHOLD : float = 2.5
 const SINE_AMPLITUDE : float = 0.005
 
+
 const SLOW_COLOR = Color("00b83c")
 const MEDIUM_COLOR = Color("d5b500")
 const FAST_COLOR = Color("f16a00")
@@ -50,9 +51,7 @@ func _process(_delta: float) -> void:
 	progress_bar.value = (sine_variation 
 			+ lerpf(progress_bar.value, PlayerState.speed_curve_in, clampf( 5 * _delta, 0, 1)))
 	#progress_bar.value = lerpf(progress_bar.value, SPEED_CURVE.sample(PlayerState.speed_curve_in), 0.3)
-	
-	# LIVES INDICATOR
-	
+
 func _on_node_3d_game_over() -> void:
 	print("signal sent!")
 	game_over_label.visible = true
@@ -72,7 +71,7 @@ func _on_life_lost() -> void:
 
 func _update_lifes_hud() -> void:
 	var icons: Array = lifes_indicator.get_children()
-
+	
 	for i in icons.size():
 		if i < GameMaster.get_lives_left() - lives_danger:
 			icons[i].texture = PINEAPPLE_SAFE

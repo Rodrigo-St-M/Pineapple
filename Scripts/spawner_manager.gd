@@ -10,6 +10,8 @@ const GRABBER: PackedScene = preload("uid://b543gdht0q5vx")
 const LASER: PackedScene = preload("uid://f42bx6kvbhhv")
 const CHASER_LINE: PackedScene = preload("uid://70q68fc3subq")
 const STACKER_TOWER: PackedScene = preload("uid://dh88cg3dt4fyx")
+const SNEAKER: PackedScene = preload("uid://d0tw3uhj25li2")
+
 
 var waveNumber : int = 1
 	
@@ -36,6 +38,8 @@ func spawn_wave() -> void:
 				enemy = LASER.instantiate()
 			Enemy.Types.STACK:
 				enemy = STACKER_TOWER.instantiate()
+			Enemy.Types.SNEAK:
+				enemy = SNEAKER.instantiate()
 				
 		enemy.position.x = randf_range(-1, 1)
 		enemy.position.z = randf_range(-1, 1)
@@ -70,6 +74,12 @@ func generate_wave_details() -> Array[Enemy.Types]:
 	var num_stacker = clamp( (waveNumber/3) - 1, 0, 64)
 	for i in range(num_stacker):
 		wave.push_back(Enemy.Types.STACK)
+	
+	@warning_ignore("integer_division")
+	var num_sneaker = clamp( (waveNumber/4), 0, 64)
+	for i in range(num_sneaker):
+		wave.push_back(Enemy.Types.SNEAK)
+	
 	return wave
 
 

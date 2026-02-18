@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://d0tw3uhj25li2"]
+
+[ext_resource type="Script" uid="uid://ccd3beqaje03y" path="res://Scripts/enemy_scripts/grabber.gd" id="1_8tdh0"]
+[ext_resource type="Material" uid="uid://0h5w57sa4db6" path="res://Assets/sneaker_placeholder_material.tres" id="2_cuyor"]
+[ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="3_2u0qq"]
+[ext_resource type="Script" uid="uid://dmi4l4f637mn1" path="res://Scripts/enemy_scripts/aproach_sneaker.gd" id="4_8tdh0"]
+[ext_resource type="Script" uid="uid://cvq6vv5gud7v" path="res://Scripts/enemy_scripts/defeat_pineapple_carrier.gd" id="5_iul40"]
+[ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="6_65qf2"]
+[ext_resource type="Script" uid="uid://b4lc60n67e5g3" path="res://Scripts/enemy_scripts/escape_sneaker.gd" id="7_8tdh0"]
+[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scripts/enemy_scripts/spawning.gd" id="8_hjajk"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_s6csw"]
+material = ExtResource("2_cuyor")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i4avj"]
+
+[node name="Sneaker" type="CharacterBody3D" unique_id=1446499755]
+collision_layer = 4
+collision_mask = 21
+script = ExtResource("1_8tdh0")
+metadata/_custom_type_script = "uid://cf1inwwga5w46"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2123290247]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_s6csw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1543036151]
+shape = SubResource("SphereShape3D_i4avj")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1599861551 node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_2u0qq")
+starting_state = NodePath("Spawning")
+
+[node name="Aproach" type="Node" parent="StateMachine" unique_id=579170134 node_paths=PackedStringArray("escape_state")]
+script = ExtResource("4_8tdh0")
+escape_state = NodePath("../Escape")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Defeat" type="Node" parent="StateMachine" unique_id=788982200]
+script = ExtResource("5_iul40")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Stunned" type="Node" parent="StateMachine" unique_id=1161962274]
+script = ExtResource("6_65qf2")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Escape" type="Node" parent="StateMachine" unique_id=1439666808]
+script = ExtResource("7_8tdh0")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Spawning" type="Node" parent="StateMachine" unique_id=1708113677 node_paths=PackedStringArray("next_state")]
+script = ExtResource("8_hjajk")
+next_state = NodePath("../Aproach")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"

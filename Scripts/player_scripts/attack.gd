@@ -86,7 +86,7 @@ func process_physics(delta: float) -> State:
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 		input_dir = Vector3(input_dir.x, 0.0, input_dir.y)
 		
-		if speed_curve_in < 0.04 :
+		if speed_curve_in < 0.06 :
 			parent.velocity = parse_movement_input(input_dir, delta, 
 					clamp(TURN_STRENGTH * delta *(1/parent.velocity.length()), 0, 1), false)
 		else:

@@ -9,6 +9,7 @@ enum Types {
 	DIG,
 	ROLL,
 	LASER,
+	SNEAK,
 	BOMB
 	}
 	
