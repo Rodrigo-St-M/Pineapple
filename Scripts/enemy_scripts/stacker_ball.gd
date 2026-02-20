@@ -54,7 +54,7 @@ func enter_state(state: Enemy.States) -> void:
 			state_machine.change_state(aproach_stacker)
 
 
-func damaged(dmg: int) -> void:
+func damaged(dmg: int, _direction: Vector3 = Vector3.ZERO) -> void:
 	hitPoints -= dmg
 	
 	if hitPoints <= 0 && get_current_state() != Enemy.States.DEFEAT:

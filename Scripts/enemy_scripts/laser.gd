@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
-func damaged(dmg: int) -> void:
+func damaged(dmg: int, _direction: Vector3 = Vector3.ZERO) -> void:
 	hitPoints -= dmg
 	if hitPoints <= 0:
 		state_machine.change_state(defeat)

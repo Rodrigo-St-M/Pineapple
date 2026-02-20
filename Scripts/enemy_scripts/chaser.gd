@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	stateMachine.process_input(event)
 
-func damaged(dmg: int) -> void:
+func damaged(dmg: int, _direction: Vector3 = Vector3.ZERO) -> void:
 	hitPoints -= dmg
 	if hitPoints <= 0:
 		stateMachine.change_state(defeat_chaser)

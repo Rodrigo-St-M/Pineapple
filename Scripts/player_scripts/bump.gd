@@ -9,7 +9,10 @@ const FALL_SPEED : int = 15
 @onready var idle: Node = $"../Idle"
 
 func enter() -> void :
-	parent.velocity = -parent.get_last_motion().normalized() * START_IMPACT_SPEED
+	if enter_args.size() == 1:
+		parent.velocity = enter_args[0].normalized() * START_IMPACT_SPEED
+	else:
+		parent.velocity = -parent.get_last_motion().normalized() * START_IMPACT_SPEED
 	parent.velocity.y = START_IMPACT_SPEED
 	speed_curve_in /= 6
 	time = 0

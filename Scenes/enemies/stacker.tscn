@@ -48,10 +48,6 @@ distance_fade_max_distance = 174.0
 stencil_mode = 1
 stencil_flags = 2
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ppryf"]
-radius = 0.7
-height = 4.0
-
 [node name="Stacker" type="CharacterBody3D" unique_id=583354430]
 top_level = true
 collision_layer = 4
@@ -65,13 +61,6 @@ shape = SubResource("SphereShape3D_tnqfg")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=457341289]
 mesh = SubResource("CylinderMesh_hasjs")
 surface_material_override/0 = SubResource("StandardMaterial3D_nj0n2")
-
-[node name="GrabArea" type="Area3D" parent="." unique_id=131279362]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7825936, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea" unique_id=1702314546]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3072778, 0)
-shape = SubResource("CapsuleShape3D_ppryf")
 
 [node name="StateMachine" type="Node" parent="." unique_id=810352714 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_03r1b")

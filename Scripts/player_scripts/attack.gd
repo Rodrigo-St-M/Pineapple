@@ -98,7 +98,7 @@ func process_physics(delta: float) -> State:
 func _on_attack_hitbox_body_entered(body: Node3D) -> void:
 	if body is Enemy:
 		var enemy : Enemy = body
-		enemy.call("damaged", DMG)
+		enemy.call("damaged", DMG, parent.position)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack_spin_start":

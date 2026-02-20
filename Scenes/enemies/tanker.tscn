@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://dk8re0fmcdie2"]
+
+[ext_resource type="Script" uid="uid://b2moyljguhdnj" path="res://Scripts/enemy_scripts/tanker.gd" id="1_w7w4k"]
+[ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="2_wg3hu"]
+[ext_resource type="Script" uid="uid://boolllkx4mpue" path="res://Scripts/enemy_scripts/chase_tanker.gd" id="3_w7w4k"]
+[ext_resource type="Script" uid="uid://cfgjl6repgdje" path="res://Scripts/enemy_scripts/defeat_chaser.gd" id="4_dd6bt"]
+[ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_kvp2c"]
+[ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scripts/enemy_scripts/spawning.gd" id="6_g7652"]
+[ext_resource type="Script" uid="uid://ddtf5uh5vgms2" path="res://Scripts/enemy_scripts/crash.gd" id="6_wg3hu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ki5ff"]
+radius = 0.75
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8h1g"]
+size = Vector3(1.5, 1.5, 0.1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dkd65"]
+top_radius = 0.75
+bottom_radius = 0.75
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahvo8"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+distance_fade_mode = 3
+distance_fade_min_distance = 172.0
+distance_fade_max_distance = 174.0
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1pnn"]
+next_pass = SubResource("StandardMaterial3D_ahvo8")
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.6907189, 0.03646794, 0.074286014, 1)
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+distance_fade_mode = 3
+distance_fade_min_distance = 172.0
+distance_fade_max_distance = 174.0
+stencil_mode = 1
+stencil_flags = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lrgv"]
+next_pass = SubResource("StandardMaterial3D_ahvo8")
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.5328826, 0.5328826, 0.5328826, 1)
+metallic_specular = 0.45
+roughness = 0.03
+rim_enabled = true
+rim = 0.1
+distance_fade_min_distance = 172.0
+distance_fade_max_distance = 174.0
+stencil_mode = 1
+stencil_flags = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wg3hu"]
+material = SubResource("StandardMaterial3D_5lrgv")
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.1
+rings = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_5rhda"]
+material = SubResource("StandardMaterial3D_5lrgv")
+size = Vector3(0.5, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5rhda"]
+size = Vector3(1.8, 1, 0.6)
+
+[node name="Tanker" type="CharacterBody3D" unique_id=1068442324]
+collision_layer = 4
+collision_mask = 21
+script = ExtResource("1_w7w4k")
+metadata/_custom_type_script = "uid://cf1inwwga5w46"
+
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="." unique_id=42685538]
+shape = SubResource("SphereShape3D_ki5ff")
+
+[node name="ShieldCollisionShape" type="CollisionShape3D" parent="." unique_id=468544552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+shape = SubResource("BoxShape3D_w8h1g")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="." unique_id=2041349675]
+mesh = SubResource("CylinderMesh_dkd65")
+surface_material_override/0 = SubResource("StandardMaterial3D_y1pnn")
+
+[node name="ShieldMesh" type="MeshInstance3D" parent="." unique_id=821084603]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.8)
+mesh = SubResource("CylinderMesh_wg3hu")
+
+[node name="ShieldMesh3" type="MeshInstance3D" parent="." unique_id=430611839]
+transform = Transform3D(0.70710677, -0.70710677, 0, -3.090862e-08, -3.090862e-08, -1, 0.70710677, 0.70710677, -4.371139e-08, 0.8, 0, -0.6)
+mesh = SubResource("BoxMesh_5rhda")
+
+[node name="ShieldMesh2" type="MeshInstance3D" parent="." unique_id=2053301269]
+transform = Transform3D(0.70710677, 0.70710677, 0, 3.090862e-08, -3.090862e-08, -1, -0.70710677, 0.70710677, -4.371139e-08, -0.8, 0, -0.6)
+mesh = SubResource("BoxMesh_5rhda")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1575941470]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=132378861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8153268)
+shape = SubResource("BoxShape3D_5rhda")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1518186383 node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_wg3hu")
+starting_state = NodePath("Spawning")
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=2144420644]
+script = ExtResource("3_w7w4k")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Defeat" type="Node" parent="StateMachine" unique_id=151627277]
+script = ExtResource("4_dd6bt")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Stunned" type="Node" parent="StateMachine" unique_id=1664354748]
+script = ExtResource("5_kvp2c")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Crash" type="Node" parent="StateMachine" unique_id=438402602]
+script = ExtResource("6_wg3hu")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Spawning" type="Node" parent="StateMachine" unique_id=1543006564 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_g7652")
+next_state = NodePath("../Chase")
+metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[connection signal="body_entered" from="Area3D" to="StateMachine/Chase" method="_on_area_3d_body_entered"]

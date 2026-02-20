@@ -2,19 +2,19 @@ extends Node3D
 const SPAWN_DISTANCE : float = 18.0
 const WAVE_TIME_PERIOD : float = 30.0
 const WAVE_ENEMY_DELAY : float = 1
-var spawn_queue : Array[Node3D]
-@onready var wave_timer: Timer = $WaveTimer
-@onready var delay_timer: Timer = $DelayTimer
 
 const GRABBER: PackedScene = preload("uid://b543gdht0q5vx")
 const LASER: PackedScene = preload("uid://f42bx6kvbhhv")
 const CHASER_LINE: PackedScene = preload("uid://70q68fc3subq")
 const STACKER_TOWER: PackedScene = preload("uid://dh88cg3dt4fyx")
 const SNEAKER: PackedScene = preload("uid://d0tw3uhj25li2")
+const TANKER: PackedScene = preload("uid://dk8re0fmcdie2")
 
-
+@onready var wave_timer: Timer = $WaveTimer
+@onready var delay_timer: Timer = $DelayTimer
+var spawn_queue : Array[Node3D]
 var waveNumber : int = 1
-	
+
 func _process(_delta: float) -> void:
 	var enemy_number : int = get_tree().get_node_count_in_group("enemies")
 	if spawn_queue.size() == 0 && enemy_number == 0:
@@ -40,6 +40,8 @@ func spawn_wave() -> void:
 				enemy = STACKER_TOWER.instantiate()
 			Enemy.Types.SNEAK:
 				enemy = SNEAKER.instantiate()
+			Enemy.Types.TANK:
+				enemy = TANKER.instantiate()
 				
 		enemy.position.x = randf_range(-1, 1)
 		enemy.position.z = randf_range(-1, 1)
@@ -66,7 +68,7 @@ func generate_wave_details() -> Array[Enemy.Types]:
 		wave.push_back(Enemy.Types.GRAB)
 		
 	@warning_ignore("integer_division")
-	var num_laser = clamp( (waveNumber/3) - 2, 0, 64)
+	var num_laser = clamp( (waveNumber/4) - 2, 0, 64)
 	for i in range(num_laser):
 		wave.push_back(Enemy.Types.LASER)
 		
@@ -76,10 +78,14 @@ func generate_wave_details() -> Array[Enemy.Types]:
 		wave.push_back(Enemy.Types.STACK)
 	
 	@warning_ignore("integer_division")
-	var num_sneaker = clamp( (waveNumber/4), 0, 64)
+	var num_sneaker = clamp( (waveNumber/4) - 1, 0, 64)
 	for i in range(num_sneaker):
 		wave.push_back(Enemy.Types.SNEAK)
 	
+	@warning_ignore("integer_division")
+	var num_tanker = clamp( 1 + (waveNumber/4), 0, 64)
+	for i in range(num_tanker):
+		wave.push_back(Enemy.Types.SNEAK)
 	return wave
 
 

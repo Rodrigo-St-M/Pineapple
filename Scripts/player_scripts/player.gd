@@ -25,5 +25,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func get_state_name() -> String:
 	return str(stateMachine.current_state)
 	
-func hurt() -> void:
+## Sets the player in the bump state
+## direction The Vector3 representing the direction from wich the player was hurt
+func hurt(direction: Vector3) -> void:
+	#velocity = direction.normalized() * velocity.length()
+	bump.enter_args.push_back(direction)
 	stateMachine.change_state(bump)
