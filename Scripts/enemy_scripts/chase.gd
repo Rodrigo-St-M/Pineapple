@@ -15,8 +15,8 @@ func enter() -> void :
 		target = parent.player
 	#chaser_line = parent.chaser_line
 	
-	if target == null:
-		print("whoops")
+	
+		#print("whoops")
 	count = DIRECTION_PERIOD
 
 

@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_node_3d_game_over() -> void:
-	print("signal sent!")
+	#print("signal sent!")
 	game_over_label.visible = true
 
 func _on_restart_button_pressed() -> void:

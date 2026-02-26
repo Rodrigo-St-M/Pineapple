@@ -7,7 +7,7 @@ var tower: Array
 @onready var aproach_state: State = $"../Aproach"
 
 func enter() -> void :
-	print("escaping")
+	#print("escaping")
 	pineapple_tree = parent.pineapple_tree
 	direction = (-pineapple_tree.position + parent.position)
 	direction.y = 0

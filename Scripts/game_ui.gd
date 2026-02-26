@@ -53,7 +53,6 @@ func _process(_delta: float) -> void:
 	#progress_bar.value = lerpf(progress_bar.value, SPEED_CURVE.sample(PlayerState.speed_curve_in), 0.3)
 
 func _on_node_3d_game_over() -> void:
-	print("signal sent!")
 	game_over_label.visible = true
 
 func _on_pineapple_stolen() -> void:

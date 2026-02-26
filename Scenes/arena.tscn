@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://2jts2p36otjr" path="res://Scenes/game_ui.tscn" id="6_xrytr"]
 [ext_resource type="PackedScene" uid="uid://dvl6p2reu3a33" path="res://Scenes/arena_walls.tscn" id="8_lkdvd"]
 [ext_resource type="PackedScene" uid="uid://dnhf1xgc7uic3" path="res://Scenes/pineapple_tree.tscn" id="9_bgjus"]
-[ext_resource type="PackedScene" uid="uid://dk8re0fmcdie2" path="res://Scenes/enemies/tanker.tscn" id="10_stc3i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gd4f"]
 sky_top_color = Color(0.3439946, 0.94816834, 0.92355764, 1)
@@ -71,12 +70,10 @@ wait_time = 60.0
 one_shot = true
 
 [node name="DelayTimer" type="Timer" parent="Spawner manager" unique_id=586723671]
+wait_time = 3.0
 autostart = true
 
 [node name="ArenaWalls" parent="." unique_id=645090519 instance=ExtResource("8_lkdvd")]
-
-[node name="Tanker" parent="." unique_id=1068442324 instance=ExtResource("10_stc3i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3263173, 5.73616, 0.2986127)
 
 [connection signal="game_over" from="." to="Camera3D/Debug_UI" method="_on_node_3d_game_over"]
 [connection signal="timeout" from="Spawner manager/WaveTimer" to="Spawner manager" method="_on_wave_timer_timeout"]

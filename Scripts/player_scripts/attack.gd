@@ -58,7 +58,7 @@ func process_input(_event: InputEvent) -> State:
 		else:
 			attack_spin_air.enter_args = [false]
 			parent.velocity.y = START_JUM_SPEED_MID_ATTACK
-			print("air_attack")
+			#print("air_attack")
 			return attack_spin_air
 	return null
 

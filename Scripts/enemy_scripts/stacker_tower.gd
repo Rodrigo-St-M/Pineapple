@@ -37,15 +37,15 @@ func _ready() -> void:
 	
 
 func _on_defeat_exit() -> void:
-	print("tower is freeing")
+	#print("tower is freeing")
 	queue_free()
 
 func _on_destroy_tower() -> void:
 	if is_destroying:
-		print("tower cancelled destruction repeat attempt")
+		#print("tower cancelled destruction repeat attempt")
 		return
 	is_destroying = true
-	print("tower is destroying")
+	#print("tower is destroying")
 	
 	for piece in tower:
 		if piece && piece.get_current_state() != Enemy.States.DEFEAT:

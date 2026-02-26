@@ -27,7 +27,7 @@ func process_physics(delta: float) -> State:
 		time = 0
 		var collider : Object = parent.get_last_slide_collision().get_collider()
 		if collider.is_class("CharacterBody3D"):
-			print("ENEMY!")
+			#print("ENEMY!")
 			collider.call("damaged", 2)
 			state = jump
 		elif Vector3(parent.velocity.x, 0.0, parent.velocity.y).length() < 0.001:

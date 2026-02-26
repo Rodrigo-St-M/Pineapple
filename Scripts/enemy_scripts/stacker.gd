@@ -70,6 +70,3 @@ func get_current_state() -> Enemy.States:
 			return Enemy.States.DEFEAT
 		_:
 			return Enemy.States.ERROR
-
-func _on_tree_exiting() -> void:
-	print("tower exiting!")

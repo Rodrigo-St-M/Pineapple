@@ -49,7 +49,7 @@ func process_physics(delta: float) -> State:
 		for i in parent.get_slide_collision_count():
 			var collider : Object = parent.get_slide_collision(i).get_collider()
 			if collider.is_class("CharacterBody3D"):
-				print("ENEMY!")
+				#print("ENEMY!")
 				collider.call("damaged", 2)
 			elif Vector3(parent.velocity.x, 0.0, parent.velocity.y).length() < 0.001:
 				state = idle

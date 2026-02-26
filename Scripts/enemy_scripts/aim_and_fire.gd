@@ -63,4 +63,4 @@ func process_physics(_delta: float) -> State:
 
 func _on_laser_sight_body_entered(body: Node3D) -> void:
 	if body.get_instance_id() == parent.player.get_instance_id():
-		parent.player.hurt()
+		parent.player.hurt(parent.position)

@@ -1,16 +1,12 @@
 class_name Enemy
 extends CharacterBody3D
 enum Types {
-	CHASE,
 	GRAB,
-	STACK,
-	FLAP,
-	TANK,
-	DIG,
-	ROLL,
-	LASER,
 	SNEAK,
-	BOMB
+	STACK,
+	CHASE,
+	TANK,
+	LASER
 	}
 	
 enum States {
