@@ -18,7 +18,7 @@ func _ready() -> void:
 	
 	tower[0].defeat_exit.connect(_on_defeat_exit)
 	
-	var num_balls = randi_range(3, 5)
+	var num_balls = randi_range(3, 4)
 	size = num_balls +1
 	for i in range(num_balls):
 		tower.push_back(STACKER_BALL.instantiate())

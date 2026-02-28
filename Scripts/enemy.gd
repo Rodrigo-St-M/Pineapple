@@ -21,7 +21,7 @@ enum States {
 	WAIT,
 	}
 
-var enemyType
+var type: Enemy.Types
 var hitPoints : int
 
 func damaged(_dmg: int, _direction: Vector3 = Vector3.ZERO) -> void:

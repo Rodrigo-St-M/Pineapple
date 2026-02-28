@@ -3,6 +3,7 @@ const SPAWN_DISTANCE : float = 18.0
 const WAVE_TIME_PERIOD : float = 30.0
 const WAVE_ENEMY_DELAY : float = 1
 const NUM_OF_PINEAPPLE_HOLDERS: int = 3
+const WAVE_BUILDUP_RATE: float = 1 / 2.0
 
 const GRABBER: PackedScene = preload("uid://b543gdht0q5vx")
 const LASER: PackedScene = preload("uid://f42bx6kvbhhv")
@@ -10,7 +11,7 @@ const CHASER_LINE: PackedScene = preload("uid://70q68fc3subq")
 const STACKER_TOWER: PackedScene = preload("uid://dh88cg3dt4fyx")
 const SNEAKER: PackedScene = preload("uid://d0tw3uhj25li2")
 const TANKER: PackedScene = preload("uid://dk8re0fmcdie2")
-const WAVE_BUILDUP_RATE: float = 1 / 2.0
+
 @onready var wave_timer: Timer = $WaveTimer
 @onready var delay_timer: Timer = $DelayTimer
 var spawn_queue : Array[Node3D]

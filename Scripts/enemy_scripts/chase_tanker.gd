@@ -3,7 +3,7 @@ extends State
 @onready var crash: State = $"../Crash"
 @onready var area_3d: Area3D = $"../../Area3D"
 
-const SPEED : int = 10
+const SPEED : int = 8
 #const DIRECTION_PERIOD : int = 20
 const TURN_STRENGTH : float = 0.5
 const MIN_VEL_TO_CRASH: int = 4
@@ -52,6 +52,6 @@ func exit() -> void:
 	area_3d.set_deferred("monitoring", false)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.get_instance_id() == target.get_instance_id():
+	if target != null && body.get_instance_id() == target.get_instance_id():
 		target.hurt(parent.velocity)
 		parent.state_machine.change_state(crash)

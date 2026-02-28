@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d0tw3uhj25li2"]
 
-[ext_resource type="Script" uid="uid://ccd3beqaje03y" path="res://Scripts/enemy_scripts/grabber.gd" id="1_8tdh0"]
+[ext_resource type="Script" uid="uid://f84crw66abw0" path="res://Scripts/enemy_scripts/sneaker.gd" id="1_8tdh0"]
 [ext_resource type="Material" uid="uid://0h5w57sa4db6" path="res://Assets/sneaker_placeholder_material.tres" id="2_cuyor"]
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="3_2u0qq"]
 [ext_resource type="Script" uid="uid://dmi4l4f637mn1" path="res://Scripts/enemy_scripts/aproach_sneaker.gd" id="4_8tdh0"]

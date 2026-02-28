@@ -6,6 +6,7 @@ const FALL_SPEED : int = 9
 var direction : Vector3
 
 func enter() -> void :
+	GameMaster.get_current_instance().emit_enemy_defeated(parent.type)
 	time = 0
 	direction = - (parent.player.position - parent.position).normalized()
 	direction *= (START_IMPACT_SPEED 

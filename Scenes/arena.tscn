@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://2jts2p36otjr" path="res://Scenes/game_ui.tscn" id="6_xrytr"]
 [ext_resource type="PackedScene" uid="uid://dvl6p2reu3a33" path="res://Scenes/arena_walls.tscn" id="8_lkdvd"]
 [ext_resource type="PackedScene" uid="uid://dnhf1xgc7uic3" path="res://Scenes/pineapple_tree.tscn" id="9_bgjus"]
+[ext_resource type="Script" uid="uid://dil8rwpsp2uxb" path="res://Scripts/score_manager.gd" id="10_stc3i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gd4f"]
 sky_top_color = Color(0.3439946, 0.94816834, 0.92355764, 1)
@@ -32,11 +33,14 @@ ambient_light_sky_contribution = 0.3
 [node name="Node3D" type="Node3D" unique_id=1878933727]
 script = ExtResource("1_iyva0")
 
-[node name="arena_floor" parent="." unique_id=366579924 instance=ExtResource("1_xrytr")]
-
 [node name="Player" parent="." unique_id=2083009673 instance=ExtResource("2_stc3i")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+
+[node name="ScoreManager" type="Node" parent="." unique_id=201300644]
+script = ExtResource("10_stc3i")
+
+[node name="arena_floor" parent="." unique_id=366579924 instance=ExtResource("1_xrytr")]
 
 [node name="PineappleTree" parent="." unique_id=328426335 instance=ExtResource("9_bgjus")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6704242, 0)

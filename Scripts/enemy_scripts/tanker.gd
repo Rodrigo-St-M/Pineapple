@@ -10,6 +10,9 @@ var player : CharacterBody3D
 var direction_facing: Vector3 = Vector3.ZERO
 const SHIELD_MAX_ANGLE_RAD: float = PI / 2.0
 
+func _init() -> void:
+	type = Enemy.Types.TANK
+
 func _ready() -> void:
 	hitPoints = 1
 	player = GameMaster.player

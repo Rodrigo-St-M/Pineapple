@@ -10,16 +10,14 @@ var line_array_index : int
 
 var player : CharacterBody3D
 var next_chaser : Enemy
-#static var num_in_seq : int = 0
-#var chaser_line : Array[Enemy]
-#var this_index : int = 0
-# the chaser this chaser is following
-# it's null if there is no chaser or it was defeated
-#var next_chaser : Enemy
+
+func _init() -> void:
+	type = Enemy.Types.CHASE
+
 
 func _ready() -> void:
 	safe_margin = 0.01
-
+	
 	hitPoints = 1
 	player = GameMaster.player
 	add_to_group("enemies")

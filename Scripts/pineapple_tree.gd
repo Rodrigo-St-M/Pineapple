@@ -3,6 +3,7 @@ extends StaticBody3D
 var pineapples : Array[Node3D]
 signal pineapple_stolen
 signal pineapple_recovered
+
 @export var pineappleScene : PackedScene
 
 func _ready() -> void:

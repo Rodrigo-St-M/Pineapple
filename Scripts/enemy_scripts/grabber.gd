@@ -7,6 +7,9 @@ var player : CharacterBody3D
 var pineapple_tree : StaticBody3D
 var holding_pineapple : Node3D
 
+func _init() -> void:
+	type = Enemy.Types.GRAB
+
 func _ready() -> void:
 	hitPoints = 1
 	player = GameMaster.player

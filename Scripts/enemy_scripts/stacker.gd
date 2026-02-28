@@ -19,6 +19,9 @@ var pineapple_tree : StaticBody3D
 var holding_pineapple : Node3D
 var piece_below : Enemy
 
+func _init() -> void:
+	type = Enemy.Types.STACK
+
 func _ready() -> void:
 	#print(stacker_array_index)
 	#tower = get_parent().array

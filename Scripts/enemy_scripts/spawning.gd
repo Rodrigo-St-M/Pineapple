@@ -15,4 +15,6 @@ func process_physics(_delta: float) -> State:
 		parent.set_collision_mask_value(1, true)
 		parent.set_collision_mask_value(3, true)
 		return next_state
+	else:
+		parent.velocity = Vector3(0, -START_FALL_SPEED, 0)
 	return null

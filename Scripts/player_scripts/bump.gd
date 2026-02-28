@@ -9,6 +9,8 @@ const FALL_SPEED : int = 15
 @onready var idle: Node = $"../Idle"
 
 func enter() -> void :
+	parent.emit_signal("player_bumped")
+	
 	if enter_args.size() == 1:
 		parent.velocity = enter_args[0].normalized() * START_IMPACT_SPEED
 	else:

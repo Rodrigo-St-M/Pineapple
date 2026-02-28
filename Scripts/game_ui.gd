@@ -4,13 +4,9 @@ extends Control
 @onready var progress_bar: TextureProgressBar = $CanvasLayer/MomentumBar
 @onready var pineapple_tree: StaticBody3D = $"../../PineappleTree"
 
-@onready var lifes_indicator: HBoxContainer = $CanvasLayer/LifesIndicator
-
-
-
-const PINEAPPLE_DANGER = preload("uid://cxajdu7a5peqs")
-const PINEAPPLE_LOST = preload("uid://ch2ajklhqjboi")
-const PINEAPPLE_SAFE = preload("uid://b4q0jxhfgdfrs")
+#const PINEAPPLE_DANGER = preload("uid://cxajdu7a5peqs")
+#const PINEAPPLE_LOST = preload("uid://ch2ajklhqjboi")
+#const PINEAPPLE_SAFE = preload("uid://b4q0jxhfgdfrs")
 
 
 const NORMAL_SPEED_CURVE_IN_TRESHOLD : float = 0.45
@@ -26,16 +22,6 @@ const FAST_COLOR = Color("f16a00")
 var sine_x: float = 0
 var sine_variation: float = 0
 
-var lives_danger
-var lives_lost
-
-func _ready() -> void:
-	lives_danger = 0
-	lives_lost = 0
-	pineapple_tree.connect("pineapple_stolen", _on_pineapple_stolen)
-	pineapple_tree.connect("pineapple_recovered", _on_pineapple_recover)
-	GameMaster.get_current_instance().connect("life_lost", _on_life_lost)
-	
 func _process(_delta: float) -> void:
 	# MOMENTUM BAR
 	sine_variation = sin(sine_x) * SINE_AMPLITUDE
@@ -55,29 +41,29 @@ func _process(_delta: float) -> void:
 func _on_node_3d_game_over() -> void:
 	game_over_label.visible = true
 
-func _on_pineapple_stolen() -> void:
-	lives_danger += 1
-	_update_lifes_hud()
+#func _on_pineapple_stolen() -> void:
+	#lives_danger += 1
+	#_update_lifes_hud()
+#
+#func _on_pineapple_recover() -> void:
+	#lives_danger -= 1
+	#_update_lifes_hud()
+#
+#func _on_life_lost() -> void:
+	#lives_danger -= 1
+	#lives_lost += 1
+	#_update_lifes_hud()
 
-func _on_pineapple_recover() -> void:
-	lives_danger -= 1
-	_update_lifes_hud()
-
-func _on_life_lost() -> void:
-	lives_danger -= 1
-	lives_lost += 1
-	_update_lifes_hud()
-
-func _update_lifes_hud() -> void:
-	var icons: Array = lifes_indicator.get_children()
-	
-	for i in icons.size():
-		if i < GameMaster.get_lives_left() - lives_danger:
-			icons[i].texture = PINEAPPLE_SAFE
-		elif i < GameMaster.get_lives_left():
-			icons[i].texture = PINEAPPLE_DANGER
-		else:
-			icons[i].texture = PINEAPPLE_LOST
+#func _update_lifes_hud() -> void:
+	#var icons: Array = lifes_indicator.get_children()
+	#
+	#for i in icons.size():
+		#if i < GameMaster.get_lives_left() - lives_danger:
+			#icons[i].texture = PINEAPPLE_SAFE
+		#elif i < GameMaster.get_lives_left():
+			#icons[i].texture = PINEAPPLE_DANGER
+		#else:
+			#icons[i].texture = PINEAPPLE_LOST
 
 func _on_restart_button_pressed() -> void:
 	get_tree().reload_current_scene()

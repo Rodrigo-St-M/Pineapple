@@ -6,6 +6,9 @@ extends Enemy
 
 var player : CharacterBody3D
 
+func _init() -> void:
+	type = Enemy.Types.LASER
+
 func _ready() -> void:
 	hitPoints = 1
 	player = GameMaster.player
