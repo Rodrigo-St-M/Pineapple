@@ -2,10 +2,10 @@ extends Node
 
 const METER_DEPLETE_RATE: int = 5
 
-static var total_score: int = 0
-static var combo_score: int = 0
-static var combo_meter: float = 0
-static var combo_tier: int = 0
+var total_score: int = 0
+var combo_score: int = 0
+var combo_meter: float = 0
+var combo_tier: int = 0
 
 signal tier_up(current_tier)
 signal combo_over
@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 		if combo_tier != 5:
 			combo_tier += 1
 			emit_signal("tier_up", combo_tier)
-			combo_meter /= 3
+			combo_meter /= 2 
 			print("tier up: ", combo_tier )
 		else:
 			combo_meter = 50 + combo_tier * 50

@@ -42,9 +42,11 @@ func pineapple_lost() -> void:
 	life_lost.emit()
 	if lives_left == 0:
 		game_over.emit()
+		Engine.time_scale = 0.0
 		is_game_over = true
 
 func _enter_tree() -> void:
+	Engine.time_scale = 1.0
 	instance = self
 	is_game_over = false
 	lives_left = 3

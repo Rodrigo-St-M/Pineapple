@@ -1,8 +1,8 @@
 extends Control
 
-@onready var game_over_label: Label = $CanvasLayer/GameOverLabel
 @onready var progress_bar: TextureProgressBar = $CanvasLayer/MomentumBar
 @onready var pineapple_tree: StaticBody3D = $"../../PineappleTree"
+@onready var game_over_label: Label = $CanvasLayer/GameOverLabel
 
 #const PINEAPPLE_DANGER = preload("uid://cxajdu7a5peqs")
 #const PINEAPPLE_LOST = preload("uid://ch2ajklhqjboi")

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bw32ew63bc4wj" path="res://Scripts/debug_gui.gd" id="1_aqnpe"]
 
 [node name="Debug_UI" type="Control" unique_id=1194840636]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_aqnpe")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1516415220]
+visible = false
 
 [node name="VelocityLabel" type="Label" parent="CanvasLayer" unique_id=285334437]
 offset_right = 40.0

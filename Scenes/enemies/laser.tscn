@@ -48,6 +48,16 @@ stencil_flags = 2
 resource_local_to_scene = true
 size = Vector3(0.5, 0.5, 40)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfmmn"]
+transparency = 4
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.59, 0.053099982, 0.062048193, 0.36078432)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ieodd"]
+material = SubResource("StandardMaterial3D_gfmmn")
+size = Vector3(0.5, 0.5, 40)
+
 [node name="Laser" type="CharacterBody3D" unique_id=1699162670]
 collision_layer = 4
 collision_mask = 21
@@ -87,9 +97,14 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StateMachine/AimAndFire/LaserSight" unique_id=840291742]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20.319744)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 shape = SubResource("BoxShape3D_yydie")
 disabled = true
+
+[node name="SightMesh" type="MeshInstance3D" parent="StateMachine/AimAndFire/LaserSight" unique_id=14719878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+visible = false
+mesh = SubResource("BoxMesh_ieodd")
 
 [node name="defeat" type="Node" parent="StateMachine" unique_id=831454815]
 script = ExtResource("5_88d68")

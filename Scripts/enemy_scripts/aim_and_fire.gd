@@ -17,20 +17,24 @@ var current_aim_position : Vector3
 
 @onready var collision_shape_3d: CollisionShape3D = $LaserSight/CollisionShape3D
 @onready var laser_sight: Area3D = $LaserSight
+@onready var sight_mesh: MeshInstance3D = $LaserSight/SightMesh
 
 func enter() -> void:
 	frame = 0
 	player = parent.player
-	
+	sight_mesh.visible = true
 	collision_shape_3d.disabled = false
 	current_aim_position = parent.player.position
 	collision_shape_3d.shape.size.x = 0.1
 	collision_shape_3d.shape.size.y = 0.1
+	sight_mesh.mesh.size.x = 0.1
+	sight_mesh.mesh.size.y = 0.1
 
 func exit() -> void:
 	laser_sight.monitoring = false
 	collision_shape_3d.debug_color = Color("0099b36b")
 	collision_shape_3d.disabled = true
+	sight_mesh.visible = false
 
 func process_physics(_delta: float) -> State:
 	if (parent.position - player.position).length() < HIDE_ENTER_DISTANCE:
@@ -48,6 +52,8 @@ func process_physics(_delta: float) -> State:
 	if frame == LOCK_END_FRAME:
 		collision_shape_3d.shape.size.x = 0.5
 		collision_shape_3d.shape.size.y = 0.5
+		sight_mesh.mesh.size.x = 0.5
+		sight_mesh.mesh.size.y = 0.5
 		return null
 		
 	if frame <= LOCK_END_FRAME:

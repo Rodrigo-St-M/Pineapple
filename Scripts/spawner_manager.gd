@@ -14,7 +14,7 @@ const TANKER: PackedScene = preload("uid://dk8re0fmcdie2")
 
 @onready var wave_timer: Timer = $WaveTimer
 @onready var delay_timer: Timer = $DelayTimer
-var spawn_queue : Array[Node3D]
+var spawn_queue : Array[Node3D] 
 var waveNumber : int = 1
 
 func _process(_delta: float) -> void:
@@ -22,8 +22,8 @@ func _process(_delta: float) -> void:
 	if spawn_queue.size() == 0 && enemy_number == 0:
 		spawn_wave()
 		waveNumber += 1
-		@warning_ignore("integer_division")
-		delay_timer.wait_time = 1 + (3 / waveNumber)
+		
+		delay_timer.wait_time = 1 + (3.0 / waveNumber)
 		wave_timer.start(WAVE_TIME_PERIOD)
 
 func spawn_wave() -> void:

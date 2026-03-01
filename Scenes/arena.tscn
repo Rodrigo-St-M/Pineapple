@@ -64,7 +64,6 @@ script = ExtResource("3_iyva0")
 [node name="GameUI" parent="Camera3D" unique_id=448597891 instance=ExtResource("6_xrytr")]
 
 [node name="Debug_UI" parent="Camera3D" unique_id=661015873 instance=ExtResource("4_2cush")]
-visible = false
 
 [node name="Spawner manager" type="Node3D" parent="." unique_id=1870147050]
 script = ExtResource("6_bx68w")
@@ -79,6 +78,7 @@ autostart = true
 
 [node name="ArenaWalls" parent="." unique_id=645090519 instance=ExtResource("8_lkdvd")]
 
+[connection signal="game_over" from="." to="Camera3D/GameUI" method="_on_node_3d_game_over"]
 [connection signal="game_over" from="." to="Camera3D/Debug_UI" method="_on_node_3d_game_over"]
 [connection signal="timeout" from="Spawner manager/WaveTimer" to="Spawner manager" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="Spawner manager/DelayTimer" to="Spawner manager" method="_on_delay_timer_timeout"]

@@ -4,6 +4,7 @@ extends PlayerState
 @onready var collision_shape_3d: CollisionShape3D = $"../../AttackHitbox/CollisionShape3D"
 @onready var attack_hitbox: Area3D = $"../../AttackHitbox"
 @onready var attack: Node = $"../AttackSpin"
+@onready var attack_mesh: MeshInstance3D = $"../../AttackHitbox/AttackMesh"
 
 
 const WEAK_RADIUS : float = 1.3
@@ -21,7 +22,7 @@ var is_finished : bool
 func enter() -> void:
 	parent.set_collision_mask_value(3, false)
 	y_velocity = parent.velocity.y
-	
+	attack_mesh.visible = true
 	#input_released = false
 	is_finished = false
 	collision_shape_3d.shape = CylinderShape3D.new()
@@ -29,10 +30,16 @@ func enter() -> void:
 	
 	if speed_curve_in < NORMAL_SPEED_CURVE_IN_TRESHOLD:
 		collision_shape_3d.shape.radius = WEAK_RADIUS
+		attack_mesh.mesh.top_radius = WEAK_RADIUS
+		attack_mesh.mesh.bottom_radius = WEAK_RADIUS
 	elif speed_curve_in < STRONG_SPEED_CURVE_IN_TRESHOLD:
 		collision_shape_3d.shape.radius = MEDIUM_RADIUS
+		attack_mesh.mesh.top_radius = MEDIUM_RADIUS
+		attack_mesh.mesh.bottom_radius = MEDIUM_RADIUS
 	else:
 		collision_shape_3d.shape.radius = STRONG_RADIUS
+		attack_mesh.mesh.top_radius = STRONG_RADIUS
+		attack_mesh.mesh.bottom_radius = STRONG_RADIUS
 		
 	if enter_args.size() == 1 && !enter_args[0]:
 		can_start_end = true
@@ -43,7 +50,7 @@ func enter() -> void:
 
 func exit() -> void:
 	parent.set_collision_mask_value(3, true)
-	
+	attack_mesh.visible = false
 	animation_player.stop()
 	collision_shape_3d.debug_color = Color("0099b36b")
 	attack_hitbox.monitoring = false
