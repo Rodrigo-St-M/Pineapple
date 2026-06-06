@@ -8,6 +8,15 @@ const MIN_SPEED_CURVE_IN_TO_FLIP : float = 0.003
 @warning_ignore("integer_division", "narrowing_conversion")
 const NORMAL_SPEED_CURVE_IN_TRESHOLD : float = 0.45
 const STRONG_SPEED_CURVE_IN_TRESHOLD : float = 1.2
+
+enum Attacks {
+	SPIN,
+	KICK,
+	DASH,
+	PUNCH,
+}
+
+
 # input for speed curve. Must be preserved between states
 static var speed_curve_in : float = 0.0
 

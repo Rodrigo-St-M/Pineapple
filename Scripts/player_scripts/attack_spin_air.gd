@@ -48,13 +48,14 @@ func enter() -> void:
 		can_start_end = false
 		animation_player.play("attack_spin_start")
 
+
 func exit() -> void:
 	parent.set_collision_mask_value(3, true)
 	attack_mesh.visible = false
 	animation_player.stop()
 	collision_shape_3d.debug_color = Color("0099b36b")
 	attack_hitbox.monitoring = false
-	
+
 
 func process_physics(delta: float) -> State:
 	var state : PlayerState = null

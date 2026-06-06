@@ -4,11 +4,13 @@
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="1_fn5od"]
 [ext_resource type="Script" uid="uid://7ov8nuf2mduw" path="res://Scripts/player_scripts/idle.gd" id="1_hr86y"]
 [ext_resource type="Script" uid="uid://oklsav2b2r0y" path="res://Scripts/player_scripts/move.gd" id="3_gfjpw"]
-[ext_resource type="Script" uid="uid://p8wvf6gobov6" path="res://Scripts/player_scripts/attack.gd" id="6_nn08x"]
+[ext_resource type="Script" uid="uid://p8wvf6gobov6" path="res://Scripts/player_scripts/attack_spin_ground.gd" id="6_nn08x"]
 [ext_resource type="Script" uid="uid://dkk4nk34bq0vt" path="res://Scripts/player_scripts/jump.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://l2j4vt6d6lsj" path="res://Scripts/player_scripts/bump.gd" id="7_52ee3"]
 [ext_resource type="Script" uid="uid://erh62podniaq" path="res://Scripts/player_scripts/fall.gd" id="8_8erm5"]
 [ext_resource type="Script" uid="uid://b3oow61osp0dw" path="res://Scripts/player_scripts/attack_spin_air.gd" id="9_f1ek2"]
+[ext_resource type="Script" uid="uid://cemf8uscdr621" path="res://Scripts/player_scripts/attack_x.gd" id="10_tx1dd"]
+[ext_resource type="Script" uid="uid://bsdkuk3qanvib" path="res://Scripts/player_scripts/player_state.gd" id="11_gymyn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x3wgy"]
 
@@ -265,6 +267,18 @@ metadata/_custom_type_script = "uid://bsdkuk3qanvib"
 [node name="AttackSpinAir" type="Node" parent="StateMachine" unique_id=1948955435]
 script = ExtResource("9_f1ek2")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
+
+[node name="Attack0" type="Node" parent="StateMachine" unique_id=315367672]
+script = ExtResource("10_tx1dd")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Attack1" type="Node" parent="StateMachine" unique_id=1102893831]
+script = ExtResource("11_gymyn")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Attack2" type="Node" parent="StateMachine" unique_id=2119816890]
+script = ExtResource("11_gymyn")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
 
 [connection signal="body_entered" from="AttackHitbox" to="StateMachine/AttackSpin" method="_on_attack_hitbox_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/AttackSpin" method="_on_animation_player_animation_finished"]
