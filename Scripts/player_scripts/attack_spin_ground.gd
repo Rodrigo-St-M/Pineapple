@@ -3,16 +3,16 @@ extends PlayerState
 # or skipped (false), if enter_args[0] does not exist, is not a bool or is not null, it will be treated
 # as true 
 
-@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
-@onready var collision_shape_3d: CollisionShape3D = $"../../AttackHitbox/CollisionShape3D"
-@onready var attack_hitbox: Area3D = $"../../AttackHitbox"
-@onready var attack_mesh: MeshInstance3D = $"../../AttackHitbox/AttackMesh"
+@onready var animation_player: AnimationPlayer = $"../../../AnimationPlayer"
+@onready var collision_shape_3d: CollisionShape3D = $"../../../AttackHitbox/CollisionShape3D"
+@onready var attack_hitbox: Area3D = $"../../../AttackHitbox"
+@onready var attack_mesh: MeshInstance3D = $"../../../AttackHitbox/AttackMesh"
 
-@onready var jump: State = $"../Jump"
+@onready var jump: PlayerState = $"../../Jump"
+@onready var idleState : PlayerState = $"../../Idle"
+@onready var moveState : PlayerState = $"../../Move"
 
-@onready var attack_spin_air: State = $"../AttackSpinAir"
-@export var idleState : State
-@export var moveState : State
+@export var attack_spin_air: PlayerState
 
 const WEAK_RADIUS : float = 1.3
 const MEDIUM_RADIUS : float = 1.6
@@ -26,6 +26,10 @@ const DMG : int = 3
 var input_released : bool
 var can_start_end : bool
 var is_finished : bool
+
+func _ready() -> void:
+	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
+	attack_hitbox.body_entered.connect(_on_attack_hitbox_body_entered)
 
 func enter() -> void :
 	input_released = false
@@ -48,11 +52,13 @@ func enter() -> void :
 		attack_mesh.mesh.bottom_radius = STRONG_RADIUS
 		
 	if enter_args.size() == 1 && !enter_args[0]:
+		
 		can_start_end = true
 		animation_player.play("attack_spin_loop")
 	else:
+		
 		can_start_end = false
-		animation_player.play("attack_spin_start")
+		animation_player.play("attack_spin_start") 
 
 func exit() -> void:
 	animation_player.stop()
@@ -76,7 +82,8 @@ func process_input(_event: InputEvent) -> State:
 func process_physics(delta: float) -> State:
 	var state : PlayerState = null
 	
-	if !Input.is_action_pressed("attack"):
+	if !Input.is_action_pressed("attack0"):
+		#print("input released")
 		input_released = true
 	
 	if is_finished:
@@ -113,12 +120,11 @@ func _on_attack_hitbox_body_entered(body: Node3D) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack_spin_start":
-		#print("start just finished")
 		if input_released:
 			animation_player.play("attack_spin_end")
 		else:
 			animation_player.play("attack_spin_loop")
 		can_start_end = true
 	if anim_name == "attack_spin_end":
-		#print("end just finished")
+		
 		is_finished = true

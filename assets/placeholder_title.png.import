@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmf61mpiocqpk"
-path="res://.godot/imported/momentum_background.png-b1591bffefb55fa60faf4935b92b7fe5.ctex"
+uid="uid://cdi45t0snwe45"
+path="res://.godot/imported/placeholder_title.png-0653f903566eeee47e1803739b74d109.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/momentum_background.png"
-dest_files=["res://.godot/imported/momentum_background.png-b1591bffefb55fa60faf4935b92b7fe5.ctex"]
+source_file="res://assets/placeholder_title.png"
+dest_files=["res://.godot/imported/placeholder_title.png-0653f903566eeee47e1803739b74d109.ctex"]
 
 [params]
 

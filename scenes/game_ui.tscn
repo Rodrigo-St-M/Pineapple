@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://2jts2p36otjr"]
 
 [ext_resource type="Script" uid="uid://dxy2s0p08xr5x" path="res://Scripts/game_ui.gd" id="1_xjnnq"]
-[ext_resource type="Texture2D" uid="uid://b4q0jxhfgdfrs" path="res://Assets/pineapple_safe.png" id="2_1t2s1"]
+[ext_resource type="Texture2D" uid="uid://b4q0jxhfgdfrs" path="res://assets/pineapple_safe.png" id="2_1t2s1"]
 [ext_resource type="Script" uid="uid://bsplj14kb8716" path="res://Scripts/combo_label.gd" id="2_3t1kc"]
 [ext_resource type="Script" uid="uid://gwarwjgp2ibg" path="res://Scripts/lifes_indicator.gd" id="2_gjn1n"]
 [ext_resource type="Script" uid="uid://dgjc0sj03ew4s" path="res://Scripts/score_label.gd" id="2_rxsu6"]
-[ext_resource type="Texture2D" uid="uid://cmf61mpiocqpk" path="res://Assets/momentum_background.png" id="2_x63ue"]
-[ext_resource type="Texture2D" uid="uid://doyxh5w5xo3ei" path="res://Assets/momentum_border.png" id="3_gjn1n"]
+[ext_resource type="Texture2D" uid="uid://cmf61mpiocqpk" path="res://assets/momentum_background.png" id="2_x63ue"]
+[ext_resource type="Texture2D" uid="uid://doyxh5w5xo3ei" path="res://assets/momentum_border.png" id="3_gjn1n"]
 [ext_resource type="Script" uid="uid://cd8rgqnak3rnf" path="res://Scripts/combo_bar.gd" id="6_1t2s1"]
 
 [node name="GameUI" type="Control" unique_id=448597891]

@@ -7,16 +7,20 @@ var time : float
 var y_velocity : float
 
 @onready var fall: Node = $"../Fall"
-@onready var attack_spin_air: Node = $"../AttackSpinAir"
 
 func enter() -> void :
 	y_velocity = START_JUMP_SPEED
 
 func process_input(_event : InputEvent) -> State :
-	if Input.is_action_just_pressed("attack"):
-		return attack_spin_air
-	else:
-		return null
+	var attacks : Array[PlayerState.Attacks] = parent.attacks
+	var state : PlayerState = null
+	if Input.is_action_just_pressed("attack0") && attacks.size() > 0:
+		state = get_node_or_null("../Attack0")
+	if Input.is_action_just_pressed("attack1") && attacks.size() > 1:
+		state = get_node_or_null("../Attack1")
+	if Input.is_action_just_pressed("attack2") && attacks.size() > 2:
+		state = get_node_or_null("../Attack1")
+	return state
 
 func process_physics(delta: float) -> State:
 	var state : PlayerState = null

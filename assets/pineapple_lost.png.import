@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cir5gc86pr13k"
-path="res://.godot/imported/combo_a.png-8b94922d8d4b2f09ccb8e366436e9f4a.ctex"
+uid="uid://ch2ajklhqjboi"
+path="res://.godot/imported/pineapple_lost.png-138161e9606f289cabc3fb60c380dc5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/combo_a.png"
-dest_files=["res://.godot/imported/combo_a.png-8b94922d8d4b2f09ccb8e366436e9f4a.ctex"]
+source_file="res://assets/pineapple_lost.png"
+dest_files=["res://.godot/imported/pineapple_lost.png-138161e9606f289cabc3fb60c380dc5f.ctex"]
 
 [params]
 

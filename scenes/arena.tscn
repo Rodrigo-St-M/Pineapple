@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://bgwq4wa36ujqg"]
 
 [ext_resource type="Script" uid="uid://bn4w7m1xnv4a4" path="res://Scripts/game_master.gd" id="1_iyva0"]
-[ext_resource type="PackedScene" uid="uid://t74ig8t6mxgw" path="res://Scenes/arena_floor.tscn" id="1_xrytr"]
-[ext_resource type="PackedScene" uid="uid://g4h3dgkdttgi" path="res://Scenes/player.tscn" id="2_stc3i"]
+[ext_resource type="PackedScene" uid="uid://t74ig8t6mxgw" path="res://scenes/arena_floor.tscn" id="1_xrytr"]
+[ext_resource type="PackedScene" uid="uid://g4h3dgkdttgi" path="res://scenes/player.tscn" id="2_stc3i"]
 [ext_resource type="Script" uid="uid://cht1kgf3pd3b8" path="res://Scripts/camera_3d.gd" id="3_iyva0"]
-[ext_resource type="PackedScene" uid="uid://cwy7nu5xlty05" path="res://Scenes/debug_ui.tscn" id="4_2cush"]
+[ext_resource type="PackedScene" uid="uid://cwy7nu5xlty05" path="res://scenes/debug_ui.tscn" id="4_2cush"]
 [ext_resource type="Script" uid="uid://bbc52mlmudp44" path="res://Scripts/spawner_manager.gd" id="6_bx68w"]
-[ext_resource type="PackedScene" uid="uid://2jts2p36otjr" path="res://Scenes/game_ui.tscn" id="6_xrytr"]
-[ext_resource type="PackedScene" uid="uid://dvl6p2reu3a33" path="res://Scenes/arena_walls.tscn" id="8_lkdvd"]
-[ext_resource type="PackedScene" uid="uid://dnhf1xgc7uic3" path="res://Scenes/pineapple_tree.tscn" id="9_bgjus"]
+[ext_resource type="PackedScene" uid="uid://2jts2p36otjr" path="res://scenes/game_ui.tscn" id="6_xrytr"]
+[ext_resource type="PackedScene" uid="uid://dvl6p2reu3a33" path="res://scenes/arena_walls.tscn" id="8_lkdvd"]
+[ext_resource type="PackedScene" uid="uid://dnhf1xgc7uic3" path="res://scenes/pineapple_tree.tscn" id="9_bgjus"]
 [ext_resource type="Script" uid="uid://dil8rwpsp2uxb" path="res://Scripts/score_manager.gd" id="10_stc3i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gd4f"]
@@ -61,9 +61,9 @@ projection = 1
 size = 9.0
 script = ExtResource("3_iyva0")
 
-[node name="GameUI" parent="Camera3D" unique_id=448597891 instance=ExtResource("6_xrytr")]
-
 [node name="Debug_UI" parent="Camera3D" unique_id=661015873 instance=ExtResource("4_2cush")]
+
+[node name="GameUI" parent="Camera3D" unique_id=448597891 instance=ExtResource("6_xrytr")]
 
 [node name="Spawner manager" type="Node3D" parent="." unique_id=1870147050]
 script = ExtResource("6_bx68w")
@@ -78,7 +78,7 @@ autostart = true
 
 [node name="ArenaWalls" parent="." unique_id=645090519 instance=ExtResource("8_lkdvd")]
 
-[connection signal="game_over" from="." to="Camera3D/GameUI" method="_on_node_3d_game_over"]
 [connection signal="game_over" from="." to="Camera3D/Debug_UI" method="_on_node_3d_game_over"]
+[connection signal="game_over" from="." to="Camera3D/GameUI" method="_on_node_3d_game_over"]
 [connection signal="timeout" from="Spawner manager/WaveTimer" to="Spawner manager" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="Spawner manager/DelayTimer" to="Spawner manager" method="_on_delay_timer_timeout"]

@@ -1,10 +1,8 @@
 extends PlayerState
 
 @onready var move: Node = $"../Move"
-@onready var attack: Node = $"../AttackSpin"
 @onready var jump: Node = $"../Jump"
 @onready var fall: Node = $"../Fall"
-
 
 
 
@@ -19,12 +17,17 @@ func process_input(_event: InputEvent) -> State:
 		|| Input.is_action_pressed("ui_left") || Input.is_action_pressed("ui_right") ):
 		return move
 	
-	if Input.is_action_pressed("attack"):
-		return attack
-	
+	var attacks : Array[PlayerState.Attacks] = parent.attacks
+	var state : PlayerState = null
+	if Input.is_action_just_pressed("attack0") && attacks.size() > 0:
+		state = get_node_or_null("../Attack0")
+	if Input.is_action_just_pressed("attack1") && attacks.size() > 1:
+		state = get_node_or_null("../Attack1")
+	if Input.is_action_just_pressed("attack2") && attacks.size() > 2:
+		state = get_node_or_null("../Attack1")
 	if Input.is_action_just_pressed("jump"):
-		return jump
-	return null
+		state = jump
+	return state
 
 func process_physics(_delta: float) -> State:
 	var state: PlayerState = null

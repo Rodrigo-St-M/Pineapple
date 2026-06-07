@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dnhf1xgc7uic3"]
 
 [ext_resource type="Script" uid="uid://c6lt24naanl3o" path="res://Scripts/pineapple_tree.gd" id="1_xwgnv"]
-[ext_resource type="PackedScene" uid="uid://bs6lrytwukl0s" path="res://Scenes/pineaple.tscn" id="2_wwtl6"]
+[ext_resource type="PackedScene" uid="uid://bs6lrytwukl0s" path="res://scenes/pineaple.tscn" id="2_wwtl6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mw8dx"]
 

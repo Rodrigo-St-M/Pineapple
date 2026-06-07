@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dvl6p2reu3a33"]
 
-[ext_resource type="Shape3D" uid="uid://nq3x5e4opoof" path="res://Assets/concave_polygon_shape_3d.tres" id="1_3s68h"]
-[ext_resource type="Material" uid="uid://bq2pum64yy76p" path="res://Assets/placeholder_material.tres" id="2_ocrqo"]
+[ext_resource type="Shape3D" uid="uid://nq3x5e4opoof" path="res://assets/concave_polygon_shape_3d.tres" id="1_3s68h"]
+[ext_resource type="Material" uid="uid://bq2pum64yy76p" path="res://assets/placeholder_material.tres" id="2_ocrqo"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_ocrqo"]
 material = ExtResource("2_ocrqo")

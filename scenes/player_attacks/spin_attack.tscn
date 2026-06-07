@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cdkc0rheog2o4"]
+
+[ext_resource type="Script" uid="uid://cemf8uscdr621" path="res://Scripts/player_scripts/attack_master.gd" id="1_vabff"]
+[ext_resource type="Script" uid="uid://p8wvf6gobov6" path="res://Scripts/player_scripts/attack_spin_ground.gd" id="2_5doeo"]
+[ext_resource type="Script" uid="uid://b3oow61osp0dw" path="res://Scripts/player_scripts/attack_spin_air.gd" id="3_5m2jw"]
+
+[node name="SpinAttack" type="Node" unique_id=1614626496]
+script = ExtResource("1_vabff")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Ground" type="Node" parent="." unique_id=1270024045 node_paths=PackedStringArray("attack_spin_air")]
+script = ExtResource("2_5doeo")
+attack_spin_air = NodePath("../Air")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Air" type="Node" parent="." unique_id=113398001 node_paths=PackedStringArray("attack_ground")]
+script = ExtResource("3_5m2jw")
+attack_ground = NodePath("../Ground")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"

@@ -1,11 +1,11 @@
 extends PlayerState
 
-@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
-@onready var collision_shape_3d: CollisionShape3D = $"../../AttackHitbox/CollisionShape3D"
-@onready var attack_hitbox: Area3D = $"../../AttackHitbox"
-@onready var attack: Node = $"../AttackSpin"
-@onready var attack_mesh: MeshInstance3D = $"../../AttackHitbox/AttackMesh"
+@onready var animation_player: AnimationPlayer = $"../../../AnimationPlayer"
+@onready var collision_shape_3d: CollisionShape3D = $"../../../AttackHitbox/CollisionShape3D"
+@onready var attack_hitbox: Area3D = $"../../../AttackHitbox"
+@onready var attack_mesh: MeshInstance3D = $"../../../AttackHitbox/AttackMesh"
 
+@export var attack_ground: PlayerState  
 
 const WEAK_RADIUS : float = 1.3
 const MEDIUM_RADIUS : float = 1.6
@@ -60,7 +60,7 @@ func exit() -> void:
 func process_physics(delta: float) -> State:
 	var state : PlayerState = null
 	if y_velocity < 0 && parent.is_on_floor():
-			state = attack
+			state = attack_ground
 			state.enter_args = [false]
 			
 	#if can_start_end && input_released:

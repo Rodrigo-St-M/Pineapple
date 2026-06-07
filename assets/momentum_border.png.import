@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://na765lwpct1l"
-path="res://.godot/imported/combo_c.png-5bb5e03105981d4bb1c196b5eec74243.ctex"
+uid="uid://doyxh5w5xo3ei"
+path="res://.godot/imported/momentum_border.png-e9f72db60902adbcc7f657e22f21853c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/combo_c.png"
-dest_files=["res://.godot/imported/combo_c.png-5bb5e03105981d4bb1c196b5eec74243.ctex"]
+source_file="res://assets/momentum_border.png"
+dest_files=["res://.godot/imported/momentum_border.png-e9f72db60902adbcc7f657e22f21853c.ctex"]
 
 [params]
 

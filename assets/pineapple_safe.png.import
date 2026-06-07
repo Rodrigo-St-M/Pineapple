@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxajdu7a5peqs"
-path="res://.godot/imported/pineapple_danger.png-f7a094f6ae890c000f9064b27e948cf7.ctex"
+uid="uid://b4q0jxhfgdfrs"
+path="res://.godot/imported/pineapple_safe.png-01949ccac878ddd8e4c214cf18b0f46e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/pineapple_danger.png"
-dest_files=["res://.godot/imported/pineapple_danger.png-f7a094f6ae890c000f9064b27e948cf7.ctex"]
+source_file="res://assets/pineapple_safe.png"
+dest_files=["res://.godot/imported/pineapple_safe.png-01949ccac878ddd8e4c214cf18b0f46e.ctex"]
 
 [params]
 

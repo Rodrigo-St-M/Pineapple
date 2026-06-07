@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dr78rj16umshh"]
 
 [ext_resource type="Script" uid="uid://bs8smovxhdsh" path="res://Scripts/main_menu.gd" id="1_1ehe0"]
-[ext_resource type="Texture2D" uid="uid://cdi45t0snwe45" path="res://Assets/placeholder_title.png" id="1_28flt"]
-[ext_resource type="FontFile" uid="uid://chbqx52ed581f" path="res://Assets/gomarice_simple_slum.ttf" id="3_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://cdi45t0snwe45" path="res://assets/placeholder_title.png" id="1_28flt"]
+[ext_resource type="FontFile" uid="uid://chbqx52ed581f" path="res://assets/gomarice_simple_slum.ttf" id="3_ce3w2"]
 
 [sub_resource type="Gradient" id="Gradient_n45e2"]
 interpolation_mode = 2

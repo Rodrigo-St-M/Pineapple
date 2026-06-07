@@ -5,7 +5,6 @@ const BRAKE_STRENGHT : int = 1
 const MIN_VELOCITY : float = 0.0004
 
 @onready var idle_state: PlayerState = $"../Idle"
-@onready var attack_state: PlayerState = $"../AttackSpin"
 @onready var bump_state: PlayerState = $"../Bump"
 @onready var jump_state: PlayerState = $"../Jump"
 @onready var fall: Node = $"../Fall"
@@ -43,8 +42,15 @@ func process_physics(delta : float) -> State :
 	return state
 
 func process_input(_event : InputEvent) -> State :
-	if Input.is_action_just_pressed("attack"):
-		return attack_state
+	var attacks : Array[PlayerState.Attacks] = parent.attacks
+	var state : PlayerState = null
+	if Input.is_action_just_pressed("attack0") && attacks.size() > 0:
+		state = get_node_or_null("../Attack0")
+	if Input.is_action_just_pressed("attack1") && attacks.size() > 1:
+		state = get_node_or_null("../Attack1")
+	if Input.is_action_just_pressed("attack2") && attacks.size() > 2:
+		state = get_node_or_null("../Attack1")
+	
 	if Input.is_action_just_pressed("jump"):
-		return jump_state
-	return null
+		state = jump_state
+	return state

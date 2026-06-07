@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://chbqx52ed581f"
-path="res://.godot/imported/gomarice_simple_slum.ttf-60a74e326e98fea2dc1724675ebc81af.fontdata"
+path="res://.godot/imported/gomarice_simple_slum.ttf-23d87cc8280dbc4af150ebd6cce4fa11.fontdata"
 
 [deps]
 
-source_file="res://Assets/gomarice_simple_slum.ttf"
-dest_files=["res://.godot/imported/gomarice_simple_slum.ttf-60a74e326e98fea2dc1724675ebc81af.fontdata"]
+source_file="res://assets/gomarice_simple_slum.ttf"
+dest_files=["res://.godot/imported/gomarice_simple_slum.ttf-23d87cc8280dbc4af150ebd6cce4fa11.fontdata"]
 
 [params]
 

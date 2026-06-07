@@ -15,7 +15,7 @@ func _ready() -> void:
 	safe_margin = 0.015
 	floor_max_angle = PI / 6
 	stateMachine.init(self)
-
+	set_new_attack(PlayerState.Attacks.SPIN)
  
 func _physics_process(delta: float) -> void:
 	stateMachine.process_physics(delta)
@@ -38,20 +38,23 @@ func get_state_name() -> String:
 
 
 func set_new_attack(attack : PlayerState.Attacks) -> void:
-	if attacks.size() == 3:
+	if attacks.size() == 3 || attacks.has(attack):
 		return
 	else:
-		var node : PlayerState = get_node_or_null(str("StateMachine/Attack", attacks.size()))
-		attacks.push_back(attack)
+		var master_node: PlayerState
 		match attack:
 			PlayerState.Attacks.SPIN:
-				node.set_script(preload("uid://p8wvf6gobov6"))
+				master_node = load("uid://cdkc0rheog2o4").instantiate()
 			PlayerState.Attacks.KICK:
 				pass
 			PlayerState.Attacks.DASH:
 				pass
 			PlayerState.Attacks.PUNCH:
 				pass
+		master_node.name = str("Attack", attacks.size())
+		master_node.parent = self
+		stateMachine.add_child(master_node)
+		attacks.push_back(attack)
 
 
 ## Sets the player in the bump state
