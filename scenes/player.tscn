@@ -81,16 +81,62 @@ top_radius = 1.0
 bottom_radius = 1.0
 height = 1.0
 
+[sub_resource type="Animation" id="Animation_3v2ag"]
+resource_name = "uppercut_air_end"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackHitbox:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_d2wvv"]
+resource_name = "uppercut_ground_start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackHitbox:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.008333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackHitbox/CollisionShape3D:debug_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.008333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0, 0.6, 0.7019608, 0.41960785), Color(0.91764706, 0, 0.7019608, 0.41960785)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bhhdu"]
 _data = {
 &"RESET": ExtResource("2_jej6c"),
 &"attack_spin_end": ExtResource("3_f1ej7"),
 &"attack_spin_loop": ExtResource("4_oprun"),
-&"attack_spin_start": ExtResource("5_a8ls1")
+&"attack_spin_start": ExtResource("5_a8ls1"),
+&"uppercut_air_end": SubResource("Animation_3v2ag"),
+&"uppercut_ground_start": SubResource("Animation_d2wvv")
 }
 
 [node name="Player" type="CharacterBody3D" unique_id=226750318]
 collision_mask = 20
+platform_floor_layers = 4294901776
 script = ExtResource("1_bcffs")
 
 [node name="HurtBox" type="CollisionShape3D" parent="." unique_id=182845281]

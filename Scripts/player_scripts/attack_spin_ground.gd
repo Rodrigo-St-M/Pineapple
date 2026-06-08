@@ -27,16 +27,15 @@ var input_released : bool
 var can_start_end : bool
 var is_finished : bool
 
-func _ready() -> void:
+func enter() -> void :
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	attack_hitbox.body_entered.connect(_on_attack_hitbox_body_entered)
-
-func enter() -> void :
 	input_released = false
 	is_finished = false
 	attack_mesh.visible = true
 	collision_shape_3d.shape = CylinderShape3D.new()
 	collision_shape_3d.shape.height = 1.0
+	attack_mesh.mesh.height = 1.0
 	
 	if speed_curve_in < NORMAL_SPEED_CURVE_IN_TRESHOLD:
 		collision_shape_3d.shape.radius = WEAK_RADIUS
@@ -66,6 +65,8 @@ func exit() -> void:
 	attack_mesh.visible = false
 	attack_hitbox.monitoring = false
 	
+	animation_player.animation_finished.disconnect(_on_animation_player_animation_finished)
+	attack_hitbox.body_entered.disconnect(_on_attack_hitbox_body_entered)
 func process_input(_event: InputEvent) -> State:
 	#if _event.is_action_released("attack"):
 		#input_released = true

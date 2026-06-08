@@ -16,6 +16,7 @@ func _ready() -> void:
 	floor_max_angle = PI / 6
 	stateMachine.init(self)
 	set_new_attack(PlayerState.Attacks.SPIN)
+	set_new_attack(PlayerState.Attacks.PUNCH)
  
 func _physics_process(delta: float) -> void:
 	stateMachine.process_physics(delta)
@@ -50,7 +51,7 @@ func set_new_attack(attack : PlayerState.Attacks) -> void:
 			PlayerState.Attacks.DASH:
 				pass
 			PlayerState.Attacks.PUNCH:
-				pass
+				master_node = load("uid://w2avl1jhssm3").instantiate()
 		master_node.name = str("Attack", attacks.size())
 		master_node.parent = self
 		stateMachine.add_child(master_node)

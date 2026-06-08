@@ -58,6 +58,7 @@ metallic_specular = 0.45
 roughness = 0.03
 rim_enabled = true
 rim = 0.1
+distance_fade_mode = 3
 distance_fade_min_distance = 172.0
 distance_fade_max_distance = 174.0
 stencil_mode = 1

@@ -7,6 +7,7 @@ var time : float
 var y_velocity : float
 
 @onready var fall: Node = $"../Fall"
+@onready var bump: Node = $"../Bump"
 
 func enter() -> void :
 	y_velocity = START_JUMP_SPEED
@@ -41,7 +42,13 @@ func process_physics(delta: float) -> State:
 		y_velocity = y_velocity - (delta * parent.get_gravity().length() * 3)
 	parent.velocity.y = y_velocity
 	
-	parent.move_and_slide()
+	var collision : KinematicCollision3D = parent.move_and_collide(parent.velocity * delta, true)
+	if collision != null && parent.velocity.normalized().dot(collision.get_normal()) < -0.87 && parent.get_real_velocity().length() > 7:
+		parent.move_and_collide(parent.velocity * delta)
+		state = bump
+	else:
+		parent.move_and_slide()
+	
 	if y_velocity < 0:
 		state = fall
 	

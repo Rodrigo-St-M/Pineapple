@@ -21,12 +21,14 @@ var is_finished : bool
 
 func enter() -> void:
 	parent.set_collision_mask_value(3, false)
+	attack_hitbox.body_entered.connect(_on_attack_hitbox_body_entered)
 	y_velocity = parent.velocity.y
 	attack_mesh.visible = true
 	#input_released = false
 	is_finished = false
 	collision_shape_3d.shape = CylinderShape3D.new()
 	collision_shape_3d.shape.height = 1.0
+	attack_mesh.mesh.height = 1.0
 	
 	if speed_curve_in < NORMAL_SPEED_CURVE_IN_TRESHOLD:
 		collision_shape_3d.shape.radius = WEAK_RADIUS
@@ -55,6 +57,13 @@ func exit() -> void:
 	animation_player.stop()
 	collision_shape_3d.debug_color = Color("0099b36b")
 	attack_hitbox.monitoring = false
+	attack_hitbox.body_entered.disconnect(_on_attack_hitbox_body_entered)
+
+
+func _on_attack_hitbox_body_entered(body: Node3D) -> void:
+	if body is Enemy:
+		var enemy : Enemy = body
+		enemy.call("damaged", DMG, parent.position)
 
 
 func process_physics(delta: float) -> State:
@@ -94,7 +103,3 @@ func process_physics(delta: float) -> State:
 		
 		parent.move_and_slide()
 	return state
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "attack_spin_start":
-		animation_player.play("attack_spin_loop")

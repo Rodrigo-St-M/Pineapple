@@ -8,6 +8,7 @@ var y_velocity : float
 @onready var idle: Node = $"../Idle"
 @onready var move: Node = $"../Move"
 @onready var jump: Node = $"../Jump"
+@onready var bump: Node = $"../Bump"
 
 func enter() -> void :
 	y_velocity = 0
@@ -46,19 +47,25 @@ func process_physics(delta: float) -> State:
 		y_velocity = y_velocity - (delta * parent.get_gravity().length() * 4)
 	parent.velocity.y = y_velocity
 	
-	parent.move_and_slide()
 	
+	var horiz_vel = Vector3(parent.velocity.x, 0.0, parent.velocity.y)
 	if parent.is_on_floor():
-		
 		for i in parent.get_slide_collision_count():
 			var collider : Object = parent.get_slide_collision(i).get_collider()
 			if collider.is_class("CharacterBody3D"):
 				#print("ENEMY!")
 				collider.call("damaged", 2)
-			elif Vector3(parent.velocity.x, 0.0, parent.velocity.y).length() < 0.001:
+			elif horiz_vel.length() < 0.001:
 				state = idle
 			else:
 				state = move
+	else:
+		var collision : KinematicCollision3D = parent.move_and_collide(parent.velocity * delta, true)
+		if collision != null && horiz_vel.normalized().dot(collision.get_normal()) < -0.87 && parent.get_real_velocity().length() > 7:
+			parent.move_and_collide(parent.velocity * delta)
+			state = bump
+		else:
+			parent.move_and_slide()
 	return state
 
 func exit() -> void:

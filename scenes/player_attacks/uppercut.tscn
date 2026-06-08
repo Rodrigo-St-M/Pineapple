@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://w2avl1jhssm3"]
+
+[ext_resource type="Script" uid="uid://cemf8uscdr621" path="res://Scripts/player_scripts/attack_master.gd" id="1_3qd2l"]
+[ext_resource type="Script" uid="uid://bxm2u0ai07w70" path="res://Scripts/player_scripts/uppercut_ground.gd" id="2_3qd2l"]
+[ext_resource type="Script" uid="uid://0bkh6xiheiu7" path="res://Scripts/player_scripts/uppercut_air.gd" id="3_3qd2l"]
+
+[node name="Uppercut" type="Node" unique_id=1614626496]
+script = ExtResource("1_3qd2l")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Ground" type="Node" parent="." unique_id=1270024045]
+script = ExtResource("2_3qd2l")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Air" type="Node" parent="." unique_id=113398001]
+script = ExtResource("3_3qd2l")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"

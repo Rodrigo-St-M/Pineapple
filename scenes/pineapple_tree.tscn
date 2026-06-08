@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bs6lrytwukl0s" path="res://scenes/pineaple.tscn" id="2_wwtl6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mw8dx"]
+radius = 1.0
+height = 10.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_wwtl6"]
 
@@ -64,6 +66,7 @@ script = ExtResource("1_xwgnv")
 pineappleScene = ExtResource("2_wwtl6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=262607654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("CapsuleShape3D_mw8dx")
 
 [node name="LeafMesh" type="MeshInstance3D" parent="." unique_id=1902678367]
