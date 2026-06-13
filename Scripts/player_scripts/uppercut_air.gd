@@ -9,9 +9,9 @@ extends PlayerState
 
 const DMG: int = 3
 const TURN_STRENGTH: int = 12
-const WEAK_RADIUS : float = 2
-const MEDIUM_RADIUS : float = 3
-const STRONG_RADIUS : float = 5
+const WEAK_RADIUS : float = 3
+const MEDIUM_RADIUS : float = 4.5
+const STRONG_RADIUS : float = 6
 
 var y_velocity : float
 var stored_speed : Vector3 = Vector3.ZERO
@@ -42,7 +42,7 @@ func process_physics(_delta: float) -> State:
 		parent.velocity = parse_movement_input(input_dir, _delta, 
 				clamp(TURN_STRENGTH * _delta * (1/parent.velocity.length()), 0, 1), true)
 		speed_curve_in = speed_curve_in - (speed_curve_in * _delta)
-		y_velocity = y_velocity - (_delta * parent.get_gravity().length() * 8)
+		y_velocity = y_velocity - (_delta * parent.get_gravity().length() * 16)
 		parent.velocity.y = y_velocity
 	elif !end_triggered:
 		end_triggered = true
@@ -84,6 +84,8 @@ func _set_pound_hitbox_radius() -> void:
 		collision_shape_3d.shape.radius = STRONG_RADIUS
 		attack_mesh.mesh.top_radius = STRONG_RADIUS
 		attack_mesh.mesh.bottom_radius = STRONG_RADIUS
+
+
 func exit() -> void:
 	animation_player.stop()
 	collision_shape_3d.debug_color = Color("0099b36b")

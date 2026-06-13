@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://35gr8wj8571o"]
+
+[ext_resource type="Script" uid="uid://cemf8uscdr621" path="res://Scripts/player_scripts/attack_master.gd" id="1_86y3w"]
+[ext_resource type="Script" uid="uid://duxbvt6hsx11k" path="res://Scripts/player_scripts/dash_ground.gd" id="2_86y3w"]
+[ext_resource type="Script" uid="uid://dxnyruk4l3yr2" path="res://Scripts/player_scripts/dash_air.gd" id="3_86y3w"]
+
+[node name="Dash" type="Node" unique_id=1614626496]
+script = ExtResource("1_86y3w")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Ground" type="Node" parent="." unique_id=1270024045]
+script = ExtResource("2_86y3w")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Air" type="Node" parent="." unique_id=113398001]
+script = ExtResource("3_86y3w")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"

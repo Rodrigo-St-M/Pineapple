@@ -14,6 +14,7 @@ enum Attacks {
 	KICK,
 	DASH,
 	PUNCH,
+	GRAB,
 }
 
 

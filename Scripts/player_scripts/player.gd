@@ -11,12 +11,13 @@ signal player_bumped
 
 func _ready() -> void:
 	GameMaster.player = self
-	set_new_attack(PlayerState.Attacks.SPIN)
-	safe_margin = 0.015
+	safe_margin = 0.1
+	wall_min_slide_angle = 0.13
 	floor_max_angle = PI / 6
 	stateMachine.init(self)
 	set_new_attack(PlayerState.Attacks.SPIN)
 	set_new_attack(PlayerState.Attacks.PUNCH)
+	set_new_attack(PlayerState.Attacks.DASH)
  
 func _physics_process(delta: float) -> void:
 	stateMachine.process_physics(delta)
@@ -49,9 +50,10 @@ func set_new_attack(attack : PlayerState.Attacks) -> void:
 			PlayerState.Attacks.KICK:
 				pass
 			PlayerState.Attacks.DASH:
-				pass
+				master_node = load("uid://35gr8wj8571o").instantiate()
 			PlayerState.Attacks.PUNCH:
 				master_node = load("uid://w2avl1jhssm3").instantiate()
+			
 		master_node.name = str("Attack", attacks.size())
 		master_node.parent = self
 		stateMachine.add_child(master_node)

@@ -49,7 +49,7 @@ func process_input(_event : InputEvent) -> State :
 	if Input.is_action_just_pressed("attack1") && attacks.size() > 1:
 		state = get_node_or_null("../Attack1")
 	if Input.is_action_just_pressed("attack2") && attacks.size() > 2:
-		state = get_node_or_null("../Attack1")
+		state = get_node_or_null("../Attack2")
 	
 	if Input.is_action_just_pressed("jump"):
 		state = jump_state

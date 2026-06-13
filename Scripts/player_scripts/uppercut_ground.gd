@@ -53,11 +53,13 @@ func process_physics(_delta: float) -> State:
 	
 	return state
 
+
 func _on_attack_hitbox_body_entered(body: Node3D) -> void:
 	if body is Enemy:
 		var enemy : Enemy = body
 		enemy.call("damaged", DMG, parent.position)
-		
+
+
 func exit() -> void:
 	animation_player.stop()
 	collision_shape_3d.debug_color = Color("0099b36b")
