@@ -1,6 +1,6 @@
 extends PlayerState
 
-const START_JUMP_SPEED : int = 10
+const START_JUMP_SPEED : int = 11
 const TURN_STRENGTH : int = 26
 
 var time : float

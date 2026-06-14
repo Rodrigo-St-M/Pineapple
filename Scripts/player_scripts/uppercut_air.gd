@@ -31,8 +31,8 @@ func enter() -> void:
 	attack_mesh.mesh.height = 1.4
 	attack_mesh.mesh.top_radius = 0.7
 	attack_mesh.mesh.bottom_radius = 0.7
-	attack_mesh.position.y = -0.5
-	collision_shape_3d.position.y = -0.5
+	attack_mesh.position.y = -0.75
+	collision_shape_3d.position.y = -0.75
 
 func process_physics(_delta: float) -> State:
 	var horiz_vel = Vector3(parent.velocity.x, 0.0, parent.velocity.z)
@@ -49,6 +49,8 @@ func process_physics(_delta: float) -> State:
 		animation_player.play("uppercut_air_end")
 		stored_speed = horiz_vel
 		parent.velocity = Vector3.ZERO
+		attack_mesh.mesh.height = 0.6
+		collision_shape_3d.shape.height = 0.6
 		_set_pound_hitbox_radius()
 	else:
 		parent.velocity = lerp(parent.velocity, stored_speed, 0.2)

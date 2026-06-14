@@ -8,8 +8,8 @@ extends PlayerState
 @onready var jump: PlayerState = $"../../Jump"
 
 # numer of frames player can adjust direction of dash
-const CONTROL_TIME : float = 0.25
-const CANCEL_TIME : float = 0.25
+const CONTROL_TIME : float = 0.15
+const CANCEL_TIME : float = 0.30
 const TOTAL_TIME : float = 0.75
 const TURN_STRENGTH_START : int = 365
 const TURN_STRENGTH_END : int = 12
@@ -24,6 +24,7 @@ var time : float
 var speed_curve_boost : float
 var speed_curve_deaccel : int
 var prev_speed_curve_in : float
+
 
 func enter() -> void:
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
@@ -40,6 +41,7 @@ func enter() -> void:
 	else:
 		speed_curve_boost = STRONG_BOOST
 		speed_curve_deaccel = STRONG_DEACCEL
+
 
 func process_physics(_delta: float) -> State:
 	var state = null
@@ -59,6 +61,7 @@ func process_physics(_delta: float) -> State:
 	time += _delta
 	return state
 
+
 func process_input(_event: InputEvent) -> State:
 	var attacks : Array[PlayerState.Attacks] = parent.attacks
 	var state : PlayerState = null
@@ -73,6 +76,7 @@ func process_input(_event: InputEvent) -> State:
 		if Input.is_action_just_pressed("jump"):
 			state = jump
 	return state
+
 
 func exit() -> void:
 	attack_hitbox.body_entered.disconnect(_on_attack_hitbox_body_entered)

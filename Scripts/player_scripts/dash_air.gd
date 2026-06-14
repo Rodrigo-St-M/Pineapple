@@ -4,14 +4,14 @@ extends PlayerState
 @onready var collision_shape_3d: CollisionShape3D = $"../../../AttackHitbox/CollisionShape3D"
 @onready var attack_hitbox: Area3D = $"../../../AttackHitbox"
 @onready var attack_mesh: MeshInstance3D = $"../../../AttackHitbox/AttackMesh"
-@onready var move: PlayerState = $"../../Move"
+@onready var fall: PlayerState = $"../../Fall"
 @onready var jump: PlayerState = $"../../Jump"
 
 # numer of frames player can adjust direction of dash
-const CONTROL_TIME : float = 0.25
+const CONTROL_TIME : float = 0.15
 const CANCEL_TIME : float = 0.25
-const TOTAL_TIME : float = 0.45
-const TURN_STRENGTH_START : int = 365
+const TOTAL_TIME : float = 0.35
+const TURN_STRENGTH_START : int = 256
 const TURN_STRENGTH_END : int = 6
 const WEAK_BOOST : float = 0.50
 const WEAK_DEACCEL: int = 6
@@ -25,7 +25,9 @@ var speed_curve_boost : float
 var speed_curve_deaccel : int
 var prev_speed_curve_in : float
 
+
 func enter() -> void:
+	parent.has_dashed_air = true
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	attack_hitbox.body_entered.connect(_on_attack_hitbox_body_entered)
 	time = 0
@@ -41,6 +43,7 @@ func enter() -> void:
 		speed_curve_boost = STRONG_BOOST
 		speed_curve_deaccel = STRONG_DEACCEL
 
+
 func process_physics(_delta: float) -> State:
 	var state = null
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
@@ -54,10 +57,11 @@ func process_physics(_delta: float) -> State:
 		parent.velocity = parse_movement_input(input_dir, _delta,
 				clamp(TURN_STRENGTH_END * _delta *(1/parent.velocity.length()), 0, 1), true)
 	else:
-		state = move
+		state = fall
 	parent.move_and_slide()
 	time += _delta
 	return state
+
 
 func process_input(_event: InputEvent) -> State:
 	var attacks : Array[PlayerState.Attacks] = parent.attacks
@@ -71,6 +75,7 @@ func process_input(_event: InputEvent) -> State:
 		if Input.is_action_just_pressed("attack2") && attacks.size() > 2 && !(attacks[2] == PlayerState.Attacks.DASH):
 			state = get_node_or_null("../../Attack2")
 	return state
+
 
 func exit() -> void:
 	attack_hitbox.body_entered.disconnect(_on_attack_hitbox_body_entered)

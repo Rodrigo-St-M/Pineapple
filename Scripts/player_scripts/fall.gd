@@ -18,17 +18,21 @@ func enter() -> void :
 func process_input(_event : InputEvent) -> State :
 	var attacks : Array[PlayerState.Attacks] = parent.attacks
 	var state : PlayerState = null
+	
 	if Input.is_action_just_pressed("attack0") && attacks.size() > 0:
-		state = get_node_or_null("../Attack0")
+		if !attacks[0] == PlayerState.Attacks.DASH || !parent.has_dashed_air:
+			state = get_node_or_null("../Attack0")
 	if Input.is_action_just_pressed("attack1") && attacks.size() > 1:
-		state = get_node_or_null("../Attack1")
+		if !attacks[1] == PlayerState.Attacks.DASH || !parent.has_dashed_air:
+			state = get_node_or_null("../Attack1")
 	if Input.is_action_just_pressed("attack2") && attacks.size() > 2:
-		state = get_node_or_null("../Attack2") 
+		if !attacks[2] == PlayerState.Attacks.DASH || !parent.has_dashed_air:
+				state = get_node_or_null("../Attack2") 
 	return state
 
 func process_physics(delta: float) -> State:
 	var state : PlayerState = null
-
+	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	time += delta
 	input_dir = Vector3(input_dir.x, 0.0, input_dir.y)
@@ -42,9 +46,9 @@ func process_physics(delta: float) -> State:
 		speed_curve_in = speed_curve_in - (speed_curve_in * delta)
 	
 	if Input.is_action_pressed("jump") :
-		y_velocity = y_velocity - (delta * parent.get_gravity().length() * 2)
-	else :
 		y_velocity = y_velocity - (delta * parent.get_gravity().length() * 4)
+	else :
+		y_velocity = y_velocity - (delta * parent.get_gravity().length() * 6)
 	parent.velocity.y = y_velocity
 	
 	

@@ -4,13 +4,14 @@ extends CharacterBody3D
 @onready var bump: Node = $StateMachine/Bump
 
 var attacks : Array[PlayerState.Attacks]
-
+var has_dashed_air : bool
 
 @warning_ignore("unused_signal")
 signal player_bumped
 
 func _ready() -> void:
 	GameMaster.player = self
+	has_dashed_air = false
 	safe_margin = 0.1
 	wall_min_slide_angle = 0.13
 	floor_max_angle = PI / 6
@@ -21,7 +22,8 @@ func _ready() -> void:
  
 func _physics_process(delta: float) -> void:
 	stateMachine.process_physics(delta)
-
+	if has_dashed_air && is_on_floor():
+		has_dashed_air = false
 
 func _process(delta: float) -> void:
 	stateMachine.process_frame(delta)
