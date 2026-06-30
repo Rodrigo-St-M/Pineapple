@@ -18,7 +18,7 @@ func _ready() -> void:
 	stateMachine.init(self)
 	set_new_attack(PlayerState.Attacks.SPIN)
 	set_new_attack(PlayerState.Attacks.PUNCH)
-	set_new_attack(PlayerState.Attacks.DASH)
+	set_new_attack(PlayerState.Attacks.CLAP)
  
 func _physics_process(delta: float) -> void:
 	stateMachine.process_physics(delta)
@@ -55,6 +55,8 @@ func set_new_attack(attack : PlayerState.Attacks) -> void:
 				master_node = load("uid://35gr8wj8571o").instantiate()
 			PlayerState.Attacks.PUNCH:
 				master_node = load("uid://w2avl1jhssm3").instantiate()
+			PlayerState.Attacks.CLAP:
+				master_node = load("uid://wsev4ap6ovn8").instantiate()
 			
 		master_node.name = str("Attack", attacks.size())
 		master_node.parent = self

@@ -26,6 +26,7 @@ func enter() -> void:
 	attack_hitbox.body_entered.connect(_on_attack_hitbox_body_entered)
 	attack_mesh.visible = true
 	collision_shape_3d.shape = CylinderShape3D.new()
+	attack_mesh.mesh = CylinderMesh.new()
 	collision_shape_3d.shape.height = 1.4
 	collision_shape_3d.shape.radius = 0.7
 	attack_mesh.mesh.height = 1.4

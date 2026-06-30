@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://wsev4ap6ovn8"]
+
+[ext_resource type="Script" uid="uid://cemf8uscdr621" path="res://Scripts/player_scripts/attack_master.gd" id="1_kw6nb"]
+[ext_resource type="Script" uid="uid://ddc7ucb2lekst" path="res://Scripts/player_scripts/clap_ground.gd" id="2_34cix"]
+[ext_resource type="Script" uid="uid://botc1w7ro3lb7" path="res://scenes/player_attacks/clap_air.gd" id="3_kw6nb"]
+
+[node name="Clap" type="Node" unique_id=1614626496]
+script = ExtResource("1_kw6nb")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Ground" type="Node" parent="." unique_id=1270024045]
+script = ExtResource("2_34cix")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Air" type="Node" parent="." unique_id=113398001]
+script = ExtResource("3_kw6nb")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"

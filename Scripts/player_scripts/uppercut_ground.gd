@@ -18,6 +18,7 @@ func enter() -> void:
 	y_velocity = START_JUMP_SPEED
 	attack_mesh.visible = true
 	collision_shape_3d.shape = CylinderShape3D.new()
+	attack_mesh.mesh = CylinderMesh.new()
 	collision_shape_3d.shape.height = 2.0
 	collision_shape_3d.shape.radius = 1.0
 	attack_mesh.mesh.height = 3.0

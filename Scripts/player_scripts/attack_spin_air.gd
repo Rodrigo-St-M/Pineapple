@@ -27,6 +27,7 @@ func enter() -> void:
 	#input_released = false
 	is_finished = false
 	collision_shape_3d.shape = CylinderShape3D.new()
+	attack_mesh.mesh = CylinderMesh.new()
 	collision_shape_3d.shape.height = 1.0
 	attack_mesh.mesh.height = 1.0
 	

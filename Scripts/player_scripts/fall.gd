@@ -11,7 +11,7 @@ var y_velocity : float
 @onready var bump: Node = $"../Bump"
 
 func enter() -> void :
-	y_velocity = 0
+	y_velocity = parent.velocity.y
 	time = 0
 	parent.set_collision_mask_value(3, false)
 
