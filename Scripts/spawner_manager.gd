@@ -12,19 +12,48 @@ const STACKER_TOWER: PackedScene = preload("uid://dh88cg3dt4fyx")
 const SNEAKER: PackedScene = preload("uid://d0tw3uhj25li2")
 const TANKER: PackedScene = preload("uid://dk8re0fmcdie2")
 
+signal level_finished
+
 @onready var wave_timer: Timer = $WaveTimer
 @onready var delay_timer: Timer = $DelayTimer
 var spawn_queue : Array[Node3D] 
 var waveNumber : int = 1
+var level_number : int = 1
+
+var current_phase : LevelPhase = LevelPhase.WAITING
+var enemies_left : int = 100
+
+enum LevelPhase {
+	BRAWLING,
+	UPGRADING,
+	WAITING,
+}
+
+func _ready() -> void:
+	GameMaster.get_current_instance().enemy_defeated.connect(_on_enemy_defeated)
 
 func _process(_delta: float) -> void:
 	var enemy_number : int = get_tree().get_node_count_in_group("enemies")
 	if spawn_queue.size() == 0 && enemy_number == 0:
 		spawn_wave()
 		waveNumber += 1
-		
+		delay_timer.wait_time = 1 + (3.0 / level_number)
+		wave_timer.start(WAVE_TIME_PERIOD)
+
+func start_level(number : int) -> void:
+	current_phase = LevelPhase.BRAWLING
+	waveNumber = 1
+	spawn_wave()
+	
+	var enemy_number : int = get_tree().get_node_count_in_group("enemies")
+	if spawn_queue.size() == 0 && enemy_number == 0:
+		spawn_wave()
+		level_number += 1
 		delay_timer.wait_time = 1 + (3.0 / waveNumber)
 		wave_timer.start(WAVE_TIME_PERIOD)
+
+func _on_enemy_defeated(_type):
+	enemies_left -= 1
 
 func spawn_wave() -> void:
 	print("wave " + str(waveNumber) + " spawned")
@@ -56,9 +85,10 @@ func spawn_wave() -> void:
 
 
 func _on_wave_timer_timeout() -> void:
-	spawn_wave()
-	waveNumber += 1
-	wave_timer.start(WAVE_TIME_PERIOD)
+	pass
+	#spawn_wave()
+	#waveNumber += 1
+	#wave_timer.start(WAVE_TIME_PERIOD)
 
 
 class EnemyWaveInfo:

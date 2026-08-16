@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cefqlj5jic863"]
+
+[ext_resource type="Script" uid="uid://cemf8uscdr621" path="res://Scripts/player_scripts/attack_master.gd" id="1_yrcje"]
+[ext_resource type="Script" uid="uid://chgfu1kcy0fsk" path="res://Scripts/player_scripts/parry_ground.gd" id="2_yrcje"]
+
+[node name="Parry" type="Node" unique_id=1614626496]
+script = ExtResource("1_yrcje")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Ground" type="Node" parent="." unique_id=1270024045]
+script = ExtResource("2_yrcje")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Air" type="Node" parent="." unique_id=113398001]
+script = ExtResource("2_yrcje")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"

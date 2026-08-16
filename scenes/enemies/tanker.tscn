@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b2moyljguhdnj" path="res://Scripts/enemy_scripts/tanker.gd" id="1_w7w4k"]
 [ext_resource type="Script" uid="uid://ctc7pkgu58i8t" path="res://Scripts/state_machine.gd" id="2_wg3hu"]
 [ext_resource type="Script" uid="uid://boolllkx4mpue" path="res://Scripts/enemy_scripts/chase_tanker.gd" id="3_w7w4k"]
-[ext_resource type="Script" uid="uid://cfgjl6repgdje" path="res://Scripts/enemy_scripts/defeat_chaser.gd" id="4_dd6bt"]
+[ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="4_nnipi"]
 [ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="5_kvp2c"]
 [ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scripts/enemy_scripts/spawning.gd" id="6_g7652"]
 [ext_resource type="Script" uid="uid://ddtf5uh5vgms2" path="res://Scripts/enemy_scripts/crash.gd" id="6_wg3hu"]
@@ -122,7 +122,7 @@ script = ExtResource("3_w7w4k")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="Defeat" type="Node" parent="StateMachine" unique_id=151627277]
-script = ExtResource("4_dd6bt")
+script = ExtResource("4_nnipi")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="Stunned" type="Node" parent="StateMachine" unique_id=1664354748]

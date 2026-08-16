@@ -31,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func damaged(dmg: int, _direction: Vector3 = Vector3.ZERO) -> void:
 	_direction = _direction - position
 	
-	if _direction.angle_to(-global_transform.basis.z) > SHIELD_MAX_ANGLE_RAD:
+	if _direction == Vector3.ZERO || _direction.angle_to(-global_transform.basis.z) > SHIELD_MAX_ANGLE_RAD:
 		hitPoints -= dmg
 	if hitPoints <= 0:
 		state_machine.change_state(defeat)

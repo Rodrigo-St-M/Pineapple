@@ -19,6 +19,7 @@ var y_velocity
 var can_start_end : bool
 var is_finished : bool
 
+
 func enter() -> void:
 	parent.set_collision_mask_value(3, false)
 	attack_hitbox.body_entered.connect(_on_attack_hitbox_body_entered)
@@ -26,7 +27,7 @@ func enter() -> void:
 	attack_mesh.visible = true
 	#input_released = false
 	is_finished = false
-	collision_shape_3d.shape = CylinderShape3D.new()
+	collision_shape_3d.shape = CylinderShape3D.new() 
 	attack_mesh.mesh = CylinderMesh.new()
 	collision_shape_3d.shape.height = 1.0
 	attack_mesh.mesh.height = 1.0
@@ -72,20 +73,20 @@ func process_physics(delta: float) -> State:
 	if y_velocity < 0 && parent.is_on_floor():
 			state = attack_ground
 			state.enter_args = [false]
-			
-	#if can_start_end && input_released:
-		#animation_player.play("attack_spin_end")
-		#can_start_end = false
 	
 	# update y_velocity
-	y_velocity = y_velocity - (delta * parent.get_gravity().length() * 2)
+	var grav_mult: int = 1
+	if Input.is_action_pressed("jump") :
+		grav_mult += 1
+	elif !Input.is_action_just_pressed("jump"):
+		grav_mult += 2
+	elif y_velocity < 0:
+		grav_mult += 3
 	
-	#if !Input.is_action_pressed("attack"):
-		#input_released = true
+	y_velocity = y_velocity - (delta * parent.get_gravity().length() * grav_mult)
 	
 	var collision : KinematicCollision3D = parent.move_and_collide(parent.velocity * delta, true)
 	if collision != null && !parent.is_on_floor():
-		
 		parent.velocity.y = y_velocity
 		parent.move_and_collide(parent.velocity * delta)
 		parent.velocity = parent.velocity.bounce(collision.get_normal())

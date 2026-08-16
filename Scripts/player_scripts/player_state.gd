@@ -15,7 +15,8 @@ enum Attacks {
 	DASH,
 	PUNCH,
 	GRAB,
-	CLAP
+	CLAP,
+	PARRY
 }
 
 

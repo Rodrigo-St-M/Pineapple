@@ -5,7 +5,7 @@ const CHASER: PackedScene = preload("uid://lhus61t1y3rb")
 var chaser_array: Array
 
 func _ready() -> void:
-	var size = randi_range(3, 5)
+	var size = 5
 	for i in range(size):
 		chaser_array.push_back(CHASER.instantiate())
 		add_child(chaser_array[i])

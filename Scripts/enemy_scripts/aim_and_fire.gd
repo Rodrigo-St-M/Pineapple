@@ -33,7 +33,7 @@ func enter() -> void:
 func exit() -> void:
 	laser_sight.monitoring = false
 	collision_shape_3d.debug_color = Color("0099b36b")
-	collision_shape_3d.disabled = true
+	set_deferred("collision_shape_3d.disabled", true)
 	sight_mesh.visible = false
 
 func process_physics(_delta: float) -> State:
@@ -69,4 +69,4 @@ func process_physics(_delta: float) -> State:
 
 func _on_laser_sight_body_entered(body: Node3D) -> void:
 	if body.get_instance_id() == parent.player.get_instance_id():
-		parent.player.hurt(parent.position)
+		parent.player.hurt(-parent.position + current_aim_position)

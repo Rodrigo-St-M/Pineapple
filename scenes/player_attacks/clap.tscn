@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cemf8uscdr621" path="res://Scripts/player_scripts/attack_master.gd" id="1_kw6nb"]
 [ext_resource type="Script" uid="uid://ddc7ucb2lekst" path="res://Scripts/player_scripts/clap_ground.gd" id="2_34cix"]
-[ext_resource type="Script" uid="uid://botc1w7ro3lb7" path="res://scenes/player_attacks/clap_air.gd" id="3_kw6nb"]
+[ext_resource type="Script" uid="uid://botc1w7ro3lb7" path="res://Scripts/player_scripts/clap_air.gd" id="3_kw6nb"]
 
 [node name="Clap" type="Node" unique_id=1614626496]
 script = ExtResource("1_kw6nb")

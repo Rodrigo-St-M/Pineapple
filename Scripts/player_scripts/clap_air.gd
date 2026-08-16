@@ -98,5 +98,6 @@ func _on_attack_hitbox_body_entered(_body: Node3D) -> void:
 
 func exit() -> void:
 	attack_hitbox.position = Vector3.ZERO
+	animation_player.stop()
 	attack_hitbox.body_entered.disconnect(_on_attack_hitbox_body_entered)
 	animation_player.animation_finished.disconnect(_on_animation_player_animation_finished)
