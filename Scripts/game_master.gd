@@ -16,6 +16,8 @@ enum GameState {
 }
 @onready var wave_timer: Timer = $"Spawner manager/WaveTimer"
 @onready var spawner_manager: Node3D = $"Spawner manager"
+@onready var transition_player: AnimationPlayer = $Camera3D/TransitionPlayer
+@onready var level_complete_screen: Control = $Camera3D/LevelCompleteScreen
 
 static var player : CharacterBody3D
 static var pineapple_tree : StaticBody3D
@@ -34,19 +36,19 @@ signal game_over
 signal life_lost
 signal enemy_defeated(type)
 
-static func get_score_manager() -> Node:
-	return score_manager
-
 static func get_current_instance() -> GameMaster:
 	return instance
+	
+func get_score_manager() -> Node:
+	return score_manager
 
-static func get_lives_left() -> int:
+func get_lives_left() -> int:
 	return lives_left
 
-static func get_pineapple_tree() -> StaticBody3D:
+func get_pineapple_tree() -> StaticBody3D:
 	return pineapple_tree
 
-static func get_player() -> CharacterBody3D:
+func get_player() -> CharacterBody3D:
 	return player
 
 func emit_enemy_defeated(type : Enemy.Types) -> void:
@@ -55,11 +57,23 @@ func emit_enemy_defeated(type : Enemy.Types) -> void:
 func end_level() -> void:
 	level += 1
 	game_state = GameState.WAITING
+	await get_tree().create_timer(3.0).timeout
+	transition_player.play("drop_in_transition")
+	await transition_player.animation_finished
+	player.toggle_paused()
+	level_complete_screen.set_powerup_options()
+	level_complete_screen.visible = true
+	transition_player.play("drop_out_transition")
 
 func start_level() -> void:
 	game_state = GameState.BRAWLING
+	transition_player.play("drop_in_transition")
+	await transition_player.animation_finished
+	player.toggle_paused()
 	spawner_manager.spawn_wave(level)
+	level_complete_screen.visible = false
 	wave_timer.start(100)
+	transition_player.play("drop_out_transition")
 
 func pineapple_lost() -> void:
 	lives_left -= 1
@@ -77,4 +91,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	wave_timer.timeout.connect(end_level)
-	start_level()
+	player.toggle_paused()
+	level_complete_screen.visible = false
+	spawner_manager.spawn_wave(level)
+	transition_player.play("drop_out_transition")

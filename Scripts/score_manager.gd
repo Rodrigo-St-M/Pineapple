@@ -15,9 +15,9 @@ var gm: GameMaster
 
 func _ready() -> void:
 	is_combo = false
-	GameMaster.score_manager = self
-	GameMaster.get_player().player_bumped.connect(_on_mistake)
 	gm = GameMaster.get_current_instance()
+	gm.score_manager = self
+	gm.get_player().player_bumped.connect(_on_mistake)
 	gm.life_lost.connect(_on_mistake)
 	gm.enemy_defeated.connect(_on_enemy_defeat)
 

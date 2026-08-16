@@ -1,20 +1,19 @@
 extends Node
 class_name WaveGenerator
-const WAVE_BUILDUP_RATE: float = 1 / 2.0
+const WAVE_BUILDUP_RATE: float = 1.3
 
 static func generate_wave_on_budjet(level : int) -> Array[WaveInfo]:
 	var wave: Array[WaveInfo]
 	var num_enemy_types: int
-	
-	var rand = randf()
-	if level <= 3 || rand < 1.0/4.0:
+
+	if level == 1:
 		num_enemy_types = 2
 		#wave of 2 types
-	elif rand < 3.0/ 4.0:
-		num_enemy_types = 3
+	elif level == 2:
+		num_enemy_types = 4
 		#wave of 3 types
 	else:
-		num_enemy_types = 4
+		num_enemy_types = 6
 		#wave of 4 types
 	
 	var enemy_types: Array = get_wave_types(level)
@@ -73,16 +72,16 @@ static func get_wave_types(level : int) -> Array[Enemy.Types]:
 static func get_enemy_rate(enemy: Enemy.Types) -> float:
 	match enemy:
 		Enemy.Types.GRAB:
-			return absf(randfn(3.0, 0.33))
+			return absf(randfn(15, 13))
 		Enemy.Types.STACK:
-			return absf(randfn(2.0, 0.33))
+			return absf(randfn(10, 8))
 		Enemy.Types.SNEAK:
-			return absf(randfn(2.0, 0.33))
+			return absf(randfn(10, 8))
 		Enemy.Types.CHASE:
-			return absf(randfn(4.0, 0.33))
+			return absf(randfn(15, 13))
 		Enemy.Types.TANK:
-			return absf(randfn(2.0, 0.33))
+			return absf(randfn(10, 8))
 		Enemy.Types.LASER:
-			return absf(randfn(2.0, 0.33))
+			return absf(randfn(10, 8))
 		_:
 			return 0.0

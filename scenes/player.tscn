@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dkk4nk34bq0vt" path="res://Scripts/player_scripts/jump.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://l2j4vt6d6lsj" path="res://Scripts/player_scripts/bump.gd" id="7_52ee3"]
 [ext_resource type="Script" uid="uid://erh62podniaq" path="res://Scripts/player_scripts/fall.gd" id="8_8erm5"]
+[ext_resource type="Script" uid="uid://etq8o10vi2f1" path="res://Scripts/player_scripts/paused.gd" id="13_jej6c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x3wgy"]
 
@@ -170,7 +171,7 @@ libraries/ = SubResource("AnimationLibrary_bhhdu")
 
 [node name="StateMachine" type="Node" parent="." unique_id=901472754 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("1_fn5od")
-starting_state = NodePath("Idle")
+starting_state = NodePath("Paused")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=687274775]
 script = ExtResource("1_hr86y")
@@ -189,4 +190,8 @@ metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="Fall" type="Node" parent="StateMachine" unique_id=953032795]
 script = ExtResource("8_8erm5")
+metadata/_custom_type_script = "uid://bsdkuk3qanvib"
+
+[node name="Paused" type="Node" parent="StateMachine" unique_id=111378266]
+script = ExtResource("13_jej6c")
 metadata/_custom_type_script = "uid://bsdkuk3qanvib"

@@ -41,9 +41,9 @@ func _update_lifes_hud() -> void:
 	var icons: Array = get_children()
 	
 	for i in icons.size():
-		if i < GameMaster.get_lives_left() - lives_danger:
+		if i < gm.get_lives_left() - lives_danger:
 			icons[i].texture = PINEAPPLE_SAFE
-		elif i < GameMaster.get_lives_left():
+		elif i < gm.get_lives_left():
 			icons[i].texture = PINEAPPLE_DANGER
 		else:
 			icons[i].texture = PINEAPPLE_LOST

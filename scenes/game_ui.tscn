@@ -18,9 +18,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xjnnq")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2019064716]
-
-[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1167697650]
+[node name="ScoreLabel" type="Label" parent="." unique_id=1167697650]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -38,30 +37,32 @@ text = "Score: 000000000"
 text_overrun_behavior = 3
 script = ExtResource("2_rxsu6")
 
-[node name="LifesIndicator" type="HBoxContainer" parent="CanvasLayer" unique_id=941001782]
+[node name="LifesIndicator" type="HBoxContainer" parent="." unique_id=941001782]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_left = -148.0
+offset_right = 148.0
+offset_bottom = 118.0
 grow_horizontal = 2
 alignment = 1
 script = ExtResource("2_gjn1n")
 
-[node name="Life1" type="TextureRect" parent="CanvasLayer/LifesIndicator" unique_id=1718421115]
+[node name="Life1" type="TextureRect" parent="LifesIndicator" unique_id=1718421115]
 layout_mode = 2
 texture = ExtResource("2_1t2s1")
 
-[node name="Life2" type="TextureRect" parent="CanvasLayer/LifesIndicator" unique_id=2103595979]
+[node name="Life2" type="TextureRect" parent="LifesIndicator" unique_id=2103595979]
 layout_mode = 2
 texture = ExtResource("2_1t2s1")
 
-[node name="Life3" type="TextureRect" parent="CanvasLayer/LifesIndicator" unique_id=1686953312]
+[node name="Life3" type="TextureRect" parent="LifesIndicator" unique_id=1686953312]
 layout_mode = 2
 texture = ExtResource("2_1t2s1")
 
-[node name="MomentumBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=1042441117]
+[node name="MomentumBar" type="TextureProgressBar" parent="." unique_id=1042441117]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -82,17 +83,18 @@ texture_progress = ExtResource("2_x63ue")
 tint_under = Color(0, 0, 0, 0.5372549)
 tint_progress = Color(0, 0.72156864, 0.23529412, 1)
 
-[node name="GameOverLabel" type="Label" parent="CanvasLayer" unique_id=444683815]
+[node name="GameOverLabel" type="Label" parent="." unique_id=444683815]
 visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -367.0
+offset_top = -87.5
+offset_right = 367.0
+offset_bottom = 87.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.8381929, 0.72780824, 0.10149483, 1)
@@ -101,7 +103,7 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 128
 text = "GAME OVER"
 
-[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverLabel" unique_id=2107273944]
+[node name="RestartButton" type="Button" parent="GameOverLabel" unique_id=2107273944]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -130,7 +132,8 @@ theme_override_colors/icon_disabled_color = Color(0.3254902, 0.53333336, 0.13333
 theme_override_font_sizes/font_size = 32
 text = "RETRY"
 
-[node name="ComboBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=248450326]
+[node name="ComboBar" type="TextureProgressBar" parent="." unique_id=248450326]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -144,7 +147,8 @@ fill_mode = 3
 tint_under = Color(0.12, 0.12, 0.12, 1)
 script = ExtResource("6_1t2s1")
 
-[node name="ComboLabel" type="Label" parent="CanvasLayer" unique_id=1437328512]
+[node name="ComboLabel" type="Label" parent="." unique_id=1437328512]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -159,4 +163,4 @@ horizontal_alignment = 1
 text_overrun_behavior = 3
 script = ExtResource("2_3t1kc")
 
-[connection signal="pressed" from="CanvasLayer/GameOverLabel/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameOverLabel/RestartButton" to="." method="_on_restart_button_pressed"]

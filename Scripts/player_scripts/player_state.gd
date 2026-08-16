@@ -2,7 +2,7 @@ extends State
 class_name PlayerState
 const SPEED_CURVE : Curve = preload("uid://b3wu0djn28s0i")
 const SPEED_CURVE_REVERSE : Curve = preload("uid://bosq1xrfqh674")
-const SPEED_MULT : float = 18
+const SPEED_MULT : float = 21
 const MIN_SPEED_CURVE_IN_TO_FLIP : float = 0.003
 
 @warning_ignore("integer_division", "narrowing_conversion")

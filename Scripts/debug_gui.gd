@@ -1,7 +1,7 @@
 extends Control
 
-@onready var velocity_label: Label = $CanvasLayer/VelocityLabel
-@onready var game_over_label: Label = $CanvasLayer/GameOverLabel
+@onready var velocity_label: Label = $VelocityLabel
+@onready var game_over_label: Label = $GameOverLabel
 
 var player : CharacterBody3D
 # Called when the node enters the scene tree for the first time.

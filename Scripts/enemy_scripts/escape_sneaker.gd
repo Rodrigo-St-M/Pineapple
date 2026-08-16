@@ -4,7 +4,7 @@ var player : CharacterBody3D
 
 func enter() -> void:
 	super()
-	player = GameMaster.get_player()
+	player = GameMaster.get_current_instance().get_player()
 
 func process_physics(_delta: float) -> State:
 	direction = ((parent.position - pineapple_tree.position).normalized() * 1.1

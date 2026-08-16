@@ -11,26 +11,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aqnpe")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1516415220]
-
-[node name="VelocityLabel" type="Label" parent="CanvasLayer" unique_id=285334437]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="VelocityLabel" type="Label" parent="." unique_id=285334437]
+layout_mode = 0
+offset_right = 138.0
+offset_bottom = 45.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Velocity: "
 
-[node name="GameOverLabel" type="Label" parent="CanvasLayer" unique_id=1617801492]
+[node name="GameOverLabel" type="Label" parent="." unique_id=1617801492]
 visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -367.0
+offset_top = -87.5
+offset_right = 367.0
+offset_bottom = 87.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.8381929, 0.72780824, 0.10149483, 1)
@@ -39,7 +39,7 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 128
 text = "GAME OVER"
 
-[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverLabel" unique_id=670228941]
+[node name="RestartButton" type="Button" parent="GameOverLabel" unique_id=670228941]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -68,4 +68,4 @@ theme_override_colors/icon_disabled_color = Color(0.3254902, 0.53333336, 0.13333
 theme_override_font_sizes/font_size = 32
 text = "RETRY"
 
-[connection signal="pressed" from="CanvasLayer/GameOverLabel/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameOverLabel/RestartButton" to="." method="_on_restart_button_pressed"]

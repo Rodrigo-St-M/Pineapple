@@ -16,7 +16,7 @@ const S_COLOR = Color("c600f1ff")
 const P_COLOR = Color("00cdf1ff")
 
 func _ready() -> void:
-	combo_manager = GameMaster.get_score_manager()
+	combo_manager = GameMaster.get_current_instance() .get_score_manager()
 	combo_manager.connect("combo_over", _on_combo_done)
 	combo_manager.connect("tier_up", _on_tier_up)
 

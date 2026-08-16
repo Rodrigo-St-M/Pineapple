@@ -4,7 +4,7 @@ extends Label
 var score_manager
 
 func _ready() -> void:
-	score_manager = GameMaster.get_score_manager()
+	score_manager = GameMaster.get_current_instance().get_score_manager()
 
 func _process(_delta: float) -> void:
 	if score_manager.combo_score == 0:

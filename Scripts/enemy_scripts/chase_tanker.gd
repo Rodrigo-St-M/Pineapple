@@ -18,7 +18,7 @@ var target_direction: Vector3
 func enter() -> void :
 	current_speed = 0
 	area_3d.monitoring = false
-	target = GameMaster.get_player()
+	target = GameMaster.get_current_instance().get_player()
 	direction = (target.position - parent.position)
 	
 

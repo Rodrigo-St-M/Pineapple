@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dvl6p2reu3a33" path="res://scenes/arena_walls.tscn" id="8_lkdvd"]
 [ext_resource type="Script" uid="uid://hestugxst4vq" path="res://Scripts/spawn_manager_v2.gd" id="9_ajq0i"]
 [ext_resource type="PackedScene" uid="uid://dnhf1xgc7uic3" path="res://scenes/pineapple_tree.tscn" id="9_bgjus"]
+[ext_resource type="PackedScene" uid="uid://ba0v5v24g6plq" path="res://scenes/level_complete_screen.tscn" id="9_k1k1x"]
 [ext_resource type="Script" uid="uid://dil8rwpsp2uxb" path="res://Scripts/score_manager.gd" id="10_stc3i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gd4f"]
@@ -29,6 +30,96 @@ sky = SubResource("Sky_0g2wx")
 ambient_light_source = 2
 ambient_light_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
 ambient_light_sky_contribution = 0.3
+
+[sub_resource type="Animation" id="Animation_k1k1x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -914.809)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ajq0i"]
+resource_name = "drop_in_transition"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -1285.559), Vector2(0, -232.50745)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_8vbsj"]
+resource_name = "drop_out_transition"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -175.21576), Vector2(0, 722.994)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8vbsj"]
+_data = {
+&"RESET": SubResource("Animation_k1k1x"),
+&"drop_in_transition": SubResource("Animation_ajq0i"),
+&"drop_out_transition": SubResource("Animation_8vbsj")
+}
 
 [node name="Node3D" type="Node3D" unique_id=1878933727]
 script = ExtResource("1_iyva0")
@@ -65,6 +156,23 @@ script = ExtResource("3_iyva0")
 
 [node name="GameUI" parent="Camera3D" unique_id=448597891 instance=ExtResource("6_xrytr")]
 
+[node name="LevelCompleteScreen" parent="Camera3D" unique_id=1238289073 instance=ExtResource("9_k1k1x")]
+visible = false
+
+[node name="TextureRect" type="ColorRect" parent="Camera3D" unique_id=982128179]
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -914.809
+offset_bottom = -354.80902
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TransitionPlayer" type="AnimationPlayer" parent="Camera3D" unique_id=2039210134]
+libraries/ = SubResource("AnimationLibrary_8vbsj")
+
 [node name="Spawner manager" type="Node3D" parent="." unique_id=1870147050]
 script = ExtResource("9_ajq0i")
 
@@ -73,7 +181,6 @@ wait_time = 100.0
 one_shot = true
 
 [node name="DelayTimer" type="Timer" parent="Spawner manager" unique_id=586723671]
-wait_time = 3.0
 one_shot = true
 
 [node name="ArenaWalls" parent="." unique_id=645090519 instance=ExtResource("8_lkdvd")]
@@ -81,5 +188,6 @@ one_shot = true
 [connection signal="enemy_defeated" from="." to="Spawner manager" method="_on_enemy_defeated"]
 [connection signal="game_over" from="." to="Camera3D/Debug_UI" method="_on_node_3d_game_over"]
 [connection signal="game_over" from="." to="Camera3D/GameUI" method="_on_node_3d_game_over"]
-[connection signal="timeout" from="Spawner manager/WaveTimer" to="Spawner manager" method="_on_wave_timer_timeout"]
+[connection signal="wave_finished" from="Spawner manager" to="." method="end_level"]
+[connection signal="timeout" from="Spawner manager/WaveTimer" to="Spawner manager" method="finish_wave"]
 [connection signal="timeout" from="Spawner manager/DelayTimer" to="Spawner manager" method="_on_delay_timer_timeout"]

@@ -2,9 +2,9 @@ extends Node
 
 const SPAWN_DISTANCE : float = 18.0
 const WAVE_TIME_PERIOD : float = 30.0
-const WAVE_ENEMY_DELAY : float = 1
+const WAVE_ENEMY_DELAY : float = 2.0
+const WAVE_ENEMY_DELAY_SPEEDUP : float = 0.20
 const NUM_OF_PINEAPPLE_HOLDERS: int = 3
-const WAVE_BUILDUP_RATE: float = 1 / 2.0
 
 const GRABBER: PackedScene = preload("uid://b543gdht0q5vx")
 const LASER: PackedScene = preload("uid://f42bx6kvbhhv")
@@ -34,7 +34,8 @@ func spawn_wave(level : int) -> void:
 	enemies_alive = get_wave_total_enemies()
 	enemies_to_spawn = get_wave_total_spawns()
 	print(str(enemies_to_spawn) + "total")
-	delay_timer.start()
+	delay_timer.start(WAVE_ENEMY_DELAY - (WAVE_ENEMY_DELAY_SPEEDUP * (level - 1)))
+	wave_timer.start(100)
 
 
 func finish_wave() -> void:

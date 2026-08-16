@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @onready var stateMachine = $StateMachine
 @onready var bump: Node = $StateMachine/Bump
+@onready var paused: Node = $StateMachine/Paused
+@onready var idle: Node = $StateMachine/Idle
 
 var attacks : Array[PlayerState.Attacks] # the attacks this player has equiped (min 1, max 3)
 var has_dashed_air : bool # if the player has dashed in the air before
@@ -20,8 +22,6 @@ func _ready() -> void:
 	floor_max_angle = PI / 6
 	stateMachine.init(self)
 	set_new_attack(PlayerState.Attacks.SPIN)
-	set_new_attack(PlayerState.Attacks.DASH)
-	set_new_attack(PlayerState.Attacks.PARRY)
  
 
 func _physics_process(delta: float) -> void:
@@ -46,6 +46,14 @@ func _unhandled_input(event: InputEvent) -> void:
 ## returns a string indicating the current state
 func get_state_name() -> String:
 	return str(stateMachine.current_state)
+
+## sets the player's state to paused if not already paused
+## sets the player's state to idle if already paused
+func toggle_paused() -> void:
+	if stateMachine.current_state == paused:
+		stateMachine.change_state(idle)
+	else:
+		stateMachine.change_state(paused)
 
 
 func set_new_attack(attack : PlayerState.Attacks) -> void:
