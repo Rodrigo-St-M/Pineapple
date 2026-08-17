@@ -5,9 +5,11 @@ signal pineapple_stolen
 signal pineapple_recovered
 
 @export var pineappleScene : PackedScene
+var gm :GameMaster
 
 func _ready() -> void:
-	GameMaster.pineapple_tree = self
+	gm = GameMaster.get_current_instance()
+	gm.pineapple_tree = self
 	for i in range(3):
 		pineapples.push_back(pineappleScene.instantiate())
 
@@ -16,7 +18,7 @@ func _ready() -> void:
 		pineapples[i].position.x += - 1 + 1 * i
 		pineapples[i].position.z += 1
 		pineapples[i].position.y += 2
-		GameMaster.pineapples.push_back(pineapples[i])
+		gm.pineapples.push_back(pineapples[i])
 
 ## Returns and removes pineapple if the tree has any pineapples left
 ## If id does not have any pineapples, returns null and does nothing else

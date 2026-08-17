@@ -11,7 +11,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	hitPoints = 1
-	player = GameMaster.player
+	player = GameMaster.get_current_instance().get_player()
 	add_to_group("enemies")
 	state_machine.init(self)
 	

@@ -34,7 +34,6 @@ func _process(_delta: float) -> void:
 			combo_tier += 1
 			emit_signal("tier_up", combo_tier)
 			combo_meter /= 2 
-			print("tier up: ", combo_tier )
 		else:
 			combo_meter = 50 + combo_tier * 50
 

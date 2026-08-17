@@ -15,7 +15,7 @@ signal parried_attack
 
 
 func _ready() -> void:
-	GameMaster.player = self
+	GameMaster.get_current_instance().player = self
 	has_dashed_air = false
 	safe_margin = 0.1
 	wall_min_slide_angle = 0.13

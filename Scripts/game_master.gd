@@ -19,16 +19,16 @@ enum GameState {
 @onready var transition_player: AnimationPlayer = $Camera3D/TransitionPlayer
 @onready var level_complete_screen: Control = $Camera3D/LevelCompleteScreen
 
-static var player : CharacterBody3D
-static var pineapple_tree : StaticBody3D
-static var pineapples : Array[Node3D]
-static var is_game_over : bool = false
-static var lives_left : int = 3
-static var momentum : float
-static var score_manager : Node
 static var instance = null
-static var game_state
-static var level = 1
+var player : CharacterBody3D
+var pineapple_tree : StaticBody3D
+var pineapples : Array[Node3D]
+var is_game_over : bool = false
+var lives_left : int = 3
+var momentum : float
+var score_manager : Node
+var game_state
+var level = 1
 
 
 
@@ -59,6 +59,11 @@ func end_level() -> void:
 	game_state = GameState.WAITING
 	await get_tree().create_timer(3.0).timeout
 	transition_player.play("drop_in_transition")
+	print(level)
+	if level == 4:
+		transition_player.play("drop_in_transition")
+		await transition_player.animation_finished
+		get_tree().change_scene_to_file("res://scenes/end_prototype.tscn")
 	await transition_player.animation_finished
 	player.toggle_paused()
 	level_complete_screen.set_powerup_options()
@@ -72,7 +77,6 @@ func start_level() -> void:
 	player.toggle_paused()
 	spawner_manager.spawn_wave(level)
 	level_complete_screen.visible = false
-	wave_timer.start(100)
 	transition_player.play("drop_out_transition")
 
 func pineapple_lost() -> void:
@@ -90,7 +94,6 @@ func _enter_tree() -> void:
 	lives_left = 3
 
 func _ready() -> void:
-	wave_timer.timeout.connect(end_level)
 	player.toggle_paused()
 	level_complete_screen.visible = false
 	spawner_manager.spawn_wave(level)

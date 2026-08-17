@@ -27,8 +27,8 @@ func _ready() -> void:
 	#tower = get_parent().array
 	tower_index = 0
 	hitPoints = 1
-	player = GameMaster.player
-	pineapple_tree = GameMaster.pineapple_tree
+	player = GameMaster.get_current_instance().get_player()
+	pineapple_tree = GameMaster.get_current_instance().get_pineapple_tree()
 	add_to_group("enemies")
 	state_machine.init(self)
 

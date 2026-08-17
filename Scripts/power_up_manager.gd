@@ -33,10 +33,7 @@ func set_powerup_options() -> void:
 	current_attacks = get_powerup_options()
 	
 	for i in 3:
-		print(current_options[i])
-		print(current_options[i].get_child_count())
 		var opt_button: TextureButton = current_options[i].get_child(0)
-		print(opt_button)
 		var opt_name: Label = current_options[i].get_child(1)
 		var opt_desc: Label = current_options[i].get_child(2)
 		

@@ -19,7 +19,7 @@ func _ready() -> void:
 	safe_margin = 0.01
 	
 	hitPoints = 1
-	player = GameMaster.player
+	player = GameMaster.get_current_instance().get_player()
 	add_to_group("enemies")
 	stateMachine.init(self)
 

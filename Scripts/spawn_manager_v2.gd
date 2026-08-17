@@ -29,25 +29,23 @@ func _on_enemy_defeated(_type) -> void:
 		finish_wave()
 
 func spawn_wave(level : int) -> void:
-	print("wave " + str(waveNumber) + " started")
 	wave = WaveGenerator.generate_wave_on_budjet(level)
 	enemies_alive = get_wave_total_enemies()
 	enemies_to_spawn = get_wave_total_spawns()
-	print(str(enemies_to_spawn) + "total")
 	delay_timer.start(WAVE_ENEMY_DELAY - (WAVE_ENEMY_DELAY_SPEEDUP * (level - 1)))
 	wave_timer.start(100)
 
 
 func finish_wave() -> void:
 	delay_timer.stop()
+	wave_timer.stop()
 	get_tree().call_group("enemies", "damaged", 99)
 	wave_finished.emit()
 
 func _on_delay_timer_timeout() -> void:
-	print("here goes")
+	#print("here goes")
 	var i = get_valid_rand_index()
 	var enemy : Node3D
-	print(i)
 	match wave[i].type:
 		Enemy.Types.CHASE:
 			enemy = CHASER_LINE.instantiate()
@@ -69,8 +67,8 @@ func _on_delay_timer_timeout() -> void:
 	wave[i].amount -= 1
 	enemies_to_spawn -= 1
 	add_child(enemy)
-	print("spawned" + str(enemy))
-	print(str(enemies_to_spawn) + "left in wave")
+	#print("spawned" + str(enemy))
+	#print(str(enemies_to_spawn) + "left in wave")
 	if enemies_to_spawn > 0:
 		delay_timer.start()
 

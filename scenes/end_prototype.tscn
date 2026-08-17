@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://dj0xnmp5aircq"]
+
+[ext_resource type="FontFile" uid="uid://chbqx52ed581f" path="res://assets/gomarice_simple_slum.ttf" id="1_gloro"]
+[ext_resource type="Script" uid="uid://dgd4cg4gbghyn" path="res://button.gd" id="2_lv0gw"]
+
+[sub_resource type="Gradient" id="Gradient_n45e2"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.60089684, 1)
+colors = PackedColorArray(0.29411766, 0.54509807, 0.23137255, 1, 0.43137255, 0.74509805, 0.27058825, 1, 1, 0.84313726, 0.05882353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_54r8o"]
+gradient = SubResource("Gradient_n45e2")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.74358976, 0.2008547)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vojca"]
+font = ExtResource("1_gloro")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_mlwl6"]
+font = ExtResource("1_gloro")
+font_size = 41
+
+[node name="Control" type="Control" unique_id=74876586]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackGround" type="TextureRect" parent="." unique_id=346552066]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = SubResource("GradientTexture2D_54r8o")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=122275962]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=112298960]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1476165131]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "END OF THE PROTOTYPE!"
+label_settings = SubResource("LabelSettings_vojca")
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=124624560]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "If you have the time, please,
+tell me how did the game make you feel
+or if something fell off in the comments!
+PPP is still in early development,
+your feedback is very helpfull!
+Thank you for playing! 
+-rodc"
+label_settings = SubResource("LabelSettings_mlwl6")
+horizontal_alignment = 3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=25155642]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.91914874, 0.9406265, 0.25380173, 1)
+theme_override_fonts/font = ExtResource("1_gloro")
+theme_override_font_sizes/font_size = 41
+text = "MAIN MENU"
+script = ExtResource("2_lv0gw")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="MarginContainer/VBoxContainer/Button" method="_on_pressed"]
