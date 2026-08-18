@@ -5,7 +5,7 @@ const SPEED : int = 3
 var direction : Vector3
 var pineapple_tree : StaticBody3D
 @onready var aproach_state: Node = $"../Aproach"
-
+@onready var stream : AudioStream = preload("uid://fobjb37b7p33")
 
 func enter() -> void :
 	#print("escaping")
@@ -24,5 +24,6 @@ func process_physics(_delta: float) -> State:
 		if collider && (pineapple_tree.position - parent.position).length() > MIN_ESCAPE_DISTANCE:
 			GameMaster.get_current_instance().pineapple_lost()
 			parent.holding_pineapple.queue_free()
+			AudioManager.play_sound(stream, AudioManager.Busses.SFX)
 			return aproach_state
 	return null

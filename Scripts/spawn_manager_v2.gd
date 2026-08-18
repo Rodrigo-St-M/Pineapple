@@ -22,6 +22,7 @@ var waveNumber : int = 1
 var wave
 var enemies_alive : int
 var enemies_to_spawn : int
+var wave_done : bool
 
 func _on_enemy_defeated(_type) -> void:
 	enemies_alive -= 1
@@ -29,6 +30,7 @@ func _on_enemy_defeated(_type) -> void:
 		finish_wave()
 
 func spawn_wave(level : int) -> void:
+	wave_done = false
 	wave = WaveGenerator.generate_wave_on_budjet(level)
 	enemies_alive = get_wave_total_enemies()
 	enemies_to_spawn = get_wave_total_spawns()
@@ -37,6 +39,9 @@ func spawn_wave(level : int) -> void:
 
 
 func finish_wave() -> void:
+	if wave_done:
+		return
+	wave_done = true
 	delay_timer.stop()
 	wave_timer.stop()
 	get_tree().call_group("enemies", "damaged", 99)

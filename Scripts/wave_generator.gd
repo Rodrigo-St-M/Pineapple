@@ -69,19 +69,18 @@ static func get_wave_types(level : int) -> Array[Enemy.Types]:
 ## enemy, around 1.5 TANK enemies should spawn too.
 ##
 static func get_enemy_rate(enemy: Enemy.Types) -> float:
-	return 3 ## for debugging
-	#match enemy:
-		#Enemy.Types.GRAB:
-			#return absf(randfn(15, 13))
-		#Enemy.Types.STACK:
-			#return absf(randfn(10, 8))
-		#Enemy.Types.SNEAK:
-			#return absf(randfn(10, 8))
-		#Enemy.Types.CHASE:
-			#return absf(randfn(15, 13))
-		#Enemy.Types.TANK:
-			#return absf(randfn(10, 8))
-		#Enemy.Types.LASER:
-			#return absf(randfn(10, 8))
-		#_:
-			#return 0.0
+	match enemy:
+		Enemy.Types.GRAB:
+			return absf(randfn(15, 13))
+		Enemy.Types.STACK:
+			return absf(randfn(10, 8))
+		Enemy.Types.SNEAK:
+			return absf(randfn(10, 8))
+		Enemy.Types.CHASE:
+			return absf(randfn(15, 13))
+		Enemy.Types.TANK:
+			return absf(randfn(10, 8)) ## 10 8
+		Enemy.Types.LASER:
+			return absf(randfn(10, 8))
+		_:
+			return 0.0

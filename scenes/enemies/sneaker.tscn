@@ -17,6 +17,7 @@ material = ExtResource("2_cuyor")
 [node name="Sneaker" type="CharacterBody3D" unique_id=1446499755]
 collision_layer = 4
 collision_mask = 21
+platform_floor_layers = 4294967056
 script = ExtResource("1_8tdh0")
 metadata/_custom_type_script = "uid://cf1inwwga5w46"
 

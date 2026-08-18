@@ -29,7 +29,7 @@ func process_physics(_delta: float) -> State:
 	direction = parent.global_position.direction_to(target.position)
 	direction.y = 0
 	
-	parent.basis = parent.basis.slerp(Basis.looking_at(direction), TURN_STRENGTH * _delta )
+	parent.basis = parent.basis.slerp(Basis.looking_at(direction).orthonormalized(), TURN_STRENGTH * _delta )
 	#parent.direction_facing = direction
 	current_speed = lerpf(current_speed, float(SPEED), ACCELERATION * _delta)
 	if parent.get_real_velocity().length() > MIN_VEL_TO_CRASH:

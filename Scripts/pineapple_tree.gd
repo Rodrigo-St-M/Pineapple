@@ -6,6 +6,7 @@ signal pineapple_recovered
 
 @export var pineappleScene : PackedScene
 var gm :GameMaster
+@export var stream : AudioStream
 
 func _ready() -> void:
 	gm = GameMaster.get_current_instance()
@@ -26,6 +27,7 @@ func _ready() -> void:
 func steal_pineapple() -> Node3D:
 	if pineapples.is_empty():
 		return null
+	AudioManager.play_sound(stream, AudioManager.Busses.SFX)
 	var pineapple = pineapples.pop_back()
 	remove_child(pineapple)
 	emit_signal("pineapple_stolen")

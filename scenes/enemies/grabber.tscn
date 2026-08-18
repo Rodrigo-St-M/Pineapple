@@ -45,6 +45,7 @@ stencil_flags = 2
 [node name="Grabber" type="CharacterBody3D" unique_id=1250667006]
 collision_layer = 4
 collision_mask = 21
+platform_floor_layers = 4294967056
 script = ExtResource("1_tv6h1")
 metadata/_custom_type_script = "uid://cf1inwwga5w46"
 

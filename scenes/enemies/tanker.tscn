@@ -81,6 +81,7 @@ size = Vector3(1.8, 1, 0.6)
 [node name="Tanker" type="CharacterBody3D" unique_id=1068442324]
 collision_layer = 4
 collision_mask = 21
+platform_floor_layers = 4294967056
 script = ExtResource("1_w7w4k")
 metadata/_custom_type_script = "uid://cf1inwwga5w46"
 

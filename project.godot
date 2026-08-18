@@ -86,6 +86,7 @@ jump={
 3d_physics/layer_3="enemy_hitbox"
 3d_physics/layer_4="enemy_hurbox"
 3d_physics/layer_5="enviroment"
+3d_physics/layer_7="enemy_hitbox_air"
 
 [rendering]
 
