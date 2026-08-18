@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dj0xnmp5aircq"]
 
 [ext_resource type="FontFile" uid="uid://chbqx52ed581f" path="res://assets/gomarice_simple_slum.ttf" id="1_gloro"]
-[ext_resource type="Script" uid="uid://dgd4cg4gbghyn" path="res://button.gd" id="2_lv0gw"]
+[ext_resource type="Script" uid="uid://dgd4cg4gbghyn" path="res://scenes/button.gd" id="2_lv0gw"]
 
 [sub_resource type="Gradient" id="Gradient_n45e2"]
 interpolation_mode = 2

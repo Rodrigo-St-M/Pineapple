@@ -5,7 +5,7 @@ const WAVE_BUILDUP_RATE: float = 1.3
 static func generate_wave_on_budjet(level : int) -> Array[WaveInfo]:
 	var wave: Array[WaveInfo]
 	var num_enemy_types: int
-
+	
 	if level == 1:
 		num_enemy_types = 2
 		#wave of 2 types
@@ -25,7 +25,6 @@ static func generate_wave_on_budjet(level : int) -> Array[WaveInfo]:
 		wave.push_back(WaveInfo.new())
 		wave[i+1].type = enemy_types.pop_at(randi_range(0, enemy_types.size() - 1))
 		wave[i+1].amount = ceili(level * WAVE_BUILDUP_RATE * get_enemy_rate(wave[i+1].type) / num_enemy_types)
-		
 	
 	return wave
 
@@ -70,18 +69,19 @@ static func get_wave_types(level : int) -> Array[Enemy.Types]:
 ## enemy, around 1.5 TANK enemies should spawn too.
 ##
 static func get_enemy_rate(enemy: Enemy.Types) -> float:
-	match enemy:
-		Enemy.Types.GRAB:
-			return absf(randfn(15, 13))
-		Enemy.Types.STACK:
-			return absf(randfn(10, 8))
-		Enemy.Types.SNEAK:
-			return absf(randfn(10, 8))
-		Enemy.Types.CHASE:
-			return absf(randfn(15, 13))
-		Enemy.Types.TANK:
-			return absf(randfn(10, 8))
-		Enemy.Types.LASER:
-			return absf(randfn(10, 8))
-		_:
-			return 0.0
+	return 3 ## for debugging
+	#match enemy:
+		#Enemy.Types.GRAB:
+			#return absf(randfn(15, 13))
+		#Enemy.Types.STACK:
+			#return absf(randfn(10, 8))
+		#Enemy.Types.SNEAK:
+			#return absf(randfn(10, 8))
+		#Enemy.Types.CHASE:
+			#return absf(randfn(15, 13))
+		#Enemy.Types.TANK:
+			#return absf(randfn(10, 8))
+		#Enemy.Types.LASER:
+			#return absf(randfn(10, 8))
+		#_:
+			#return 0.0

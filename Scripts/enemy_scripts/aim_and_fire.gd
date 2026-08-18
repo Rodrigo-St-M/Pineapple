@@ -2,7 +2,7 @@ extends State
 
 var player : CharacterBody3D
 # one second is 60 physics frames
-const AIMING_END_FRAME : int = 180
+const AIMING_END_FRAME : int = 225
 const LOCK_END_FRAME : int = 15 + AIMING_END_FRAME
 const LASER_END_FRAME : int = 20 + LOCK_END_FRAME
 const AIM_PREDICTION : int = 25
@@ -18,10 +18,13 @@ var current_aim_position : Vector3
 @onready var collision_shape_3d: CollisionShape3D = $LaserSight/CollisionShape3D
 @onready var laser_sight: Area3D = $LaserSight
 @onready var sight_mesh: MeshInstance3D = $LaserSight/SightMesh
+@export var stream: AudioStream
+var audioName : StringName
 
 func enter() -> void:
 	frame = 0
 	player = parent.player
+	audioName = AudioManager.play_sound(stream, AudioManager.Busses.SFX)
 	sight_mesh.visible = true
 	collision_shape_3d.disabled = false
 	current_aim_position = parent.player.position
@@ -33,6 +36,7 @@ func enter() -> void:
 func exit() -> void:
 	laser_sight.monitoring = false
 	collision_shape_3d.debug_color = Color("0099b36b")
+	AudioManager.stop_sound(audioName)
 	set_deferred("collision_shape_3d.disabled", true)
 	sight_mesh.visible = false
 

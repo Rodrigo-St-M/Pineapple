@@ -12,6 +12,7 @@ signal combo_over
 
 var is_combo: bool
 var gm: GameMaster
+@export var stream : AudioStream
 
 func _ready() -> void:
 	is_combo = false
@@ -32,7 +33,9 @@ func _process(_delta: float) -> void:
 	if combo_meter > 50 + combo_tier * 50:
 		if combo_tier != 5:
 			combo_tier += 1
+			AudioManager.play_sound(stream, AudioManager.Busses.SFX)
 			emit_signal("tier_up", combo_tier)
+			
 			combo_meter /= 2 
 		else:
 			combo_meter = 50 + combo_tier * 50

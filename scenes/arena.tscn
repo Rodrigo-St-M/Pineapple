@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://g4h3dgkdttgi" path="res://scenes/player.tscn" id="2_stc3i"]
 [ext_resource type="Script" uid="uid://cht1kgf3pd3b8" path="res://Scripts/camera_3d.gd" id="3_iyva0"]
 [ext_resource type="PackedScene" uid="uid://cwy7nu5xlty05" path="res://scenes/debug_ui.tscn" id="4_2cush"]
+[ext_resource type="AudioStream" uid="uid://dyr7xwypvfcca" path="res://assets/comboUp.wav" id="4_ajq0i"]
 [ext_resource type="PackedScene" uid="uid://2jts2p36otjr" path="res://scenes/game_ui.tscn" id="6_xrytr"]
 [ext_resource type="PackedScene" uid="uid://dvl6p2reu3a33" path="res://scenes/arena_walls.tscn" id="8_lkdvd"]
 [ext_resource type="Script" uid="uid://hestugxst4vq" path="res://Scripts/spawn_manager_v2.gd" id="9_ajq0i"]
@@ -130,6 +131,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
 
 [node name="ScoreManager" type="Node" parent="." unique_id=201300644]
 script = ExtResource("10_stc3i")
+stream = ExtResource("4_ajq0i")
 
 [node name="arena_floor" parent="." unique_id=366579924 instance=ExtResource("1_xrytr")]
 

@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dkk4nk34bq0vt" path="res://Scripts/player_scripts/jump.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://l2j4vt6d6lsj" path="res://Scripts/player_scripts/bump.gd" id="7_52ee3"]
 [ext_resource type="Script" uid="uid://erh62podniaq" path="res://Scripts/player_scripts/fall.gd" id="8_8erm5"]
+[ext_resource type="AudioStream" uid="uid://c3gx73cxx2kcn" path="res://assets/Bump.wav" id="11_f1ej7"]
 [ext_resource type="Script" uid="uid://etq8o10vi2f1" path="res://Scripts/player_scripts/paused.gd" id="13_jej6c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x3wgy"]
@@ -182,6 +183,7 @@ script = ExtResource("3_gfjpw")
 [node name="Bump" type="Node" parent="StateMachine" unique_id=2144017716 node_paths=PackedStringArray("moveState")]
 script = ExtResource("7_52ee3")
 moveState = NodePath("../Move")
+stream = ExtResource("11_f1ej7")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=2091186511]

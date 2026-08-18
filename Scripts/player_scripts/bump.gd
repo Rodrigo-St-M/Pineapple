@@ -7,10 +7,10 @@ const FALL_SPEED : int = 15
 @onready var jump: Node = $"../Jump"
 @onready var move: Node = $"../Move"
 @onready var idle: Node = $"../Idle"
-
+@export var stream: AudioStream
 func enter() -> void :
 	parent.emit_signal("player_bumped")
-	
+	AudioManager.play_sound(stream, AudioManager.Busses.SFX)
 	if enter_args.size() == 1:
 		parent.velocity = enter_args[0].normalized() * START_IMPACT_SPEED
 	else:

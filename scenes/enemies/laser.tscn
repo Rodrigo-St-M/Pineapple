@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bgqj1k1086noh" path="res://Scripts/enemy_scripts/spawning.gd" id="3_xcp8v"]
 [ext_resource type="Script" uid="uid://bw77b4a8706wg" path="res://Scripts/enemy_scripts/aim_and_fire.gd" id="4_bqa51"]
 [ext_resource type="Script" uid="uid://8y3m1nmk0bol" path="res://Scripts/enemy_scripts/defeat.gd" id="5_88d68"]
+[ext_resource type="AudioStream" uid="uid://fia4n7kbp1so" path="res://assets/aiming.wav" id="6_ffwum"]
 [ext_resource type="Script" uid="uid://c5fk0o8uo765m" path="res://Scripts/enemy_scripts/stunned.gd" id="6_ieodd"]
 [ext_resource type="Script" uid="uid://bfp8n4fpu8a1c" path="res://Scripts/enemy_scripts/hide.gd" id="7_oj2nt"]
 
@@ -91,6 +92,7 @@ metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="AimAndFire" type="Node" parent="StateMachine" unique_id=1279129388]
 script = ExtResource("4_bqa51")
+stream = ExtResource("6_ffwum")
 metadata/_custom_type_script = "uid://dtv5bqdhlrib4"
 
 [node name="LaserSight" type="Area3D" parent="StateMachine/AimAndFire" unique_id=498876682]

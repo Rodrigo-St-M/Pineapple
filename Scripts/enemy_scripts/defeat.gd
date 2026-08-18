@@ -4,8 +4,10 @@ var time : float
 const START_IMPACT_SPEED : int = 5
 const FALL_SPEED : int = 9
 var direction : Vector3
+@onready var stream: AudioStream = preload("uid://cdo07ct6nta6c")
 
 func enter() -> void :
+	AudioManager.play_sound(stream, AudioManager.Busses.SFX)
 	GameMaster.get_current_instance().emit_enemy_defeated(parent.type)
 	time = 0
 	direction = - (parent.player.position - parent.position).normalized()
