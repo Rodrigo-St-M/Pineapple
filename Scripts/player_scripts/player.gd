@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var bump: Node = $StateMachine/Bump
 @onready var paused: Node = $StateMachine/Paused
 @onready var idle: Node = $StateMachine/Idle
+@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 
 var attacks : Array[PlayerState.Attacks] # the attacks this player has equiped (min 1, max 3)
 var has_dashed_air : bool # if the player has dashed in the air before
@@ -28,12 +29,15 @@ func _physics_process(delta: float) -> void:
 	stateMachine.process_physics(delta)
 	if has_dashed_air && is_on_floor():
 		has_dashed_air = false
+	if invincible_time > 0:
+		invincible_time -= delta
+		mesh_instance_3d.get_surface_override_material(0).albedo_color = Color(1 + (invincible_time * 5), 1 + (invincible_time * 5), 1 + (invincible_time * 5))
+	else:
+		mesh_instance_3d.get_surface_override_material(0).albedo_color = Color("#FFFFFFFF")
 
 
 func _process(delta: float) -> void:
 	stateMachine.process_frame(delta)
-	if invincible_time > 0:
-		invincible_time -= delta
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -88,5 +92,6 @@ func hurt(direction: Vector3) -> void:
 	if parrying:
 		parried_attack.emit(direction)
 		return
+	invincible_time = 2
 	bump.enter_args.push_back(direction)
 	stateMachine.change_state(bump)

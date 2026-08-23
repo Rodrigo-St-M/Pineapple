@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://b8ioh7ndhjbsy"]
+
+[ext_resource type="Script" uid="uid://di7hq2hv7fria" path="res://Scripts/tutorial.gd" id="1_ph3nu"]
+[ext_resource type="FontFile" uid="uid://dyyojulahp8if" path="res://assets/Curse Casual.ttf" id="2_4kmhl"]
+[ext_resource type="FontFile" uid="uid://chbqx52ed581f" path="res://assets/gomarice_simple_slum.ttf" id="3_cq4me"]
+[ext_resource type="Texture2D" uid="uid://x801xdipl78q" path="res://assets/tut_img0.png" id="3_ph3nu"]
+
+[sub_resource type="Gradient" id="Gradient_n45e2"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.60089684, 1)
+colors = PackedColorArray(0.29411766, 0.54509807, 0.23137255, 1, 0.43137255, 0.74509805, 0.27058825, 1, 1, 0.84313726, 0.05882353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_opfnp"]
+gradient = SubResource("Gradient_n45e2")
+fill_from = Vector2(0, 1)
+
+[node name="Tutorial" type="Control" unique_id=1924200698]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ph3nu")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=842445929]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackGround" type="TextureRect" parent="PanelContainer" unique_id=1303478099]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("GradientTexture2D_opfnp")
+expand_mode = 3
+
+[node name="VersionLabel" type="Label" parent="PanelContainer" unique_id=711519051]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "github.com/Rodrigo-St-M    TestVersion 0.2"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1964855315]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 80
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1697964782]
+custom_minimum_size = Vector2(0, 168.89)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2" unique_id=883108784]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer2" unique_id=1938373126]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_4kmhl")
+theme_override_font_sizes/font_size = 32
+text = "An army of robots is trying to steal PACO's fresh pineapples! Only way to stop them is with some punches!
+
+USE THE ARROW KEYS or LEFT JOYSTICK to move. Keep moving to build up momentum, indicated by the bar in the bottom left corner!
+
+Paco can move real fast, but he takes a while to accelerate...s"
+horizontal_alignment = 3
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer2" unique_id=324539419]
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_ph3nu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2" unique_id=1672880307]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="MainMenuBttn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=770689259]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.91914874, 0.9406265, 0.25380173, 1)
+theme_override_fonts/font = ExtResource("3_cq4me")
+theme_override_font_sizes/font_size = 41
+text = "Main menu"
+
+[node name="PreviousBttn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1631070417]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.91914874, 0.9406265, 0.25380173, 1)
+theme_override_fonts/font = ExtResource("3_cq4me")
+theme_override_font_sizes/font_size = 41
+text = "previous"
+
+[node name="NextBttn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1590247441]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.91914874, 0.9406265, 0.25380173, 1)
+theme_override_fonts/font = ExtResource("3_cq4me")
+theme_override_font_sizes/font_size = 41
+text = "next"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer/MainMenuBttn" to="." method="_on_main_menu_bttn_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer/PreviousBttn" to="." method="_on_previous_bttn_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer/NextBttn" to="." method="_on_next_bttn_pressed"]

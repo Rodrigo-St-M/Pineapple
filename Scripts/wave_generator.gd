@@ -66,7 +66,7 @@ static func get_wave_types(level : int) -> Array[Enemy.Types]:
 
 ## Returns a random float that represents how many enemies of a given type
 ## should spawn in comparison with other enemies, for example, for every STACK
-## enemy, around 1.5 TANK enemies should spawn too.
+## enemy, about 1 TANK enemies should spawn too (since they have the same odds).
 ##
 static func get_enemy_rate(enemy: Enemy.Types) -> float:
 	match enemy:

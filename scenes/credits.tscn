@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://td7qwqmckwo"]
+
+[ext_resource type="FontFile" uid="uid://dyyojulahp8if" path="res://assets/Curse Casual.ttf" id="1_2fbfq"]
+[ext_resource type="Script" uid="uid://dxrdagcpi3hiv" path="res://Scripts/credits.gd" id="1_8gwij"]
+[ext_resource type="Texture2D" uid="uid://cdi45t0snwe45" path="res://assets/placeholder_title.png" id="2_2fbfq"]
+[ext_resource type="Script" uid="uid://dgd4cg4gbghyn" path="res://Scripts/button.gd" id="3_2fbfq"]
+[ext_resource type="FontFile" uid="uid://chbqx52ed581f" path="res://assets/gomarice_simple_slum.ttf" id="3_8gwij"]
+
+[sub_resource type="Gradient" id="Gradient_n45e2"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.60089684, 1)
+colors = PackedColorArray(0.29411766, 0.54509807, 0.23137255, 1, 0.43137255, 0.74509805, 0.27058825, 1, 1, 0.84313726, 0.05882353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_opfnp"]
+gradient = SubResource("Gradient_n45e2")
+fill_from = Vector2(0, 1)
+
+[node name="Credits" type="Control" unique_id=2020304384]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8gwij")
+
+[node name="BackGround" type="TextureRect" parent="." unique_id=1303478099]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = SubResource("GradientTexture2D_opfnp")
+expand_mode = 3
+
+[node name="VersionLabel" type="Label" parent="BackGround" unique_id=711519051]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -328.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "github.com/Rodrigo-St-M    TestVersion 0.2"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1964855315]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=792430409]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1672880307]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=940041430]
+custom_minimum_size = Vector2(714.07, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2fbfq")
+theme_override_font_sizes/font_size = 22
+text = "Rodrigo Sta. Marta Coelho:
+	Game Design
+	Programing
+	Concept Art and UI
+	3D moddeling and texturing
+	SFX made using BandLab
+	UI made in Inkscape
+
+Fonts used:
+	Gomarice Simple_Slum_G made by Goma Shin: gomarice.fuma-kotaro.com
+	Curse Casual made by Grandoplex Productions: www.1001freefonts.com/designer-grandoplex-productions-fontlisting.php
+
+Music used:
+	Rossini: William Tell Overtude Final Arranged for Strings: www.classicals.de/rossini-william-tell-overture
+
+Developed in Godot 4.6 Stable"
+autowrap_mode = 2
+
+[node name="Logo" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1667569211]
+custom_minimum_size = Vector2(414.52, 0)
+layout_mode = 2
+texture = ExtResource("2_2fbfq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=443704787]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.91914874, 0.9406265, 0.25380173, 1)
+theme_override_fonts/font = ExtResource("3_8gwij")
+theme_override_font_sizes/font_size = 41
+text = "MAIN MENU"
+script = ExtResource("3_2fbfq")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="MarginContainer/VBoxContainer/Button" method="_on_pressed"]

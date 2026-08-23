@@ -16,8 +16,9 @@ enum GameState {
 }
 @onready var wave_timer: Timer = $"Spawner manager/WaveTimer"
 @onready var spawner_manager: Node3D = $"Spawner manager"
-@onready var transition_player: AnimationPlayer = $Camera3D/TransitionPlayer
 @onready var level_complete_screen: Control = $Camera3D/LevelCompleteScreen
+@export var stream : AudioStream
+var music_id
 
 static var instance = null
 var player : CharacterBody3D
@@ -58,26 +59,26 @@ func end_level() -> void:
 	level += 1
 	game_state = GameState.WAITING
 	await get_tree().create_timer(3.0).timeout
-	transition_player.play("drop_in_transition")
+	TransitionPlayer.play("drop_in_transition")
 	print(level)
 	if level == 4:
-		transition_player.play("drop_in_transition")
-		await transition_player.animation_finished
+		TransitionPlayer.play("drop_in_transition")
+		await TransitionPlayer.animation_finished
 		get_tree().change_scene_to_file("res://scenes/end_prototype.tscn")
-	await transition_player.animation_finished
+	await TransitionPlayer.animation_finished
 	player.toggle_paused()
 	level_complete_screen.set_powerup_options()
 	level_complete_screen.visible = true
-	transition_player.play("drop_out_transition")
+	TransitionPlayer.play("drop_out_transition")
 
 func start_level() -> void:
 	game_state = GameState.BRAWLING
-	transition_player.play("drop_in_transition")
-	await transition_player.animation_finished
+	TransitionPlayer.play("drop_in_transition")
+	await TransitionPlayer.animation_finished
 	player.toggle_paused()
 	spawner_manager.spawn_wave(level)
 	level_complete_screen.visible = false
-	transition_player.play("drop_out_transition")
+	TransitionPlayer.play("drop_out_transition")
 
 func pineapple_lost() -> void:
 	lives_left -= 1
@@ -94,7 +95,12 @@ func _enter_tree() -> void:
 	lives_left = 3
 
 func _ready() -> void:
+	TransitionPlayer.play("drop_out_transition")
+	music_id = AudioManager.play_sound(stream, AudioManager.Busses.MUSIC)
 	player.toggle_paused()
 	level_complete_screen.visible = false
 	spawner_manager.spawn_wave(level)
-	transition_player.play("drop_out_transition")
+
+func _exit_tree() -> void:
+	AudioManager.stop_sound(music_id)
+	

@@ -8,6 +8,9 @@ const MIN_VELOCITY : float = 0.0004
 @onready var bump_state: PlayerState = $"../Bump"
 @onready var jump_state: PlayerState = $"../Jump"
 @onready var fall: Node = $"../Fall"
+@onready var mesh_instance_3d: MeshInstance3D = $"../../MeshInstance3D"
+
+
 
 func enter() -> void :
 	##parent.move_and_slide()
@@ -17,6 +20,11 @@ func exit() -> void :
 	pass
 	
 func process_physics(delta : float) -> State :
+	if !parent.velocity.is_equal_approx(Vector3.ZERO):
+		mesh_instance_3d.look_at(parent.position + parent.velocity.normalized(), Vector3.MODEL_TOP, true)
+		mesh_instance_3d.rotation.y -= PI / 2
+	mesh_instance_3d.rotation.x = 0
+	mesh_instance_3d.rotation.z = 0
 	var state : PlayerState = null
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	input_dir = Vector3(input_dir.x, 0.0, input_dir.y)

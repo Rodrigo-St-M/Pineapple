@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://b56pv3ieiondu"]
+
+[ext_resource type="Script" uid="uid://c6rr0k8xgclmw" path="res://Scripts/options.gd" id="1_2iy26"]
+[ext_resource type="AudioStream" uid="uid://db6f47dlk6yvq" path="res://assets/Classicals.de - Rossini - William Tell Overture - Finale - Arranged for Strings.mp3" id="2_kv8mn"]
+[ext_resource type="FontFile" uid="uid://chbqx52ed581f" path="res://assets/gomarice_simple_slum.ttf" id="3_e6vpq"]
+[ext_resource type="AudioStream" uid="uid://c3gx73cxx2kcn" path="res://assets/Bump.wav" id="3_uon5e"]
+[ext_resource type="AudioStream" uid="uid://dyr7xwypvfcca" path="res://assets/comboUp.wav" id="4_85aq5"]
+[ext_resource type="Script" uid="uid://dgd4cg4gbghyn" path="res://Scripts/button.gd" id="4_o7i7e"]
+[ext_resource type="AudioStream" uid="uid://cdo07ct6nta6c" path="res://assets/hit.wav" id="5_gycth"]
+[ext_resource type="AudioStream" uid="uid://j243p82hkxbo" path="res://assets/pineapple_danger.wav" id="6_gyu1t"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1sggn"]
+streams_count = 4
+stream_0/stream = ExtResource("3_uon5e")
+stream_1/stream = ExtResource("4_85aq5")
+stream_2/stream = ExtResource("5_gycth")
+stream_3/stream = ExtResource("6_gyu1t")
+
+[sub_resource type="Gradient" id="Gradient_n45e2"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.60089684, 1)
+colors = PackedColorArray(0.29411766, 0.54509807, 0.23137255, 1, 0.43137255, 0.74509805, 0.27058825, 1, 1, 0.84313726, 0.05882353, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_opfnp"]
+gradient = SubResource("Gradient_n45e2")
+fill_from = Vector2(0, 1)
+
+[node name="Options" type="Control" unique_id=2020304384]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2iy26")
+music_stream = ExtResource("2_kv8mn")
+sfx_stream = SubResource("AudioStreamRandomizer_1sggn")
+
+[node name="BackGround" type="TextureRect" parent="." unique_id=1303478099]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = SubResource("GradientTexture2D_opfnp")
+expand_mode = 3
+
+[node name="VersionLabel" type="Label" parent="BackGround" unique_id=711519051]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -328.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "github.com/Rodrigo-St-M    TestVersion 0.2"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1964855315]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=943056358]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="AudioLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=505444179]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_e6vpq")
+theme_override_font_sizes/font_size = 32
+text = "AUDIO OPTIONS"
+horizontal_alignment = 1
+
+[node name="Master" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=480988539]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="MarginContainer/HBoxContainer/Master" unique_id=164016255]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_e6vpq")
+theme_override_font_sizes/font_size = 32
+text = "MASTER - 50%"
+horizontal_alignment = 1
+
+[node name="MasterBar" type="HSlider" parent="MarginContainer/HBoxContainer/Master" unique_id=1548751773]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+
+[node name="Music" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1161528493]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/HBoxContainer/Music" unique_id=940041430]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_e6vpq")
+theme_override_font_sizes/font_size = 32
+text = "MUSIC - 50%"
+horizontal_alignment = 1
+
+[node name="MusicBar" type="HSlider" parent="MarginContainer/HBoxContainer/Music" unique_id=524617084]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+
+[node name="SFX" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1321672458]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="MarginContainer/HBoxContainer/SFX" unique_id=1753257901]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_e6vpq")
+theme_override_font_sizes/font_size = 32
+text = "SFX- 50%"
+horizontal_alignment = 1
+
+[node name="SFXBar" type="HSlider" parent="MarginContainer/HBoxContainer/SFX" unique_id=995268618]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+rounded = true
+
+[node name="Button" type="Button" parent="MarginContainer" unique_id=443704787]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.91914874, 0.9406265, 0.25380173, 1)
+theme_override_fonts/font = ExtResource("3_e6vpq")
+theme_override_font_sizes/font_size = 41
+text = "MAIN MENU"
+script = ExtResource("4_o7i7e")
+
+[connection signal="drag_ended" from="MarginContainer/HBoxContainer/Master/MasterBar" to="." method="_on_master_bar_drag_ended"]
+[connection signal="drag_ended" from="MarginContainer/HBoxContainer/Music/MusicBar" to="." method="_on_music_bar_drag_ended"]
+[connection signal="drag_ended" from="MarginContainer/HBoxContainer/SFX/SFXBar" to="." method="_on_sfx_bar_drag_ended"]
+[connection signal="pressed" from="MarginContainer/Button" to="MarginContainer/Button" method="_on_pressed"]

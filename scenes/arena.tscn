@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bn4w7m1xnv4a4" path="res://Scripts/game_master.gd" id="1_iyva0"]
 [ext_resource type="PackedScene" uid="uid://t74ig8t6mxgw" path="res://scenes/arena_floor.tscn" id="1_xrytr"]
+[ext_resource type="AudioStream" uid="uid://db6f47dlk6yvq" path="res://assets/Classicals.de - Rossini - William Tell Overture - Finale - Arranged for Strings.mp3" id="2_ajq0i"]
 [ext_resource type="PackedScene" uid="uid://g4h3dgkdttgi" path="res://scenes/player.tscn" id="2_stc3i"]
 [ext_resource type="Script" uid="uid://cht1kgf3pd3b8" path="res://Scripts/camera_3d.gd" id="3_iyva0"]
-[ext_resource type="PackedScene" uid="uid://cwy7nu5xlty05" path="res://scenes/debug_ui.tscn" id="4_2cush"]
 [ext_resource type="AudioStream" uid="uid://dyr7xwypvfcca" path="res://assets/comboUp.wav" id="4_ajq0i"]
 [ext_resource type="PackedScene" uid="uid://2jts2p36otjr" path="res://scenes/game_ui.tscn" id="6_xrytr"]
 [ext_resource type="PackedScene" uid="uid://dvl6p2reu3a33" path="res://scenes/arena_walls.tscn" id="8_lkdvd"]
@@ -32,98 +32,9 @@ ambient_light_source = 2
 ambient_light_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
 ambient_light_sky_contribution = 0.3
 
-[sub_resource type="Animation" id="Animation_k1k1x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -914.809)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_ajq0i"]
-resource_name = "drop_in_transition"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -1285.559), Vector2(0, -232.50745)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, true]
-}
-
-[sub_resource type="Animation" id="Animation_8vbsj"]
-resource_name = "drop_out_transition"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.36666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -175.21576), Vector2(0, 722.994)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.36666667, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8vbsj"]
-_data = {
-&"RESET": SubResource("Animation_k1k1x"),
-&"drop_in_transition": SubResource("Animation_ajq0i"),
-&"drop_out_transition": SubResource("Animation_8vbsj")
-}
-
 [node name="Node3D" type="Node3D" unique_id=1878933727]
 script = ExtResource("1_iyva0")
+stream = ExtResource("2_ajq0i")
 
 [node name="Player" parent="." unique_id=2083009673 instance=ExtResource("2_stc3i")]
 unique_name_in_owner = true
@@ -142,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6704242, 0)
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 light_energy = 0.746
 shadow_enabled = true
-directional_shadow_max_distance = 1.0
+directional_shadow_split_1 = 0.048
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1467008646]
 environment = SubResource("Environment_pyk7t")
@@ -154,26 +65,10 @@ projection = 1
 size = 9.0
 script = ExtResource("3_iyva0")
 
-[node name="Debug_UI" parent="Camera3D" unique_id=661015873 instance=ExtResource("4_2cush")]
-
 [node name="GameUI" parent="Camera3D" unique_id=448597891 instance=ExtResource("6_xrytr")]
 
 [node name="LevelCompleteScreen" parent="Camera3D" unique_id=1238289073 instance=ExtResource("9_k1k1x")]
 visible = false
-
-[node name="TextureRect" type="ColorRect" parent="Camera3D" unique_id=982128179]
-z_index = 10
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -914.809
-offset_bottom = -354.80902
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="TransitionPlayer" type="AnimationPlayer" parent="Camera3D" unique_id=2039210134]
-libraries/ = SubResource("AnimationLibrary_8vbsj")
 
 [node name="Spawner manager" type="Node3D" parent="." unique_id=1870147050]
 script = ExtResource("9_ajq0i")
@@ -188,7 +83,6 @@ one_shot = true
 [node name="ArenaWalls" parent="." unique_id=645090519 instance=ExtResource("8_lkdvd")]
 
 [connection signal="enemy_defeated" from="." to="Spawner manager" method="_on_enemy_defeated"]
-[connection signal="game_over" from="." to="Camera3D/Debug_UI" method="_on_node_3d_game_over"]
 [connection signal="game_over" from="." to="Camera3D/GameUI" method="_on_node_3d_game_over"]
 [connection signal="wave_finished" from="Spawner manager" to="." method="end_level"]
 [connection signal="timeout" from="Spawner manager/WaveTimer" to="Spawner manager" method="finish_wave"]

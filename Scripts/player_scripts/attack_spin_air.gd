@@ -4,7 +4,7 @@ extends PlayerState
 @onready var collision_shape_3d: CollisionShape3D = $"../../../AttackHitbox/CollisionShape3D"
 @onready var attack_hitbox: Area3D = $"../../../AttackHitbox"
 @onready var attack_mesh: MeshInstance3D = $"../../../AttackHitbox/AttackMesh"
-
+@onready var mesh_instance_3d: MeshInstance3D = $"../../../MeshInstance3D"
 @export var attack_ground: PlayerState  
 
 const WEAK_RADIUS : float = 1.3
@@ -70,6 +70,8 @@ func _on_attack_hitbox_body_entered(body: Node3D) -> void:
 
 func process_physics(delta: float) -> State:
 	var state : PlayerState = null
+	mesh_instance_3d.rotate_y(8 * PI * delta)
+	
 	if y_velocity < 0 && parent.is_on_floor():
 			state = attack_ground
 			state.enter_args = [false]

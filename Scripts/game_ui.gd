@@ -66,4 +66,17 @@ func _on_node_3d_game_over() -> void:
 			#icons[i].texture = PINEAPPLE_LOST
 
 func _on_restart_button_pressed() -> void:
+	Engine.time_scale = 1.0
+	TransitionPlayer.play("drop_in_transition")
+	
+	await TransitionPlayer.animation_finished
 	get_tree().reload_current_scene()
+
+
+func _on_menu_button_pressed() -> void:
+	Engine.time_scale = 1.0
+	TransitionPlayer.play("drop_in_transition")
+	var scene :PackedScene = load("uid://dr78rj16umshh")
+	
+	await TransitionPlayer.animation_finished
+	get_tree().change_scene_to_node(scene.instantiate())

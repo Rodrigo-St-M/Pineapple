@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://db6f47dlk6yvq"
+path="res://.godot/imported/Classicals.de - Rossini - William Tell Overture - Finale - Arranged for Strings.mp3-17989c2280ca0c1e1ca230ef7ab113c6.mp3str"
+
+[deps]
+
+source_file="res://assets/Classicals.de - Rossini - William Tell Overture - Finale - Arranged for Strings.mp3"
+dest_files=["res://.godot/imported/Classicals.de - Rossini - William Tell Overture - Finale - Arranged for Strings.mp3-17989c2280ca0c1e1ca230ef7ab113c6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

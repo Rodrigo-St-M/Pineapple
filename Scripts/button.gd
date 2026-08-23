@@ -1,4 +1,8 @@
 extends Button
 
 func _on_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	TransitionPlayer.play("drop_in_transition")
+	var scene :PackedScene = load("uid://dr78rj16umshh")
+	
+	await TransitionPlayer.animation_finished
+	get_tree().change_scene_to_node(scene.instantiate())

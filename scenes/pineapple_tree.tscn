@@ -16,7 +16,7 @@ transparency = 1
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 grow = true
-grow_amount = 0.01
+grow_amount = 0.02
 stencil_mode = 3
 stencil_flags = 1
 stencil_compare = 5
@@ -33,6 +33,7 @@ rim_enabled = true
 rim = 0.1
 stencil_mode = 1
 stencil_flags = 2
+stencil_outline_thickness = 0.02
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4chsc"]
 
@@ -42,7 +43,7 @@ transparency = 1
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 grow = true
-grow_amount = 0.01
+grow_amount = 0.02
 stencil_mode = 3
 stencil_flags = 1
 stencil_compare = 5
@@ -59,6 +60,7 @@ rim_enabled = true
 rim = 0.1
 stencil_mode = 1
 stencil_flags = 2
+stencil_outline_thickness = 0.02
 
 [node name="PineappleTree" type="StaticBody3D" unique_id=1905442731]
 collision_layer = 16

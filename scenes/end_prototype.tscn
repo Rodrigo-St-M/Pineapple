@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dj0xnmp5aircq"]
 
+[ext_resource type="Script" uid="uid://cde2oh7g07ftw" path="res://Scripts/end_prototype.gd" id="1_54r8o"]
 [ext_resource type="FontFile" uid="uid://chbqx52ed581f" path="res://assets/gomarice_simple_slum.ttf" id="1_gloro"]
+[ext_resource type="FontFile" uid="uid://dyyojulahp8if" path="res://assets/Curse Casual.ttf" id="2_54r8o"]
 [ext_resource type="Script" uid="uid://dgd4cg4gbghyn" path="res://Scripts/button.gd" id="2_lv0gw"]
 
 [sub_resource type="Gradient" id="Gradient_n45e2"]
@@ -18,7 +20,7 @@ font = ExtResource("1_gloro")
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_mlwl6"]
-font = ExtResource("1_gloro")
+font = ExtResource("2_54r8o")
 font_size = 41
 
 [node name="Control" type="Control" unique_id=74876586]
@@ -28,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_54r8o")
 
 [node name="BackGround" type="TextureRect" parent="." unique_id=346552066]
 layout_mode = 1
@@ -59,17 +62,17 @@ text = "END OF THE PROTOTYPE!"
 label_settings = SubResource("LabelSettings_vojca")
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=124624560]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "If you have the time, please,
-tell me how did the game make you feel
-or if something fell off in the comments!
-PPP is still in early development,
+text = "If you have the time tell me how did the game make you feel or if something felt off in the comments!
+PPP is still in early development and
 your feedback is very helpfull!
 Thank you for playing! 
--rodc"
+-Rodrigo Sta. Marta Coelho"
 label_settings = SubResource("LabelSettings_mlwl6")
-horizontal_alignment = 3
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=25155642]
 layout_mode = 2

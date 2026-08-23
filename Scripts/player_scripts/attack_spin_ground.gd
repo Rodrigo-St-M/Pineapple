@@ -7,6 +7,7 @@ extends PlayerState
 @onready var collision_shape_3d: CollisionShape3D = $"../../../AttackHitbox/CollisionShape3D"
 @onready var attack_hitbox: Area3D = $"../../../AttackHitbox"
 @onready var attack_mesh: MeshInstance3D = $"../../../AttackHitbox/AttackMesh"
+@onready var mesh_instance_3d: MeshInstance3D = $"../../../MeshInstance3D"
 
 @onready var jump: PlayerState = $"../../Jump"
 @onready var idleState : PlayerState = $"../../Idle"
@@ -83,7 +84,7 @@ func process_input(_event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	var state : PlayerState = null
-	
+	mesh_instance_3d.rotate_y(8 * PI * delta)
 	if !Input.is_action_pressed("attack0"):
 		#print("input released")
 		input_released = true

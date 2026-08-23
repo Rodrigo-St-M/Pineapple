@@ -17,7 +17,7 @@ func _ready() -> void:
 func play_sound(stream :AudioStream, bus :Busses) -> StringName:
 	var instance = AudioStreamPlayer.new()
 	instance.stream = stream
-	instance.bus = busArray[bus]
+	instance.bus = busArray[bus + 1]
 	instance.finished.connect(remove_node.bind(instance))
 	add_child(instance)
 	instance.play()
@@ -27,9 +27,9 @@ func remove_node(instance: AudioStreamPlayer):
 	instance.queue_free()
 
 func stop_sound(audio_name: StringName):
-	print(audio_name)
+	#print(audio_name)
 	var instance : AudioStreamPlayer = find_child(audio_name, true, false)
-	print(instance)
+	#print(instance)
 	if instance:
 		instance.stop()
 		instance.queue_free()

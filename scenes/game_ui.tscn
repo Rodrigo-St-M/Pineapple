@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cmf61mpiocqpk" path="res://assets/momentum_background.png" id="2_x63ue"]
 [ext_resource type="Texture2D" uid="uid://doyxh5w5xo3ei" path="res://assets/momentum_border.png" id="3_gjn1n"]
 [ext_resource type="Script" uid="uid://cd8rgqnak3rnf" path="res://Scripts/combo_bar.gd" id="6_1t2s1"]
+[ext_resource type="FontFile" uid="uid://chbqx52ed581f" path="res://assets/gomarice_simple_slum.ttf" id="7_sjwyb"]
+[ext_resource type="Script" uid="uid://dgd4cg4gbghyn" path="res://Scripts/button.gd" id="8_5kh4o"]
 
 [node name="GameUI" type="Control" unique_id=448597891]
 layout_mode = 3
@@ -103,20 +105,24 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 128
 text = "GAME OVER"
 
-[node name="RestartButton" type="Button" parent="GameOverLabel" unique_id=2107273944]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOverLabel" unique_id=1290091875]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -52.0
-offset_top = 0.5
-offset_right = 52.0
-offset_bottom = 53.5
+offset_left = -137.0
+offset_top = -10.25
+offset_right = 137.0
+offset_bottom = 42.75003
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.8392157, 0.7254902, 0.101960786, 1)
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="GameOverLabel/HBoxContainer" unique_id=2107273944]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.8509804, 0.24705882, 1)
 theme_override_colors/font_focus_color = Color(0.8392157, 0.7254902, 0.101960786, 1)
 theme_override_colors/font_pressed_color = Color(0.8392157, 0.7254902, 0.101960786, 1)
 theme_override_colors/font_hover_color = Color(0.8392157, 0.7254902, 0.101960786, 1)
@@ -129,8 +135,19 @@ theme_override_colors/icon_pressed_color = Color(0.3254902, 0.53333336, 0.133333
 theme_override_colors/icon_hover_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
 theme_override_colors/icon_disabled_color = Color(0.3254902, 0.53333336, 0.13333334, 1)
+theme_override_fonts/font = ExtResource("7_sjwyb")
 theme_override_font_sizes/font_size = 32
 text = "RETRY"
+
+[node name="MenuButton" type="Button" parent="GameOverLabel/HBoxContainer" unique_id=1197763729]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.91914874, 0.9406265, 0.25380173, 1)
+theme_override_fonts/font = ExtResource("7_sjwyb")
+theme_override_font_sizes/font_size = 41
+text = "MAIN MENU"
+script = ExtResource("8_5kh4o")
 
 [node name="ComboBar" type="TextureProgressBar" parent="." unique_id=248450326]
 layout_mode = 1
@@ -163,4 +180,5 @@ horizontal_alignment = 1
 text_overrun_behavior = 3
 script = ExtResource("2_3t1kc")
 
-[connection signal="pressed" from="GameOverLabel/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameOverLabel/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameOverLabel/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
